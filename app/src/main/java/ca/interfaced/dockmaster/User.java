@@ -21,6 +21,11 @@ public class User {
         mID = UUID.randomUUID();
     }
 
+
+    public UUID getID() {
+        return mID;
+    }
+
     public String getFirstName() {
         return mFirstName;
     }

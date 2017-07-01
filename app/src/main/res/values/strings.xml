@@ -25,6 +25,8 @@
     // FORGOT PASSWORD PAGE
     <string name="title_activity_forgot_password">Forgot Password</string>
 
+    // PROJECTS LIST PAGE
+    <string name="title_activity_projects_list">Project List</string>
 
 
 </resources>
