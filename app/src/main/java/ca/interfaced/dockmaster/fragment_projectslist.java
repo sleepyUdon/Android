@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -49,12 +50,29 @@ public class fragment_projectslist extends Fragment{
 
 
 
-    private class ProjectHolder extends RecyclerView.ViewHolder {
+    private class ProjectHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private Project mProject;
+
         public TextView mProjectName;
+        public TextView mProjectAddress;
 
         public ProjectHolder(View itemView) {
             super(itemView);
-            mProjectName = (TextView) itemView;
+            itemView.setOnClickListener(this);
+            mProjectName = (TextView) itemView.findViewById(R.id.project_item_projectName);
+            mProjectAddress = (TextView) itemView.findViewById(R.id.project_item_projectAddress);
+        }
+
+        public void bindProject(Project project) {
+            mProject = project;
+            mProjectName.setText(mProject.getProjectName());
+            mProjectAddress.setText(mProject.getProjectAddress());
+        }
+
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(getActivity(), mProject.getProjectName() + " clicked!", Toast.LENGTH_SHORT)
+                    .show();
         }
     }
 
@@ -68,14 +86,14 @@ public class fragment_projectslist extends Fragment{
         @Override
         public ProjectHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            View view = layoutInflater.inflate(android.R.layout.simple_list_item_1, parent, false);
+            View view = layoutInflater.inflate(R.layout.project_item, parent, false);
             return new ProjectHolder(view);
         }
 
         @Override
         public void onBindViewHolder(ProjectHolder holder, int position) {
             Project project = mProjects.get(position);
-            holder.mProjectName.setText(project.getProjectName());
+            holder.bindProject(project);
         }
 
         @Override
