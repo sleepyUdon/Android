@@ -22,14 +22,9 @@
             android:name=".ForgotPasswordActivity"
             android:label="@string/title_activity_forgot_password">
         </activity>
-        <activity android:name=".ProjectsListActivity">
+        <activity
+            android:name=".ProjectsList_Activity"
             android:label="@string/title_activity_projects_list">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-
         </activity>
     </application>
 

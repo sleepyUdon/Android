@@ -3,7 +3,7 @@ package ca.interfaced.dockmaster;
 import android.support.v4.app.Fragment;
 
 
-public class ForgotPasswordActivity extends SingleFragmentActivity {
+public class ForgotPasswordActivity extends SingleFragment_Activity {
 
     @Override
     protected Fragment createFragment() {

@@ -5,7 +5,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 
-public class ProjectsListActivity extends FragmentActivity {
+
+public class ProjectsList_Activity extends FragmentActivity {
 
     @Override
 
