@@ -1,5 +1,6 @@
 package ca.interfaced.dockmaster;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -73,6 +74,8 @@ public class Projectslist_Fragment extends Fragment{
         public void onClick(View v) {
 
             // open project description
+            Intent intent = ProjectDescription_Activity.newIntent(getActivity(), mProject.getID());
+            startActivity(intent);
             Toast.makeText(getActivity(), mProject.getProjectName() + " clicked!", Toast.LENGTH_SHORT)
                     .show();
         }
