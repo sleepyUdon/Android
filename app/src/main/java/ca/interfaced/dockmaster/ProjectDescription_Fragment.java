@@ -18,15 +18,26 @@ import java.util.UUID;
 
 public class ProjectDescription_Fragment extends Fragment{
 
+    private static final String ARG_PROJECT_ID = "crime_id";
+
     private Project mProject;
     private TextView mProjectName_textView;
     private TextView mProjectAddress_textView;
+
+    public static ProjectDescription_Fragment newInstance(UUID projectID) {
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_PROJECT_ID, projectID);
+
+        ProjectDescription_Fragment fragment = new ProjectDescription_Fragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UUID projectID = (UUID) getActivity().getIntent().getSerializableExtra(ProjectDescription_Activity.EXTRA_PROJECT_ID);
+        UUID projectID = (UUID) getArguments().getSerializable(ARG_PROJECT_ID);
         mProject = ProjectsList.get(getActivity()).getProject(projectID);
     }
 
