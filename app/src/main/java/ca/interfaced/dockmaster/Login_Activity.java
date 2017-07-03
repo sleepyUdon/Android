@@ -11,7 +11,7 @@ import android.support.v4.app.FragmentManager;
  * Created by vivianechan on 2017-06-28.
  */
 
-public class LoginActivity extends FragmentActivity {
+public class Login_Activity extends FragmentActivity {
 
 @Override
 
@@ -23,7 +23,7 @@ protected void onCreate(Bundle savedInstanceState) {
     Fragment fragment = fm.findFragmentById(R.id.login_fragment_container);
 
     if (fragment == null) {
-        fragment = new fragment_login();
+        fragment = new Login_Fragment();
         fm.beginTransaction()
                 .add(R.id.login_fragment_container, fragment)
                 .commit();

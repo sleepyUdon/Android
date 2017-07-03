@@ -16,7 +16,7 @@ import java.util.List;
  * Created by vivianechan on 2017-07-01.
  */
 
-public class fragment_projectslist extends Fragment{
+public class Projectslist_Fragment extends Fragment{
 
     private Project mProject;
     private RecyclerView mProjectsRecyclerView;

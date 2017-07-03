@@ -14,7 +14,7 @@ import android.widget.EditText;
  * Created by vivianechan on 2017-06-30.
  */
 
-public class fragment_createaccount extends Fragment {
+public class Createaccount_Fragment extends Fragment {
 
     private User mUser;
     private EditText mfirstName_textField;

@@ -14,7 +14,7 @@ import android.widget.EditText;
  * Created by vivianechan on 2017-06-30.
  */
 
-public class fragment_forgotpassword extends Fragment {
+public class Forgotpassword_Fragment extends Fragment {
 
 
     @Override

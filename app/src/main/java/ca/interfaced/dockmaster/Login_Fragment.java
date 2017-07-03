@@ -14,7 +14,7 @@ import android.widget.EditText;
  * Created by vivianechan on 2017-06-30.
  */
 
-public class fragment_login extends Fragment {
+public class Login_Fragment extends Fragment {
     private EditText muserName_textField;
     private EditText mpassword_textField;
     private Button mlogin_button;
