@@ -16,21 +16,21 @@
         <activity
             android:name=".CreateAccount_Activity"
             android:label="@string/title_activity_create_account">
-
         </activity>
         <activity
             android:name=".ForgotPassword_Activity"
             android:label="@string/title_activity_forgot_password">
-
         </activity>
         <activity
             android:name=".ProjectsList_Activity"
             android:label="@string/title_activity_projects_list">
 
+        </activity>
+        <activity android:name=".ProjectDescription_Activity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
     </application>

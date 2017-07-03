@@ -71,6 +71,8 @@ public class Projectslist_Fragment extends Fragment{
 
         @Override
         public void onClick(View v) {
+
+            // open project description
             Toast.makeText(getActivity(), mProject.getProjectName() + " clicked!", Toast.LENGTH_SHORT)
                     .show();
         }
