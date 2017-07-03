@@ -74,7 +74,7 @@ public class Projectslist_Fragment extends Fragment{
         public void onClick(View v) {
 
             // open project description
-            Intent intent = ProjectDescription_Activity.newIntent(getActivity(), mProject.getID());
+            Intent intent = ProjectPager_Activity.newIntent(getActivity(), mProject.getID());
             startActivity(intent);
             Toast.makeText(getActivity(), mProject.getProjectName() + " clicked!", Toast.LENGTH_SHORT)
                     .show();
