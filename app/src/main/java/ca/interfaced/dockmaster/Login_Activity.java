@@ -20,12 +20,12 @@ protected void onCreate(Bundle savedInstanceState) {
     setContentView(R.layout.login);
 
     FragmentManager fm = getSupportFragmentManager();
-    Fragment fragment = fm.findFragmentById(R.id.login_fragment_container);
+    Fragment fragment = fm.findFragmentById(R.id.fragment_container);
 
     if (fragment == null) {
         fragment = new Login_Fragment();
         fm.beginTransaction()
-                .add(R.id.login_fragment_container, fragment)
+                .add(R.id.fragment_container, fragment)
                 .commit();
     }
 }

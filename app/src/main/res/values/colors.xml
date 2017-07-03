@@ -5,12 +5,12 @@
     <color name="colorAccent">#ff4081</color>
 
 
-    // My colors
+    // Dockmaster colors
     <color name="colorWhite">#ffffff</color>
-    <color name="colorGreen">#0e9649</color>
-    <color name="colorGrey">#acacac</color>
-
-
-
+    <color name="colorGreen">#24B460</color>
+    <color name="colorLightGrey">#DCDCDC</color>
+    <color name="colorDarkGrey">#4A4A4A</color>
+    <color name="colorBlue">#4990E2</color>
+    <color name="colorBlack">#000000</color>
 
 </resources>

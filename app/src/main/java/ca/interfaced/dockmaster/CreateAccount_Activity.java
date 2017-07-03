@@ -11,7 +11,7 @@ public class CreateAccount_Activity extends SingleFragment_Activity {
 
     @Override
     protected Fragment createFragment() {
-        return new fragment_createaccount();
+        return new Createaccount_Fragment();
     }
 
 

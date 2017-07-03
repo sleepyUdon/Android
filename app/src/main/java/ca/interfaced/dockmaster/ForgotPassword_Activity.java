@@ -7,7 +7,7 @@ public class ForgotPassword_Activity extends SingleFragment_Activity {
 
     @Override
     protected Fragment createFragment() {
-        return new fragment_forgotpassword();
+        return new Forgotpassword_Fragment();
     }
 
 }
