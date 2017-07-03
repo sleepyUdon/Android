@@ -1,5 +1,6 @@
 package ca.interfaced.dockmaster;
 
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -10,12 +11,17 @@ public class Project {
     private UUID mID;
     private String mProjectName;
     private String mProjectAddress;
+    private Date mDate;
     // TODO: array of project contacts
     private String mProjectContact;
     // TODO: project image
 
     public Project() {
         mID = UUID.randomUUID();
+
+        // TODO: modify date
+
+        mDate = new Date();
     }
 
     public UUID getID() {
@@ -44,5 +50,15 @@ public class Project {
 
     public void setProjectContact(String projectContact) {
         mProjectContact = projectContact;
+    }
+
+    // TODO: modify date
+
+    public Date getDate() {
+        return mDate;
+    }
+
+    public void setDate(Date date) {
+        mDate = date;
     }
 }

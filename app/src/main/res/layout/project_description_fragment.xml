@@ -22,4 +22,10 @@
         android:padding="4dp"
         android:text="Project Address"/>
 
+    <Button
+        android:id="@+id/projectDescription_bookButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BOOK"/>
+
 </LinearLayout>

@@ -2,14 +2,12 @@ package ca.interfaced.dockmaster;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.TextView;
-
 import java.util.UUID;
 
 /**
@@ -19,10 +17,13 @@ import java.util.UUID;
 public class ProjectDescription_Fragment extends Fragment{
 
     private static final String ARG_PROJECT_ID = "crime_id";
+    private static final String DIALOG_DATE = "DialogDate";
+
 
     private Project mProject;
     private TextView mProjectName_textView;
     private TextView mProjectAddress_textView;
+    private Button mBook_button;
 
     public static ProjectDescription_Fragment newInstance(UUID projectID) {
         Bundle args = new Bundle();
@@ -51,6 +52,17 @@ public class ProjectDescription_Fragment extends Fragment{
 
         mProjectAddress_textView = (TextView) v.findViewById(R.id.projectDescription_projectAddress);
         mProjectAddress_textView.setText(mProject.getProjectAddress());
+
+        mBook_button = (Button)v.findViewById(R.id.projectDescription_bookButton);
+        mBook_button.setText(mProject.getDate().toString());
+        mBook_button.setOnClickListener(new View.OnClickListener() {
+          @Override
+            public void onClick(View v) {
+              FragmentManager manager = getFragmentManager();
+              DatePickerFragment dialog = new DatePickerFragment();
+              dialog.show(manager, DIALOG_DATE);
+          }
+        }) ;
 
 
         return v;
