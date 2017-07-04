@@ -33,4 +33,7 @@
     <string name="projectDescription_projectAddress">Project Address</string>
     <string name="date_picker_title">Date of booking: </string>
 
+    // MENU EDIT USER PROFILE
+    <string name="userSettings_editProfile">Edit Profile</string>
+
 </resources>

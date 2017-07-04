@@ -52,7 +52,7 @@ public class ProjectDescription_Fragment extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.project_description_fragment, container, false);
+        View v = inflater.inflate(R.layout.projectdescription_fragment, container, false);
 
         mProjectName_textView = (TextView) v.findViewById(R.id.projectDescription_projectName);
         mProjectName_textView.setText(mProject.getProjectName());
