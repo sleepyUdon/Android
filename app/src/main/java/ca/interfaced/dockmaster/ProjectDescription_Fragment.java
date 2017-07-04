@@ -49,6 +49,14 @@ public class ProjectDescription_Fragment extends Fragment{
         mProject = ProjectsList.get(getActivity()).getProject(projectID);
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        ProjectsList.get(getActivity())
+                .updateProject(mProject);
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

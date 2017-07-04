@@ -17,10 +17,11 @@ public class Project {
     // TODO: project image
 
     public Project() {
-        mID = UUID.randomUUID();
+        this(UUID.randomUUID());
+    }
 
-        // TODO: modify date
-
+    public Project(UUID id) {
+        mID = id;
         mDate = new Date();
     }
 
@@ -61,4 +62,6 @@ public class Project {
     public void setDate(Date date) {
         mDate = date;
     }
+
+
 }
