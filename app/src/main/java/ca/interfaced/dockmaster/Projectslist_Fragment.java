@@ -31,7 +31,7 @@ public class Projectslist_Fragment extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.projects_list_fragment, container, false);
+        View view = inflater.inflate(R.layout.projectslist_fragment, container, false);
 
         mProjectsRecyclerView = (RecyclerView) view.findViewById(R.id.projects_list_fragment_container);
         mProjectsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -43,10 +43,14 @@ public class Projectslist_Fragment extends Fragment{
 
     private void updateUI() {
         ProjectsList projectsList = ProjectsList.get(getActivity());
-        List<Project>projects = projectsList.getProjects();
+        List<Project> projects = projectsList.getProjects();
 
-        mAdapter = new ProjectAdapter(projects);
-        mProjectsRecyclerView.setAdapter(mAdapter);
+        if (mAdapter == null) {
+            mAdapter = new ProjectAdapter(projects);
+            mProjectsRecyclerView.setAdapter(mAdapter);
+        } else {
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
 
@@ -74,7 +78,7 @@ public class Projectslist_Fragment extends Fragment{
         public void onClick(View v) {
 
             // open project description
-            Intent intent = ProjectDescription_Activity.newIntent(getActivity(), mProject.getID());
+            Intent intent = ProjectPager_Activity.newIntent(getActivity(), mProject.getID());
             startActivity(intent);
             Toast.makeText(getActivity(), mProject.getProjectName() + " clicked!", Toast.LENGTH_SHORT)
                     .show();
@@ -106,9 +110,15 @@ public class Projectslist_Fragment extends Fragment{
             return mProjects.size();
         }
 
-
-
     }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
+    }
+
 
 
 }
