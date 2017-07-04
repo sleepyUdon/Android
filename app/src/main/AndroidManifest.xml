@@ -26,9 +26,13 @@
             android:label="@string/title_activity_projects_list">
 
         </activity>
-        <activity android:name=".ProjectDescription_Activity">
+        <activity
+            android:name=".ProjectDescription_Activity"
+            android:parentActivityName=".ProjectsList_Activity">
         </activity>
-        <activity android:name=".ProjectPager_Activity">
+        <activity
+            android:name=".ProjectPager_Activity"
+            android:parentActivityName=".ProjectsList_Activity">
         </activity>
         <activity android:name=".UserSettings_Activity">
             <intent-filter>
