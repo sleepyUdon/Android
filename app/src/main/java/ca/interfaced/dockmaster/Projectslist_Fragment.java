@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -22,7 +21,6 @@ import java.util.List;
 
 public class Projectslist_Fragment extends Fragment{
 
-    private Project mProject;
     private RecyclerView mProjectsRecyclerView;
     private ProjectAdapter mAdapter;
 
@@ -30,7 +28,6 @@ public class Projectslist_Fragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        mProject = new Project();
     }
 
     @Override
@@ -43,6 +40,12 @@ public class Projectslist_Fragment extends Fragment{
         updateUI();
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
     }
 
     @Override
@@ -87,27 +90,27 @@ public class Projectslist_Fragment extends Fragment{
         public TextView mProjectName;
         public TextView mProjectAddress;
 
-        public ProjectHolder(View itemView) {
-            super(itemView);
+        public ProjectHolder(LayoutInflater inflater, ViewGroup parent) {
+            super(inflater.inflate(R.layout.project_item, parent, false));
             itemView.setOnClickListener(this);
+
             mProjectName = (TextView) itemView.findViewById(R.id.project_item_projectName);
             mProjectAddress = (TextView) itemView.findViewById(R.id.project_item_projectAddress);
         }
 
-        public void bindProject(Project project) {
+        public void bind(Project project) {
             mProject = project;
             mProjectName.setText(mProject.getProjectName());
             mProjectAddress.setText(mProject.getProjectAddress());
         }
 
         @Override
-        public void onClick(View v) {
+        public void onClick(View view) {
 
             // open project description
             Intent intent = ProjectPager_Activity.newIntent(getActivity(), mProject.getID());
             startActivity(intent);
-            Toast.makeText(getActivity(), mProject.getProjectName() + " clicked!", Toast.LENGTH_SHORT)
-                    .show();
+
         }
     }
 
@@ -121,14 +124,13 @@ public class Projectslist_Fragment extends Fragment{
         @Override
         public ProjectHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            View view = layoutInflater.inflate(R.layout.project_item, parent, false);
-            return new ProjectHolder(view);
+            return new ProjectHolder(layoutInflater, parent);
         }
 
         @Override
         public void onBindViewHolder(ProjectHolder holder, int position) {
             Project project = mProjects.get(position);
-            holder.bindProject(project);
+            holder.bind(project);
         }
 
         @Override
@@ -143,11 +145,7 @@ public class Projectslist_Fragment extends Fragment{
     }
 
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        updateUI();
-    }
+
 
 
 

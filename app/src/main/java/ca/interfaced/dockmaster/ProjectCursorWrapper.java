@@ -2,6 +2,8 @@ package ca.interfaced.dockmaster;
 
 import android.database.Cursor;
 import android.database.CursorWrapper;
+import ca.interfaced.dockmaster.Project;
+import ca.interfaced.dockmaster.ProjectDbSchema.ProjectTable;
 
 import java.util.Date;
 import java.util.UUID;
@@ -17,10 +19,10 @@ public class ProjectCursorWrapper extends CursorWrapper {
     }
 
     public Project getProject() {
-        String uuidString = getString(getColumnIndex(ProjectDbSchema.ProjectTable.Cols.UUID));
-        String projectName = getString(getColumnIndex(ProjectDbSchema.ProjectTable.Cols.PROJECTNAME));
-        String projectAddress = getString(getColumnIndex(ProjectDbSchema.ProjectTable.Cols.PROJECTADDRESS));
-        long date = getLong(getColumnIndex(ProjectDbSchema.ProjectTable.Cols.PROJECTBOOKINGDATE));
+        String uuidString = getString(getColumnIndex(ProjectTable.Cols.UUID));
+        String projectName = getString(getColumnIndex(ProjectTable.Cols.PROJECTNAME));
+        String projectAddress = getString(getColumnIndex(ProjectTable.Cols.PROJECTADDRESS));
+        long date = getLong(getColumnIndex(ProjectTable.Cols.PROJECTBOOKINGDATE));
 
         Project project = new Project(UUID.fromString(uuidString));
         project.setProjectName(projectName);

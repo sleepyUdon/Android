@@ -22,11 +22,11 @@ public class ProjectBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + ProjectTable.NAME + "(" +
-        " _id integer primary key autoincrement, " +
-                        ProjectTable.Cols.UUID + ", " +
-                        ProjectTable.Cols.PROJECTNAME + ", " +
-                        ProjectTable.Cols.PROJECTADDRESS + ", " +
-                        ProjectTable.Cols.PROJECTBOOKINGDATE +
+                " _id integer primary key autoincrement, " +
+                ProjectTable.Cols.UUID + ", " +
+                ProjectTable.Cols.PROJECTNAME + ", " +
+                ProjectTable.Cols.PROJECTADDRESS + ", " +
+                ProjectTable.Cols.PROJECTBOOKINGDATE +
                 ")"
         );
     }

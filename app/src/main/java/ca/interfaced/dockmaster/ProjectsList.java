@@ -28,7 +28,8 @@ public class ProjectsList {
 
     private ProjectsList(Context context) {
         mContext = context.getApplicationContext();
-        mDatabase = new ProjectBaseHelper(mContext).getWritableDatabase();
+        mDatabase = new ProjectBaseHelper(mContext)
+                .getWritableDatabase();
         }
 
     public void addProject(Project p) {
@@ -78,15 +79,6 @@ public class ProjectsList {
                 new String[] {uuidString});
     }
 
-    private static ContentValues getContentValues(Project project) {
-        ContentValues values = new ContentValues();
-        values.put(ProjectDbSchema.ProjectTable.Cols.UUID, project.getID().toString());
-        values.put(ProjectDbSchema.ProjectTable.Cols.PROJECTNAME, project.getProjectName());
-        values.put(ProjectDbSchema.ProjectTable.Cols.PROJECTADDRESS, project.getProjectAddress());
-        values.put(ProjectDbSchema.ProjectTable.Cols.PROJECTBOOKINGDATE, project.getDate().getTime());
-        return values;
-    }
-
     private ProjectCursorWrapper queryProjects(String whereClause, String[] whereArgs) {
         Cursor cursor = mDatabase.query(
                 ProjectDbSchema.ProjectTable.NAME,
@@ -98,5 +90,14 @@ public class ProjectsList {
                 null
         );
         return new ProjectCursorWrapper(cursor);
+    }
+
+    private static ContentValues getContentValues(Project project) {
+        ContentValues values = new ContentValues();
+        values.put(ProjectDbSchema.ProjectTable.Cols.UUID, project.getID().toString());
+        values.put(ProjectDbSchema.ProjectTable.Cols.PROJECTNAME, project.getProjectName());
+        values.put(ProjectDbSchema.ProjectTable.Cols.PROJECTADDRESS, project.getProjectAddress());
+        values.put(ProjectDbSchema.ProjectTable.Cols.PROJECTBOOKINGDATE, project.getDate().getTime());
+        return values;
     }
 }

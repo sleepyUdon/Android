@@ -6,16 +6,14 @@
               android:orientation="vertical">
 
 
-    <TextView
+    <EditText
         android:id="@+id/projectDescription_projectName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="4dp"
-        android:text="Project Name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         />
 
-    <TextView
+    <EditText
         android:id="@+id/projectDescription_projectAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
