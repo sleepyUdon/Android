@@ -1,6 +1,10 @@
 package ca.interfaced.dockmaster;
 
+import android.support.v4.app.Fragment;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -10,11 +14,32 @@ import java.util.UUID;
 public class Project {
     private UUID mID;
     private String mProjectName;
+    private String mProjectStatus;
     private String mProjectAddress;
+    private List<Item> mItems = new ArrayList<>();
     private Date mDate;
-    // TODO: array of project contacts
-    private String mProjectContact;
+    private List<User> mUsers = new ArrayList<>();
+
     // TODO: project image
+
+    public String getProjectStatus() {
+        return mProjectStatus;
+    }
+
+    public void setProjectStatus(String projectStatus) {
+        mProjectStatus = projectStatus;
+    }
+
+    public List<Item> getItems() {
+        return mItems;
+    }
+
+    public void setItems(List<Item> items) {
+        mItems = items;
+    }
+
+
+
 
     public Project() {
         this(UUID.randomUUID());
@@ -45,13 +70,6 @@ public class Project {
         mProjectAddress = projectAddress;
     }
 
-    public String getProjectContact() {
-        return mProjectContact;
-    }
-
-    public void setProjectContact(String projectContact) {
-        mProjectContact = projectContact;
-    }
 
     // TODO: modify date
 
@@ -63,5 +81,13 @@ public class Project {
         mDate = date;
     }
 
+
+    public List<User> getUsers() {
+        return mUsers;
+    }
+
+    public void setUsers(List<User> users) {
+        mUsers = users;
+    }
 
 }
