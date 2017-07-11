@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Date;
@@ -27,8 +30,8 @@ public class ProjectDescription_Fragment extends Fragment{
 
 
     private Project mProject;
-    private TextView mProjectName_textView;
-    private TextView mProjectAddress_textView;
+    private TextView mProjectName_ediText;
+    private TextView mProjectAddress_editText;
     private TextView mProjectDate_textView;
     private Button mBook_button;
 
@@ -49,16 +52,57 @@ public class ProjectDescription_Fragment extends Fragment{
         mProject = ProjectsList.get(getActivity()).getProject(projectID);
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        ProjectsList.get(getActivity())
+                .updateProject(mProject);
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.projectdescription_fragment, container, false);
 
-        mProjectName_textView = (TextView) v.findViewById(R.id.projectDescription_projectName);
-        mProjectName_textView.setText(mProject.getProjectName());
+        mProjectName_ediText = (EditText) v.findViewById(R.id.projectDescription_projectName);
+        mProjectName_ediText.setText(mProject.getProjectName());
+        mProjectName_ediText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        mProjectAddress_textView = (TextView) v.findViewById(R.id.projectDescription_projectAddress);
-        mProjectAddress_textView.setText(mProject.getProjectAddress());
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mProject.setProjectName(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        mProjectAddress_editText = (EditText) v.findViewById(R.id.projectDescription_projectAddress);
+        mProjectAddress_editText.setText(mProject.getProjectAddress());
+        mProjectAddress_editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mProject.setProjectAddress(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
 
         mProjectDate_textView = (TextView) v.findViewById(R.id.projectDescription_projectDate);
 

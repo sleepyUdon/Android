@@ -1,6 +1,9 @@
 package ca.interfaced.dockmaster;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +16,8 @@ import java.util.UUID;
 public class ProjectsList {
 
     private static ProjectsList sProjectsList;
-    private final List<Project> mProjects;
+    private Context mContext;
+    private SQLiteDatabase mDatabase;
 
     public static ProjectsList get(Context context) {
         if (sProjectsList == null) {
@@ -23,26 +27,77 @@ public class ProjectsList {
     }
 
     private ProjectsList(Context context) {
-        mProjects = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Project project = new Project();
-            project.setProjectName("Project #" + i);
-            project.setProjectAddress("Address #" + i);
-            project.setProjectContact("Contact #" + i);
-            mProjects.add(project);
-            }
+        mContext = context.getApplicationContext();
+        mDatabase = new ProjectBaseHelper(mContext)
+                .getWritableDatabase();
         }
 
+    public void addProject(Project p) {
+        ContentValues values = getContentValues(p);
+        mDatabase.insert(ProjectDbSchema.ProjectTable.NAME, null, values);
+    }
+
+
     public List<Project> getProjects(){
-        return mProjects;
+        List<Project> projects = new ArrayList<>();
+
+        ProjectCursorWrapper cursor = queryProjects(null ,null);
+
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                projects.add(cursor.getProject());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+        return projects;
     }
 
     public Project getProject(UUID id) {
-        for (Project project : mProjects) {
-            if (project.getID().equals(id)) {
-                return project;
+        ProjectCursorWrapper cursor = queryProjects(ProjectDbSchema.ProjectTable.Cols.UUID + " = ?",
+                new String[] { id.toString() }
+        );
+        try {
+            if (cursor.getCount() == 0) {
+                return null;
             }
+            cursor.moveToFirst();
+            return cursor.getProject();
+        } finally {
+            cursor.close();
         }
-        return null;
+    }
+
+    public void updateProject(Project project) {
+        String uuidString = project.getID().toString();
+        ContentValues values = getContentValues(project);
+
+        mDatabase.update(ProjectDbSchema.ProjectTable.NAME, values,
+                ProjectDbSchema.ProjectTable.Cols.UUID + " = ? ",
+                new String[] {uuidString});
+    }
+
+    private ProjectCursorWrapper queryProjects(String whereClause, String[] whereArgs) {
+        Cursor cursor = mDatabase.query(
+                ProjectDbSchema.ProjectTable.NAME,
+                null,
+                whereClause,
+                whereArgs,
+                null,
+                null,
+                null
+        );
+        return new ProjectCursorWrapper(cursor);
+    }
+
+    private static ContentValues getContentValues(Project project) {
+        ContentValues values = new ContentValues();
+        values.put(ProjectDbSchema.ProjectTable.Cols.UUID, project.getID().toString());
+        values.put(ProjectDbSchema.ProjectTable.Cols.PROJECTNAME, project.getProjectName());
+        values.put(ProjectDbSchema.ProjectTable.Cols.PROJECTADDRESS, project.getProjectAddress());
+        values.put(ProjectDbSchema.ProjectTable.Cols.PROJECTBOOKINGDATE, project.getDate().getTime());
+        return values;
     }
 }

@@ -24,7 +24,6 @@
         <activity
             android:name=".ProjectsList_Activity"
             android:label="@string/title_activity_projects_list">
-
         </activity>
         <activity
             android:name=".ProjectDescription_Activity"
@@ -35,12 +34,18 @@
             android:parentActivityName=".ProjectsList_Activity">
         </activity>
         <activity android:name=".UserSettings_Activity">
+        </activity>
+        <activity
+            android:name=".Main_Activity"
+            android:label="@string/title_activity_main_"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-
+        </activity>
+        <activity android:name=".Settings_Fragment">
         </activity>
     </application>
 

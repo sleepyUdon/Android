@@ -6,20 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by vivianechan on 2017-06-30.
- */
+public class Settings_Fragment extends Fragment {
 
-public class Forgotpassword_Fragment extends Fragment {
-
-    public static Forgotpassword_Fragment newInstance() {
-        return new Forgotpassword_Fragment();
+    public static Settings_Fragment newInstance() {
+        return new Settings_Fragment();
     }
 
-    public Forgotpassword_Fragment() {
+    public Settings_Fragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,10 +24,16 @@ public class Forgotpassword_Fragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.forgotpassword_fragment, container, false);
+        View v = inflater.inflate(R.layout.settings_fragment, container, false);
 
         return v;
 
     }
 }
+
+
+
+
+
+
 

@@ -26,6 +26,7 @@ public class Createaccount_Fragment extends Fragment {
 
     private Button mcreateAccount_button;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

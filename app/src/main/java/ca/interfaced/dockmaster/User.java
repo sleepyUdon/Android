@@ -14,6 +14,8 @@ public class User {
     private String mEmail;
     private String mPassword;
     private String mPhoneNumber;
+    // TODO: add firebase user ID
+
 
     // TODO: user picture
 
