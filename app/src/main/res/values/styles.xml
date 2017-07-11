@@ -19,19 +19,28 @@
         <item name="android:fontFamily">Avenir Next</item>
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
     <!--<style name="Body">-->
-        <!--<item name="android:textSize">12sp</item>-->
+    <!--<item name="android:textSize">12sp</item>-->
     <!--</style>-->
 
     <!--<style name="Body.Strong">-->
-        <!--<item name="android:textStyle">bold</item>-->
+    <!--<item name="android:textStyle">bold</item>-->
     <!--</style>-->
 
     <!--<style name="Background">-->
-        <!--<item name="android:background">@color/colorGrey</item>-->
+    <!--<item name="android:background">@color/colorGrey</item>-->
     <!--</style>-->
 
     <!--<style name="MainButton">-->
-        <!--<item name="android:background">@color/colorGreen</item>-->
+    <!--<item name="android:background">@color/colorGreen</item>-->
     <!--</style>-->
 </resources>

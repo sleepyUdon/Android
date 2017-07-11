@@ -24,6 +24,14 @@ public class Projectslist_Fragment extends Fragment{
     private RecyclerView mProjectsRecyclerView;
     private ProjectAdapter mAdapter;
 
+    public static Projectslist_Fragment newInstance() {
+        return new Projectslist_Fragment();
+    }
+
+    public Projectslist_Fragment() {
+        // Required empty public constructor
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

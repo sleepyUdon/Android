@@ -12,6 +12,14 @@ import android.view.ViewGroup;
 
 public class Forgotpassword_Fragment extends Fragment {
 
+    public static Forgotpassword_Fragment newInstance() {
+        return new Forgotpassword_Fragment();
+    }
+
+    public Forgotpassword_Fragment() {
+        // Required empty public constructor
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
