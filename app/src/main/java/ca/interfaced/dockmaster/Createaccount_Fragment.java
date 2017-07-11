@@ -26,14 +26,6 @@ public class Createaccount_Fragment extends Fragment {
 
     private Button mcreateAccount_button;
 
-    public static Createaccount_Fragment newInstance() {
-        return new Createaccount_Fragment();
-    }
-
-    public Createaccount_Fragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

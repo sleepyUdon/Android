@@ -12,7 +12,5 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Forgot Password"/>
+        android:text="My Schedule"/>
 </LinearLayout>
-
-

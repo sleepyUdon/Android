@@ -29,8 +29,8 @@ public class Main_Activity extends AppCompatActivity  {
         setContentView(R.layout.main);
 
         fragmentList.add(Projectslist_Fragment.newInstance());
-        fragmentList.add(Forgotpassword_Fragment.newInstance());
-        fragmentList.add(Createaccount_Fragment.newInstance());
+        fragmentList.add(MySchedule_Fragment.newInstance());
+        fragmentList.add(Settings_Fragment.newInstance());
 
         tabTitles.add("PROJECTS");
         tabTitles.add("MY SCHEDULE");
@@ -48,9 +48,6 @@ public class Main_Activity extends AppCompatActivity  {
         tabLayout.setupWithViewPager(viewPager);
 
     }
-
-
-
 
 
     private class MyPagerAdapter extends FragmentStatePagerAdapter {
