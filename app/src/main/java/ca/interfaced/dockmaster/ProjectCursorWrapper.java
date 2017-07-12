@@ -2,7 +2,7 @@ package ca.interfaced.dockmaster;
 
 import android.database.Cursor;
 import android.database.CursorWrapper;
-import ca.interfaced.dockmaster.Project;
+import ca.interfaced.dockmaster.Model.Project;
 import ca.interfaced.dockmaster.ProjectDbSchema.ProjectTable;
 
 import java.util.Date;

@@ -12,6 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.List;
 import java.util.UUID;
 
+import ca.interfaced.dockmaster.Model.Project;
+import ca.interfaced.dockmaster.Model.ProjectsList;
+
 /**
  * Created by vivianechan on 2017-07-03.
  */

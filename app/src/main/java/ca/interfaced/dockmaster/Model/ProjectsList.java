@@ -1,4 +1,4 @@
-package ca.interfaced.dockmaster;
+package ca.interfaced.dockmaster.Model;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,6 +8,10 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import ca.interfaced.dockmaster.ProjectBaseHelper;
+import ca.interfaced.dockmaster.ProjectCursorWrapper;
+import ca.interfaced.dockmaster.ProjectDbSchema;
 
 /**
  * Created by vivianechan on 2017-06-30.

@@ -1,6 +1,4 @@
-package ca.interfaced.dockmaster;
-
-import android.support.v4.app.Fragment;
+package ca.interfaced.dockmaster.Model;
 
 import java.util.ArrayList;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package ca.interfaced.dockmaster;
+package ca.interfaced.dockmaster.Model;
 
 import android.content.Context;
 

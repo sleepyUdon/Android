@@ -1,4 +1,4 @@
-package ca.interfaced.dockmaster;
+package ca.interfaced.dockmaster.Model;
 
 import android.support.v4.app.Fragment;
 

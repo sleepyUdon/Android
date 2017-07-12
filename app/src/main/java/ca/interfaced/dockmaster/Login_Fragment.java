@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import ca.interfaced.dockmaster.Model.User;
+
 /**
  * Created by vivianechan on 2017-06-30.
  */

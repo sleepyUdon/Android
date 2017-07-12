@@ -17,6 +17,9 @@ import android.widget.TextView;
 import java.util.Date;
 import java.util.UUID;
 
+import ca.interfaced.dockmaster.Model.Project;
+import ca.interfaced.dockmaster.Model.ProjectsList;
+
 /**
  * Created by vivianechan on 2017-07-03.
  */
