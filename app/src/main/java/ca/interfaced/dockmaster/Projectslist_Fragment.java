@@ -16,7 +16,10 @@ import android.widget.TextView;
 import java.util.List;
 
 import ca.interfaced.dockmaster.Model.Project;
+import io.realm.OrderedCollectionChangeSet;
+import io.realm.OrderedRealmCollectionChangeListener;
 import io.realm.Realm;
+import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
 /**
@@ -27,6 +30,7 @@ public class Projectslist_Fragment extends Fragment{
 
     private RecyclerView mProjectsRecyclerView;
     private ProjectAdapter mAdapter;
+    private List<Project> mProjects;
 
     public static Projectslist_Fragment newInstance() {
         return new Projectslist_Fragment();
@@ -40,7 +44,12 @@ public class Projectslist_Fragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
         Realm realm = Realm.getDefaultInstance();
+        RealmQuery<Project>query = realm.where(Project.class);
+        RealmResults<Project> projects = query.findAll();
+        mProjects = projects;
+
 
     }
 
@@ -74,10 +83,11 @@ public class Projectslist_Fragment extends Fragment{
         int id = item.getItemId();
         switch(id) {
             case R.id.menuitem_addproject:
-            Project project = new Project();
+                realm.beginTransaction();
+                Project project = new Project();
                 project.setProjectName("111 Richmond");
                 project.setProjectAddress("111 Richmond Street");
-                final RealmResults<Project>projects = realm.where(Project.class).findAll();
+
                 realm.commitTransaction();
 
 

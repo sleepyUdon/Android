@@ -1,10 +1,6 @@
 package ca.interfaced.dockmaster.Model;
 
-import java.util.UUID;
-
 import io.realm.RealmObject;
-import io.realm.RealmResults;
-import io.realm.annotations.LinkingObjects;
 
 /**
  * Created by vivianechan on 2017-06-30.
