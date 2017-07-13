@@ -2,79 +2,87 @@ package ca.interfaced.dockmaster.Model;
 
 import java.util.UUID;
 
+import io.realm.RealmObject;
+import io.realm.RealmResults;
+import io.realm.annotations.LinkingObjects;
+
 /**
  * Created by vivianechan on 2017-06-30.
  */
 
-public class User {
-    private UUID mID;
-    private String mFirstName;
-    private String mLastName;
-    private String mCompanyName;
-    private String mEmail;
-    private String mPassword;
-    private String mPhoneNumber;
+public class User extends RealmObject {
+
+    private long id;
+    private String firstName;
+    private String lastName;
+    private String companyName;
+    private String email;
+    private String password;
+    private String phoneNumber;
+
+
     // TODO: add firebase user ID
 
 
     // TODO: user picture
 
-    public User() {
-        mID = UUID.randomUUID();
+    public long getId() {
+        return id;
     }
 
-
-    public UUID getID() {
-        return mID;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
-        return mFirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        mFirstName = firstName;
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return mLastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        mLastName = lastName;
+        this.lastName = lastName;
     }
 
     public String getCompanyName() {
-        return mCompanyName;
+        return companyName;
     }
 
     public void setCompanyName(String companyName) {
-        mCompanyName = companyName;
+        this.companyName = companyName;
     }
 
     public String getEmail() {
-        return mEmail;
+        return email;
     }
 
     public void setEmail(String email) {
-        mEmail = email;
+        this.email = email;
     }
 
     public String getPassword() {
-        return mPassword;
+        return password;
     }
 
     public void setPassword(String password) {
-        mPassword = password;
+        this.password = password;
     }
 
     public String getPhoneNumber() {
-        return mPhoneNumber;
+        return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        mPhoneNumber = phoneNumber;
+        this.phoneNumber = phoneNumber;
     }
+
+
 
 
 

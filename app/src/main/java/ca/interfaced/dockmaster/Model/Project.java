@@ -5,87 +5,69 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by vivianechan on 2017-06-30.
  */
 
-public class Project {
-    private UUID mID;
-    private String mProjectName;
-    private String mProjectStatus;
-    private String mProjectAddress;
-    private List<Item> mItems = new ArrayList<>();
-    private Date mDate;
-    private List<User> mUsers = new ArrayList<>();
+public class Project extends RealmObject {
+    @PrimaryKey
+    private long id;
+    private String projectName;
+    private String ProjectAddress;
+    private RealmList<Asset>assets;
+    private RealmList<User>users;
+
+//    private String ProjectStatus;
+//    private Date mDate;
+//    private List<User> mUsers = new ArrayList<>();
 
     // TODO: project image
 
-    public String getProjectStatus() {
-        return mProjectStatus;
+    public long getId() {
+        return id;
     }
 
-    public void setProjectStatus(String projectStatus) {
-        mProjectStatus = projectStatus;
-    }
-
-    public List<Item> getItems() {
-        return mItems;
-    }
-
-    public void setItems(List<Item> items) {
-        mItems = items;
-    }
-
-
-
-
-    public Project() {
-        this(UUID.randomUUID());
-    }
-
-    public Project(UUID id) {
-        mID = id;
-        mDate = new Date();
-    }
-
-    public UUID getID() {
-        return mID;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getProjectName() {
-        return mProjectName;
+        return projectName;
     }
 
     public void setProjectName(String projectName) {
-        mProjectName = projectName;
+        this.projectName = projectName;
     }
 
     public String getProjectAddress() {
-        return mProjectAddress;
+        return ProjectAddress;
     }
 
     public void setProjectAddress(String projectAddress) {
-        mProjectAddress = projectAddress;
+        ProjectAddress = projectAddress;
+    }
+
+    public RealmList<Asset> getAssets() {
+        return assets;
+    }
+
+    public void setAssets(RealmList<Asset> assets) {
+        this.assets = assets;
+    }
+
+    public RealmList<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(RealmList<User> users) {
+        this.users = users;
     }
 
 
-    // TODO: modify date
 
-    public Date getDate() {
-        return mDate;
-    }
-
-    public void setDate(Date date) {
-        mDate = date;
-    }
-
-
-    public List<User> getUsers() {
-        return mUsers;
-    }
-
-    public void setUsers(List<User> users) {
-        mUsers = users;
-    }
 
 }

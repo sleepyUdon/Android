@@ -63,8 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-
-                android:text="Chan 456-7890"
+                android:text="Chan"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121"/>
 

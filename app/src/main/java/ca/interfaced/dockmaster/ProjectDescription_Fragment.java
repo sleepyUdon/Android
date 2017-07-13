@@ -18,7 +18,6 @@ import java.util.Date;
 import java.util.UUID;
 
 import ca.interfaced.dockmaster.Model.Project;
-import ca.interfaced.dockmaster.Model.ProjectsList;
 
 /**
  * Created by vivianechan on 2017-07-03.
@@ -51,16 +50,16 @@ public class ProjectDescription_Fragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UUID projectID = (UUID) getArguments().getSerializable(ARG_PROJECT_ID);
-        mProject = ProjectsList.get(getActivity()).getProject(projectID);
+//        UUID projectID = (UUID) getArguments().getSerializable(ARG_PROJECT_ID);
+//        mProject = ProjectsList.get(getActivity()).getProject(projectID);
     }
 
     @Override
     public void onPause() {
         super.onPause();
 
-        ProjectsList.get(getActivity())
-                .updateProject(mProject);
+//        ProjectsList.get(getActivity())
+//                .updateProject(mProject);
     }
 
 
@@ -110,35 +109,35 @@ public class ProjectDescription_Fragment extends Fragment{
         mProjectDate_textView = (TextView) v.findViewById(R.id.projectDescription_projectDate);
 
         mBook_button = (Button) v.findViewById(R.id.projectDescription_bookButton);
-        updateDate();
-        mBook_button.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                FragmentManager manager = getFragmentManager();
-                DatePicker_Fragment dialog = DatePicker_Fragment.newInstance(mProject.getDate());
-                dialog.setTargetFragment(ProjectDescription_Fragment.this, REQUEST_DATE);
-                dialog.show(manager, DIALOG_DATE);
-            }
-        });
+//        updateDate();
+//        mBook_button.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                FragmentManager manager = getFragmentManager();
+//                DatePicker_Fragment dialog = DatePicker_Fragment.newInstance(mProject.getDate());
+//                dialog.setTargetFragment(ProjectDescription_Fragment.this, REQUEST_DATE);
+//                dialog.show(manager, DIALOG_DATE);
+//            }
+//        });
         return v;
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode != Activity.RESULT_OK) {
-            return;
-        }
-        if (requestCode == REQUEST_DATE) {
-            Date date = (Date) data.getSerializableExtra(DatePicker_Fragment.EXTRA_DATE);
-            mProject.setDate(date);
-            updateDate();
-        }
+//        if (resultCode != Activity.RESULT_OK) {
+//            return;
+//        }
+//        if (requestCode == REQUEST_DATE) {
+//            Date date = (Date) data.getSerializableExtra(DatePicker_Fragment.EXTRA_DATE);
+//            mProject.setDate(date);
+//            updateDate();
+//        }
     }
 
-    private void updateDate() {
-        mBook_button.setText(mProject.getDate().toString());
-    }
+//    private void updateDate() {
+//        mBook_button.setText(mProject.getDate().toString());
+//    }
 
 
 }

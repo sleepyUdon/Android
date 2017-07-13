@@ -16,7 +16,8 @@ import android.widget.TextView;
 import java.util.List;
 
 import ca.interfaced.dockmaster.Model.Project;
-import ca.interfaced.dockmaster.Model.ProjectsList;
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * Created by vivianechan on 2017-07-01.
@@ -39,6 +40,8 @@ public class Projectslist_Fragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        Realm realm = Realm.getDefaultInstance();
+
     }
 
     @Override
@@ -48,7 +51,7 @@ public class Projectslist_Fragment extends Fragment{
         mProjectsRecyclerView = (RecyclerView) view.findViewById(R.id.projects_list_fragment_container);
         mProjectsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        updateUI();
+//        updateUI();
 
         return view;
     }
@@ -56,7 +59,7 @@ public class Projectslist_Fragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
-        updateUI();
+//        updateUI();
     }
 
     @Override
@@ -67,12 +70,20 @@ public class Projectslist_Fragment extends Fragment{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+        Realm realm = Realm.getDefaultInstance();
+        int id = item.getItemId();
+        switch(id) {
             case R.id.menuitem_addproject:
             Project project = new Project();
-            ProjectsList.get(getActivity()).addProject(project);
-            Intent intent = ProjectPager_Activity.newIntent(getActivity(), project.getID());
-            startActivity(intent);
+                project.setProjectName("111 Richmond");
+                project.setProjectAddress("111 Richmond Street");
+                final RealmResults<Project>projects = realm.where(Project.class).findAll();
+                realm.commitTransaction();
+
+
+//            ProjectsList.get(getActivity()).addProject(project);
+//            Intent intent = ProjectPager_Activity.newIntent(getActivity(), project.getID());
+//            startActivity(intent);
             return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -80,18 +91,20 @@ public class Projectslist_Fragment extends Fragment{
     }
 
 
-    private void updateUI() {
-        ProjectsList projectsList = ProjectsList.get(getActivity());
-        List<Project> projects = projectsList.getProjects();
 
-        if (mAdapter == null) {
-            mAdapter = new ProjectAdapter(projects);
-            mProjectsRecyclerView.setAdapter(mAdapter);
-        } else {
-            mAdapter.setProjects(projects);
-            mAdapter.notifyDataSetChanged();
-        }
-    }
+
+//    private void updateUI() {
+//        ProjectsList projectsList = ProjectsList.get(getActivity());
+//        List<Project> projects = projectsList.getProjects();
+//
+//        if (mAdapter == null) {
+//            mAdapter = new ProjectAdapter(projects);
+//            mProjectsRecyclerView.setAdapter(mAdapter);
+//        } else {
+//            mAdapter.setProjects(projects);
+//            mAdapter.notifyDataSetChanged();
+//        }
+//    }
 
 
 
@@ -111,16 +124,17 @@ public class Projectslist_Fragment extends Fragment{
 
         public void bind(Project project) {
             mProject = project;
-            mProjectName.setText(mProject.getProjectName());
-            mProjectAddress.setText(mProject.getProjectAddress());
+
+//            mProjectName.setText(mProject.getProjectName());
+//            mProjectAddress.setText(mProject.getProjectAddress());
         }
 
         @Override
         public void onClick(View view) {
 
             // open project description
-            Intent intent = ProjectPager_Activity.newIntent(getActivity(), mProject.getID());
-            startActivity(intent);
+//            Intent intent = ProjectPager_Activity.newIntent(getActivity(), mProject.getID());
+//            startActivity(intent);
 
         }
     }
@@ -140,8 +154,8 @@ public class Projectslist_Fragment extends Fragment{
 
         @Override
         public void onBindViewHolder(ProjectHolder holder, int position) {
-            Project project = mProjects.get(position);
-            holder.bind(project);
+//            Project project = mProjects.get(position);
+//            holder.bind(project);
         }
 
         @Override
@@ -149,9 +163,9 @@ public class Projectslist_Fragment extends Fragment{
             return mProjects.size();
         }
 
-        public void setProjects(List<Project> projects) {
-            mProjects = projects;
-        }
+//        public void setProjects(List<Project> projects) {
+//            mProjects = projects;
+//        }
 
     }
 
