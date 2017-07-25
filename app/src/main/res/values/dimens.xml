@@ -8,10 +8,9 @@
 
 
     <!--Padding-->
-    <dimen name="list_item_padding">2dp</dimen>
+    <dimen name="list_item_padding">8dp</dimen>
 
     <!--Example-->
-    <dimen name="list_item_height">72dp</dimen>
     <dimen name="margin_medium">12dp</dimen>
 
 

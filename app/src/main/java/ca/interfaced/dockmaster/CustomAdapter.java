@@ -25,7 +25,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
      * Provide a reference to the type of views that you are using (custom ViewHolder)
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textView;
+        private final TextView project_name;
+        private final TextView project_address;
+
 
         public ViewHolder(View v) {
             super(v);
@@ -36,11 +38,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                     Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
                 }
             });
-            textView = (TextView) v.findViewById(R.id.textView);
+            project_name = (TextView) v.findViewById(R.id.project_name);
+            project_address = (TextView) v.findViewById(R.id.project_address);
+
         }
 
         public TextView getTextView() {
-            return textView;
+            return project_name;
         }
     }
 
