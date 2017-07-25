@@ -1,39 +1,43 @@
+
 package ca.interfaced.dockmaster;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.RadioButton;
 
-import java.util.List;
 
-import ca.interfaced.dockmaster.Model.Project;
-import io.realm.OrderedCollectionChangeSet;
-import io.realm.OrderedRealmCollectionChangeListener;
-import io.realm.Realm;
-import io.realm.RealmQuery;
-import io.realm.RealmResults;
 
-/**
- * Created by vivianechan on 2017-07-01.
- */
 
-public class Projectslist_Fragment extends Fragment{
+public class Projectslist_Fragment extends Fragment {
 
-    private RecyclerView mProjectsRecyclerView;
-    private ProjectAdapter mAdapter;
-    private List<Project> mProjects;
+    private static final String TAG = "RecyclerViewFragment";
+    private static final String KEY_LAYOUT_MANAGER = "layoutManager";
+    private static final int SPAN_COUNT = 2;
+    private static final int DATASET_COUNT = 60;
 
-    public static Projectslist_Fragment newInstance() {
-        return new Projectslist_Fragment();
+    private enum LayoutManagerType {
+        GRID_LAYOUT_MANAGER,
+        LINEAR_LAYOUT_MANAGER
+    }
+
+    protected LayoutManagerType mCurrentLayoutManagerType;
+
+    protected RadioButton mLinearLayoutRadioButton;
+    protected RadioButton mGridLayoutRadioButton;
+
+    protected RecyclerView mRecyclerView;
+    protected CustomAdapter mAdapter;
+    protected RecyclerView.LayoutManager mLayoutManager;
+    protected String[] mDataset;
+
+    public static ca.interfaced.dockmaster.Projectslist_Fragment newInstance() {
+        return new ca.interfaced.dockmaster.Projectslist_Fragment();
     }
 
     public Projectslist_Fragment() {
@@ -43,145 +47,104 @@ public class Projectslist_Fragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
 
-        Realm realm = Realm.getDefaultInstance();
-        RealmQuery<Project>query = realm.where(Project.class);
-        RealmResults<Project> projects = query.findAll();
-        mProjects = projects;
-
-
+        // Initialize dataset, this data would usually come from a local content provider or
+        // remote server.
+        initDataset();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.projectslist_fragment, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.projectslist_fragment, container, false);
+        rootView.setTag(TAG);
 
-        mProjectsRecyclerView = (RecyclerView) view.findViewById(R.id.projects_list_fragment_container);
-        mProjectsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
 
-//        updateUI();
+        // LinearLayoutManager is used here, this will layout the elements in a similar fashion
+        // to the way ListView would layout elements. The RecyclerView.LayoutManager defines how
+        // elements are laid out.
+        mLayoutManager = new LinearLayoutManager(getActivity());
 
-        return view;
+        mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
+
+        if (savedInstanceState != null) {
+            // Restore saved layout manager type.
+            mCurrentLayoutManagerType = (LayoutManagerType) savedInstanceState
+                    .getSerializable(KEY_LAYOUT_MANAGER);
+        }
+        setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
+
+        mAdapter = new CustomAdapter(mDataset);
+        // Set CustomAdapter as the adapter for RecyclerView.
+        mRecyclerView.setAdapter(mAdapter);
+
+        mLinearLayoutRadioButton = (RadioButton) rootView.findViewById(R.id.linear_layout_rb);
+        mLinearLayoutRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setRecyclerViewLayoutManager(LayoutManagerType.LINEAR_LAYOUT_MANAGER);
+            }
+        });
+
+        mGridLayoutRadioButton = (RadioButton) rootView.findViewById(R.id.grid_layout_rb);
+        mGridLayoutRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setRecyclerViewLayoutManager(LayoutManagerType.GRID_LAYOUT_MANAGER);
+            }
+        });
+
+        return rootView;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-//        updateUI();
-    }
+    /**
+     * Set RecyclerView's LayoutManager to the one given.
+     *
+     * @param layoutManagerType Type of layout manager to switch to.
+     */
+    public void setRecyclerViewLayoutManager(LayoutManagerType layoutManagerType) {
+        int scrollPosition = 0;
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu , MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.projectlist_fragment,  menu);
-    }
+        // If a layout manager has already been set, get current scroll position.
+        if (mRecyclerView.getLayoutManager() != null) {
+            scrollPosition = ((LinearLayoutManager) mRecyclerView.getLayoutManager())
+                    .findFirstCompletelyVisibleItemPosition();
+        }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Realm realm = Realm.getDefaultInstance();
-        int id = item.getItemId();
-        switch(id) {
-            case R.id.menuitem_addproject:
-                realm.beginTransaction();
-                Project project = new Project();
-                project.setProjectName("111 Richmond");
-                project.setProjectAddress("111 Richmond Street");
-
-                realm.commitTransaction();
-
-
-//            ProjectsList.get(getActivity()).addProject(project);
-//            Intent intent = ProjectPager_Activity.newIntent(getActivity(), project.getID());
-//            startActivity(intent);
-            return true;
+        switch (layoutManagerType) {
+            case GRID_LAYOUT_MANAGER:
+                mLayoutManager = new GridLayoutManager(getActivity(), SPAN_COUNT);
+                mCurrentLayoutManagerType = LayoutManagerType.GRID_LAYOUT_MANAGER;
+                break;
+            case LINEAR_LAYOUT_MANAGER:
+                mLayoutManager = new LinearLayoutManager(getActivity());
+                mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
+                break;
             default:
-                return super.onOptionsItemSelected(item);
+                mLayoutManager = new LinearLayoutManager(getActivity());
+                mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
         }
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.scrollToPosition(scrollPosition);
     }
 
-
-
-
-//    private void updateUI() {
-//        ProjectsList projectsList = ProjectsList.get(getActivity());
-//        List<Project> projects = projectsList.getProjects();
-//
-//        if (mAdapter == null) {
-//            mAdapter = new ProjectAdapter(projects);
-//            mProjectsRecyclerView.setAdapter(mAdapter);
-//        } else {
-//            mAdapter.setProjects(projects);
-//            mAdapter.notifyDataSetChanged();
-//        }
-//    }
-
-
-
-    private class ProjectHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private Project mProject;
-
-        public TextView mProjectName;
-        public TextView mProjectAddress;
-
-        public ProjectHolder(LayoutInflater inflater, ViewGroup parent) {
-            super(inflater.inflate(R.layout.project_item, parent, false));
-            itemView.setOnClickListener(this);
-
-            mProjectName = (TextView) itemView.findViewById(R.id.project_item_projectName);
-            mProjectAddress = (TextView) itemView.findViewById(R.id.project_item_projectAddress);
-        }
-
-        public void bind(Project project) {
-            mProject = project;
-
-//            mProjectName.setText(mProject.getProjectName());
-//            mProjectAddress.setText(mProject.getProjectAddress());
-        }
-
-        @Override
-        public void onClick(View view) {
-
-            // open project description
-//            Intent intent = ProjectPager_Activity.newIntent(getActivity(), mProject.getID());
-//            startActivity(intent);
-
-        }
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Save currently selected layout manager.
+        savedInstanceState.putSerializable(KEY_LAYOUT_MANAGER, mCurrentLayoutManagerType);
+        super.onSaveInstanceState(savedInstanceState);
     }
 
-    private class ProjectAdapter extends RecyclerView.Adapter<ProjectHolder> {
-        private List<Project> mProjects;
-
-        public ProjectAdapter(List<Project>projects) {
-            mProjects = projects;
+    /**
+     * Generates Strings for RecyclerView's adapter. This data would usually come
+     * from a local content provider or remote server.
+     */
+    private void initDataset() {
+        mDataset = new String[DATASET_COUNT];
+        for (int i = 0; i < DATASET_COUNT; i++) {
+            mDataset[i] = "This is element #" + i;
         }
-
-        @Override
-        public ProjectHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            return new ProjectHolder(layoutInflater, parent);
-        }
-
-        @Override
-        public void onBindViewHolder(ProjectHolder holder, int position) {
-//            Project project = mProjects.get(position);
-//            holder.bind(project);
-        }
-
-        @Override
-        public int getItemCount() {
-            return mProjects.size();
-        }
-
-//        public void setProjects(List<Project> projects) {
-//            mProjects = projects;
-//        }
-
     }
-
-
-
-
-
-
 }

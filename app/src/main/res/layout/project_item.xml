@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="@dimen/list_item_height"
+             android:layout_marginLeft="@dimen/margin_medium"
+             android:layout_marginRight="@dimen/margin_medium"
+             android:gravity="center_vertical">
 
     <TextView
-        android:id="@+id/project_item_projectName"
-        android:layout_width="match_parent"
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="4dp"
-        android:textStyle="bold"
-        tools:text="Project Name"/>
-
-    <TextView
-        android:id="@+id/project_item_projectAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/project_item_projectName"
-        android:padding="4dp"
-        android:textStyle="bold"
-        tools:text="Project Address"/>
-</RelativeLayout>
+        android:text="@string/element_text"/>
+</FrameLayout>

@@ -49,5 +49,13 @@
     <string name="font_family_medium_bold">sans-serif-bold</string>
     <string name="font_family_sans_medium">sans-serif-medium</string>
 
+    <!-- EXAMPLE -->
+
+    <string name="element_text">Element</string>
+    <string name="grid_layout_manager">Grid Layout Manager</string>
+    <string name="linear_layout_manager">Linear Layout Manager</string>
+
+
+
 
 </resources>
