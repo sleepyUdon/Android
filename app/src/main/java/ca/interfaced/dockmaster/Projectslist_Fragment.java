@@ -11,15 +11,22 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.UUID;
 
 import ca.interfaced.dockmaster.Model.Project;
-import ca.interfaced.dockmaster.Model.Projects;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 
 public class Projectslist_Fragment extends Fragment {
 
     private RecyclerView mProjectRecyclerView;
     private ProjectAdapter mAdapter;
+    private RealmResults<Project> mProjects;
+    private Realm realm;
+
 
     public static ca.interfaced.dockmaster.Projectslist_Fragment newInstance() {
         return new ca.interfaced.dockmaster.Projectslist_Fragment();
@@ -38,7 +45,24 @@ public class Projectslist_Fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Realm.init(getContext());
+        Realm realm = Realm.getDefaultInstance();
+
+        realm.beginTransaction();
+
+        Project project = realm.createObject(Project.class, 1);
+        project.setProjectName("111 Richmond");
+        project.setProjectAddress("111 Richmond Street");
+
+        Project project2 = realm.createObject(Project.class, 2);
+        project2.setProjectName("222 Richmond");
+        project2.setProjectAddress("222 Richmond Street");
+
+        realm.commitTransaction();
+
     }
+
 
 
     @Override
@@ -49,18 +73,15 @@ public class Projectslist_Fragment extends Fragment {
         mProjectRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         mProjectRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        updateUI();
+        Realm realm = Realm.getDefaultInstance();
+
+        RealmQuery<Project>query = realm.where(Project.class);
+        RealmResults<Project> projects = query.findAll();
+
+        mAdapter = new ProjectAdapter(projects);
+        mProjectRecyclerView.setAdapter(mAdapter);
 
         return view;
-    }
-
-
-    private void updateUI() {
-        Projects projects = Projects.get(getActivity());
-        List<Project> projectList = projects.getProjects();
-
-        mAdapter = new ProjectAdapter(projectList);
-        mProjectRecyclerView.setAdapter(mAdapter);
     }
 
 
@@ -94,11 +115,14 @@ public class Projectslist_Fragment extends Fragment {
 
 
     private class ProjectAdapter extends RecyclerView.Adapter<ProjectHolder> {
-        private List<Project> mProjects;
+        Realm realm = Realm.getDefaultInstance();
+        RealmQuery<Project>query = realm.where(Project.class);
+        RealmResults<Project> projects = query.findAll();
 
-        public ProjectAdapter(List<Project> projects) {
-            mProjects = projects;
+        public ProjectAdapter(RealmResults<Project> projects) {
+                        mProjects = projects;
         }
+
 
         @Override
         public ProjectHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -110,13 +134,13 @@ public class Projectslist_Fragment extends Fragment {
 
         @Override
         public void onBindViewHolder(ProjectHolder holder, final int position) {
-            Project project = mProjects.get(position);
+            Project project = projects.get(position);
             holder.bindProject(project);
         }
 
         @Override
         public int getItemCount() {
-            return mProjects.size();
+            return projects.size();
         }
     }
 
