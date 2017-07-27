@@ -1,9 +1,5 @@
 package ca.interfaced.dockmaster.Model;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
@@ -11,22 +7,23 @@ import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by vivianechan on 2017-06-30.
- */
+                    */
 
-public class Project  {
+public class Project extends RealmObject {
+
     @PrimaryKey
-    private UUID mId;
+    private long id;
     private String mProjectName;
     private String mProjectAddress;
     private RealmList<Asset>mAssets;
     private RealmList<User>mUsers;
 
-    public UUID getId() {
-        return mId;
+    public long getId() {
+        return id;
     }
 
-    public void setId(UUID id) {
-        mId = id;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getProjectName() {
