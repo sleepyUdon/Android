@@ -46,21 +46,6 @@ public class Projectslist_Fragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Realm.init(getContext());
-        Realm realm = Realm.getDefaultInstance();
-
-        realm.beginTransaction();
-
-        Project project = realm.createObject(Project.class, 1);
-        project.setProjectName("111 Richmond");
-        project.setProjectAddress("111 Richmond Street");
-
-        Project project2 = realm.createObject(Project.class, 2);
-        project2.setProjectName("222 Richmond");
-        project2.setProjectAddress("222 Richmond Street");
-
-        realm.commitTransaction();
-
     }
 
 

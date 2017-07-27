@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.interfaced.dockmaster.Model.Project;
 import io.realm.Realm;
 
 
@@ -50,6 +51,21 @@ public class Main_Activity extends AppCompatActivity  {
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        Realm.init(this);
+        Realm realm = Realm.getDefaultInstance();
+
+        realm.beginTransaction();
+
+        Project project = realm.createObject(Project.class, 1);
+        project.setProjectName("111 Richmond");
+        project.setProjectAddress("111 Richmond Street");
+
+        Project project2 = realm.createObject(Project.class, 2);
+        project2.setProjectName("222 Richmond");
+        project2.setProjectAddress("222 Richmond Street");
+
+        realm.commitTransaction();
 
     }
 

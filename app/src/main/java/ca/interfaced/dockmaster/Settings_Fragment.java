@@ -8,10 +8,9 @@ import android.view.ViewGroup;
 
 public class Settings_Fragment extends Fragment {
 
-    public static Settings_Fragment newInstance() {
-        return new Settings_Fragment();
+    public static ca.interfaced.dockmaster.Settings_Fragment newInstance() {
+        return new ca.interfaced.dockmaster.Settings_Fragment();
     }
-
     public Settings_Fragment() {
         // Required empty public constructor
     }
@@ -30,8 +29,6 @@ public class Settings_Fragment extends Fragment {
 
     }
 }
-
-
 
 
 
