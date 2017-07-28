@@ -1,14 +1,17 @@
 
 package ca.interfaced.dockmaster;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +32,8 @@ public class Projectslist_Fragment extends Fragment {
     private RealmResults<Project> mProjects;
     private Realm realm;
     private FloatingActionButton fab;
+    private LayoutInflater inflater;
+    private LayoutInflater dialogInflater;
 
 
 
@@ -64,20 +69,18 @@ public class Projectslist_Fragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getActivity(), "Add new project", Toast.LENGTH_SHORT).show();
-
-//                inflater = MainActivity.this.getLayoutInflater();
-//                View content = inflater.inflate(R.layout.edit_item, null);
-//                final EditText editTitle = (EditText) content.findViewById(R.id.title);
-//                final EditText editAuthor = (EditText) content.findViewById(R.id.author);
-//                final EditText editThumbnail = (EditText) content.findViewById(R.id.thumbnail);
+                dialogInflater = getActivity().getLayoutInflater();
+                View content = dialogInflater.inflate(R.layout.add_project_item, null);
+                final EditText editProjectName = (EditText) content.findViewById(R.id.project_name);
+                final EditText editProjectAddress = (EditText) content.findViewById(R.id.project_address);
+                final EditText editThumbnail = (EditText) content.findViewById(R.id.thumbnail);
 //
-//                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-//                builder.setView(content)
-//                        .setTitle("Add book")
-//                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setView(content)
+                        .setTitle("Add project")
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 //
 //                                Book book = new Book();
 //                                //book.setId(RealmController.getInstance().getBooks().size() + 1);
@@ -99,17 +102,17 @@ public class Projectslist_Fragment extends Fragment {
 //                                    // scroll the recycler view to bottom
 //                                    recycler.scrollToPosition(RealmController.getInstance().getBooks().size() - 1);
 //                                }
-//                            }
-//                        })
-//                        .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-//
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                dialog.dismiss();
-//                            }
-//                        });
-//                AlertDialog dialog = builder.create();
-//                dialog.show();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 
