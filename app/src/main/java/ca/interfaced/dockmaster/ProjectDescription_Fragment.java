@@ -1,10 +1,11 @@
 package ca.interfaced.dockmaster;
 
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -13,8 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.Date;
 import java.util.UUID;
 
 import ca.interfaced.dockmaster.Model.Project;
@@ -29,13 +30,12 @@ public class ProjectDescription_Fragment extends Fragment{
     private static final String DIALOG_DATE = "DialogDate";
     private static final int REQUEST_DATE = 0;
 
-
-
     private Project mProject;
     private TextView mProjectName_ediText;
     private TextView mProjectAddress_editText;
     private TextView mProjectDate_textView;
     private Button mBook_button;
+
 
     public static ProjectDescription_Fragment newInstance(UUID projectID) {
         Bundle args = new Bundle();
@@ -66,6 +66,7 @@ public class ProjectDescription_Fragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.projectdescription_fragment, container, false);
+
 
         mProjectName_ediText = (EditText) v.findViewById(R.id.projectDescription_projectName);
         mProjectName_ediText.setText(mProject.getProjectName());
