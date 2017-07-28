@@ -73,7 +73,7 @@ public class Projectslist_Fragment extends Fragment {
                 View content = dialogInflater.inflate(R.layout.add_project_item, null);
                 final EditText editProjectName = (EditText) content.findViewById(R.id.project_name);
                 final EditText editProjectAddress = (EditText) content.findViewById(R.id.project_address);
-                final EditText editThumbnail = (EditText) content.findViewById(R.id.thumbnail);
+//                final EditText editThumbnail = (EditText) content.findViewById(R.id.thumbnail);
 //
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setView(content)
@@ -81,27 +81,23 @@ public class Projectslist_Fragment extends Fragment {
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                if (editProjectName.getText() == null || editProjectAddress.getText().toString().equals("")) {
+                                    Toast.makeText(getActivity(), "Entry not saved, missing title", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Realm realm = Realm.getDefaultInstance();
+                                    realm.beginTransaction();
+                                    Project project = realm.createObject(Project.class, System.currentTimeMillis());
+                                    // TODO: set ID
+                                    project.setProjectName(editProjectName.getText().toString());
+                                    project.setProjectAddress(editProjectAddress.getText().toString());
+                                    // TODO: set image
+                                    realm.commitTransaction();
 //
-//                                Book book = new Book();
-//                                //book.setId(RealmController.getInstance().getBooks().size() + 1);
-//                                book.setId(RealmController.getInstance().getBooks().size() + System.currentTimeMillis());
-//                                book.setTitle(editTitle.getText().toString());
-//                                book.setAuthor(editAuthor.getText().toString());
-//                                book.setImageUrl(editThumbnail.getText().toString());
-//
-//                                if (editTitle.getText() == null || editTitle.getText().toString().equals("") || editTitle.getText().toString().equals(" ")) {
-//                                    Toast.makeText(MainActivity.this, "Entry not saved, missing title", Toast.LENGTH_SHORT).show();
-//                                } else {
-//                                    // Persist your data easily
-//                                    realm.beginTransaction();
-//                                    realm.copyToRealm(book);
-//                                    realm.commitTransaction();
-//
-//                                    adapter.notifyDataSetChanged();
+                                    mAdapter.notifyDataSetChanged();
 //
 //                                    // scroll the recycler view to bottom
 //                                    recycler.scrollToPosition(RealmController.getInstance().getBooks().size() - 1);
-//                                }
+                                }
                             }
                         })
                         .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
