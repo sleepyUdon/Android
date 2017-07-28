@@ -14,6 +14,9 @@ import android.support.v7.widget.Toolbar;
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.interfaced.dockmaster.Model.Project;
+import io.realm.Realm;
+
 
 public class Main_Activity extends AppCompatActivity  {
 
@@ -26,6 +29,8 @@ public class Main_Activity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Realm.init(this);
         setContentView(R.layout.main);
 
         fragmentList.add(Projectslist_Fragment.newInstance());
@@ -46,6 +51,8 @@ public class Main_Activity extends AppCompatActivity  {
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        Realm.init(this);
 
     }
 

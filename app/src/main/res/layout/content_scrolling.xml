@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
-            android:padding="@dimen/activity_horizontal_margin">
+            android:padding="@dimen/list_item_padding">
 
             <TextView
                 android:id="@+id/tvNumber1"
@@ -39,7 +39,7 @@
                 android:layout_below="@id/tvNumber1"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
                 android:text="First Name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#727272"/>
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
-            android:padding="@dimen/activity_horizontal_margin">
+            android:padding="@dimen/list_item_padding">
 
             <TextView
                 android:id="@+id/tvNumber1"
@@ -63,8 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-
-                android:text="Chan 456-7890"
+                android:text="Chan"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121"/>
 
@@ -75,7 +74,7 @@
                 android:layout_below="@id/tvNumber1"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
 
                 android:text="Last Name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
@@ -91,7 +90,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
-            android:padding="@dimen/activity_horizontal_margin">
+            android:padding="@dimen/list_item_padding">
 
             <TextView
                 android:id="@+id/tvNumber3"
@@ -114,7 +113,7 @@
                 android:layout_below="@id/tvNumber3"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
 
                 android:text="Company"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
@@ -130,7 +129,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
-            android:padding="@dimen/activity_horizontal_margin">
+            android:padding="@dimen/list_item_padding">
 
             <TextView
                 android:id="@+id/tvNumber4"
@@ -152,7 +151,7 @@
                 android:layout_below="@id/tvNumber4"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
 
                 android:text="Email"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
@@ -167,7 +166,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
-            android:padding="@dimen/activity_horizontal_margin">
+            android:padding="@dimen/list_item_padding">
 
             <TextView
                 android:id="@+id/tvNumber5"
@@ -189,7 +188,7 @@
                 android:layout_below="@id/tvNumber5"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
 
                 android:text="Phone Number"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"

@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.List;
 import java.util.UUID;
 
+import ca.interfaced.dockmaster.Model.Project;
+
 /**
  * Created by vivianechan on 2017-07-03.
  */
@@ -39,26 +41,26 @@ public class ProjectPager_Activity extends AppCompatActivity {
 
         mViewPager = (ViewPager) findViewById(R.id.project_pager);
 
-        mProjects = ProjectsList.get(this).getProjects();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        mViewPager.setAdapter(new FragmentPagerAdapter(fragmentManager) {
-            @Override
-            public Fragment getItem(int position) {
-                Project project = mProjects.get(position);
-                return ProjectDescription_Fragment.newInstance(project.getID());
-            }
+//        mProjects = ProjectsList.get(this).getProjects();
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        mViewPager.setAdapter(new FragmentPagerAdapter(fragmentManager) {
+//            @Override
+//            public Fragment getItem(int position) {
+//                Project project = mProjects.get(position);
+//                return ProjectDescription_Fragment.newInstance(project.getID());
+//            }
 
-            @Override
-            public int getCount() {
-                return mProjects.size();
-            }
-        });
+//            @Override
+//            public int getCount() {
+//                return mProjects.size();
+//            }
+//        });
 
-        for (int i = 0; i < mProjects.size(); i++) {
-            if (mProjects.get(i).getID().equals(projectID)) {
-                mViewPager.setCurrentItem(i);
-                break;
-            }
-        }
+//        for (int i = 0; i < mProjects.size(); i++) {
+//            if (mProjects.get(i).getID().equals(projectID)) {
+//                mViewPager.setCurrentItem(i);
+//                break;
+//            }
+//        }
     }
 }

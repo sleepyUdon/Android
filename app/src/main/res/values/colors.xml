@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#ff4081</color>
+    <color name="colorPrimary">#546e7a</color>
+    <color name="colorPrimaryDark">#29434e</color>
+    <color name="colorPrimaryLight">#819ca9</color>
+
+    <color name="colorSecondary">#4caf50</color>
+    <color name="colorSecondaryDark">#087f23</color>
+    <color name="colorSecondaryLight">#80e27e</color>
 
 
     // Dockmaster colors
-    <color name="colorWhite">#ffffff</color>
-    <color name="colorGreen">#24B460</color>
-    <color name="colorLightGrey">#DCDCDC</color>
-    <color name="colorDarkGrey">#4A4A4A</color>
-    <color name="colorBlue">#4990E2</color>
-    <color name="colorBlack">#000000</color>
+    <!--<color name="colorWhite">#ffffff</color>-->
+    <!--<color name="colorGreen">#24B460</color>-->
+    <!--<color name="colorLightGrey">#DCDCDC</color>-->
+    <!--<color name="colorDarkGrey">#4A4A4A</color>-->
+    <!--<color name="colorBlue">#4990E2</color>-->
+    <!--<color name="colorBlack">#000000</color>-->
 
 </resources>
