@@ -1,11 +1,15 @@
 package ca.interfaced.dockmaster.app;
 
 import android.app.Application;
+import android.content.Context;
 
 import ca.interfaced.dockmaster.BuildConfig;
+import ca.interfaced.dockmaster.R;
 import io.realm.Realm;
 import io.realm.log.LogLevel;
 import io.realm.log.RealmLog;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by vivianechan on 2017-07-27.
@@ -23,5 +27,14 @@ public class MyApplication  extends Application {
         super.onCreate();
         Realm.init(this);
         RealmLog.setLevel(LogLevel.TRACE);
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/Roboto-RobotoRegular.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
+
     }
+
+
+
 }

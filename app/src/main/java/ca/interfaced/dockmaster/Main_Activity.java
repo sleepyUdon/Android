@@ -1,6 +1,7 @@
 package ca.interfaced.dockmaster;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import ca.interfaced.dockmaster.Model.Project;
 import io.realm.Realm;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 public class Main_Activity extends AppCompatActivity  {
@@ -25,6 +27,11 @@ public class Main_Activity extends AppCompatActivity  {
     private MyPagerAdapter pagerAdapter;
     private TabLayout tabLayout;
     private ViewPager mViewPager;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

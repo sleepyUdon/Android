@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,12 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.List;
-import java.util.UUID;
-
 import ca.interfaced.dockmaster.Model.Project;
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
@@ -32,11 +26,9 @@ public class Projectslist_Fragment extends Fragment {
 
     private RecyclerView mProjectRecyclerView;
     private ProjectAdapter mAdapter;
-    private RealmResults<Project> mProjects;
-    private Realm realm;
     private FloatingActionButton fab;
-    private LayoutInflater inflater;
     private LayoutInflater dialogInflater;
+    private RealmResults<Project> mProjects;
 
 
 
@@ -135,7 +127,7 @@ public class Projectslist_Fragment extends Fragment {
 
         public void bindProject(Project project) {
             mProject = project;
-            mProjectNameTextView.setText(mProject.getProjectName());
+            mProjectNameTextView.setText(mProject.getProjectName().toUpperCase());
             mProjectAddressTextView.setText(mProject.getProjectAddress());
         }
 
@@ -155,6 +147,8 @@ public class Projectslist_Fragment extends Fragment {
                 }
             });
             mProjectNameTextView = (TextView) itemView.findViewById(R.id.project_name);
+
+
             mProjectAddressTextView = (TextView) itemView.findViewById(R.id.project_address);
         }
 
