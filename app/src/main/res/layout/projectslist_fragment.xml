@@ -21,7 +21,9 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryLight"
+        android:paddingBottom="@dimen/list_item_padding">
 
     </android.support.v7.widget.RecyclerView>
 
