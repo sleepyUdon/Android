@@ -4,21 +4,22 @@ package ca.interfaced.dockmaster;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.UUID;
 
 import ca.interfaced.dockmaster.Model.Project;
+import ca.interfaced.dockmaster.Model.User;
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 /**
  * Created by vivianechan on 2017-07-03.
@@ -30,14 +31,18 @@ public class ProjectDescription_Fragment extends Fragment{
     private static final String DIALOG_DATE = "DialogDate";
     private static final int REQUEST_DATE = 0;
 
-    private Project mProject;
+    private String mProjectName;
+    private String mProjectAddress;
+
+
     private TextView mProjectName_ediText;
     private TextView mProjectAddress_editText;
-    private TextView mProjectDate_textView;
-    private Button mBook_button;
 
 
-    public static ProjectDescription_Fragment newInstance(UUID projectID) {
+
+
+
+    public static ProjectDescription_Fragment newInstance(long projectID) {
         Bundle args = new Bundle();
         args.putSerializable(ARG_PROJECT_ID, projectID);
 
@@ -50,16 +55,19 @@ public class ProjectDescription_Fragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        UUID projectID = (UUID) getArguments().getSerializable(ARG_PROJECT_ID);
-//        mProject = ProjectsList.get(getActivity()).getProject(projectID);
+        long projectID = (long) getArguments().getSerializable(ARG_PROJECT_ID);
+        Realm realm = Realm.getDefaultInstance();
+        Project project = realm.where(Project.class)
+                .equalTo("id", projectID)
+                .findFirst();
+        mProjectName = project.getProjectName();
+        mProjectAddress = project.getProjectAddress();
+
     }
 
     @Override
     public void onPause() {
         super.onPause();
-
-//        ProjectsList.get(getActivity())
-//                .updateProject(mProject);
     }
 
 
@@ -69,58 +77,12 @@ public class ProjectDescription_Fragment extends Fragment{
 
 
         mProjectName_ediText = (EditText) v.findViewById(R.id.projectDescription_projectName);
-        mProjectName_ediText.setText(mProject.getProjectName());
-        mProjectName_ediText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        mProjectName_ediText.setText(mProjectName);
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mProject.setProjectName(s.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
 
         mProjectAddress_editText = (EditText) v.findViewById(R.id.projectDescription_projectAddress);
-        mProjectAddress_editText.setText(mProject.getProjectAddress());
-        mProjectAddress_editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        mProjectAddress_editText.setText(mProjectAddress);
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mProject.setProjectAddress(s.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-
-        mProjectDate_textView = (TextView) v.findViewById(R.id.projectDescription_projectDate);
-
-        mBook_button = (Button) v.findViewById(R.id.projectDescription_bookButton);
-//        updateDate();
-//        mBook_button.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                FragmentManager manager = getFragmentManager();
-//                DatePicker_Fragment dialog = DatePicker_Fragment.newInstance(mProject.getDate());
-//                dialog.setTargetFragment(ProjectDescription_Fragment.this, REQUEST_DATE);
-//                dialog.show(manager, DIALOG_DATE);
-//            }
-//        });
         return v;
     }
 

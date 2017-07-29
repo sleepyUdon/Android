@@ -2,9 +2,12 @@
 package ca.interfaced.dockmaster;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -146,11 +149,13 @@ public class Projectslist_Fragment extends Fragment {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Toast.makeText(getActivity(), "Project selected", Toast.LENGTH_SHORT).show();
+                    Intent intent = ProjectDescription_Activity.newIntent(getActivity(), mProject.getId());
+                    startActivity(intent);
                 }
             });
             mProjectNameTextView = (TextView) itemView.findViewById(R.id.project_name);
             mProjectAddressTextView = (TextView) itemView.findViewById(R.id.project_address);
-
         }
 
     }

@@ -13,10 +13,10 @@ public class Project extends RealmObject {
 
     @PrimaryKey
     private long id;
-    private String mProjectName;
-    private String mProjectAddress;
-    private RealmList<Asset>mAssets;
-    private RealmList<User>mUsers;
+    private String ProjectName;
+    private String ProjectAddress;
+    private RealmList<Asset>Assets;
+    private RealmList<User>Users;
 
     public long getId() {
         return id;
@@ -27,35 +27,35 @@ public class Project extends RealmObject {
     }
 
     public String getProjectName() {
-        return mProjectName;
+        return ProjectName;
     }
 
     public void setProjectName(String projectName) {
-        mProjectName = projectName;
+        ProjectName = projectName;
     }
 
     public String getProjectAddress() {
-        return mProjectAddress;
+        return ProjectAddress;
     }
 
     public void setProjectAddress(String projectAddress) {
-        mProjectAddress = projectAddress;
+        ProjectAddress = projectAddress;
     }
 
     public RealmList<Asset> getAssets() {
-        return mAssets;
+        return Assets;
     }
 
     public void setAssets(RealmList<Asset> assets) {
-        mAssets = assets;
+        Assets = assets;
     }
 
     public RealmList<User> getUsers() {
-        return mUsers;
+        return Users;
     }
 
     public void setUsers(RealmList<User> users) {
-        mUsers = users;
+        Users = users;
     }
 //    private String ProjectStatus;
 //    private Date mDate;
