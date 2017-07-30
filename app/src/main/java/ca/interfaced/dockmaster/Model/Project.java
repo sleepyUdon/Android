@@ -15,8 +15,11 @@ public class Project extends RealmObject {
     private long id;
     private String ProjectName;
     private String ProjectAddress;
-    private RealmList<Asset>Assets;
-    private RealmList<User>Users;
+    private String ProjectContactName;
+    private String ProjectAssetName;
+
+//    private RealmList<Asset>Assets;
+//    private RealmList<User>Users;
 
     public long getId() {
         return id;
@@ -42,21 +45,37 @@ public class Project extends RealmObject {
         ProjectAddress = projectAddress;
     }
 
-    public RealmList<Asset> getAssets() {
-        return Assets;
+    public String getProjectContactName() {
+        return ProjectContactName;
     }
 
-    public void setAssets(RealmList<Asset> assets) {
-        Assets = assets;
+    public void setProjectContactName(String projectContactName) {
+        ProjectContactName = projectContactName;
     }
 
-    public RealmList<User> getUsers() {
-        return Users;
+    public String getProjectAssetName() {
+        return ProjectAssetName;
     }
 
-    public void setUsers(RealmList<User> users) {
-        Users = users;
+    public void setProjectAssetName(String projectAssetName) {
+        ProjectAssetName = projectAssetName;
     }
+
+//    public RealmList<Asset> getAssets() {
+//        return Assets;
+//    }
+//
+//    public void setAssets(RealmList<Asset> assets) {
+//        Assets = assets;
+//    }
+//
+//    public RealmList<User> getUsers() {
+//        return Users;
+//    }
+//
+//    public void setUsers(RealmList<User> users) {
+//        Users = users;
+//    }
 //    private String ProjectStatus;
 //    private Date mDate;
 //    private List<User> mUsers = new ArrayList<>();

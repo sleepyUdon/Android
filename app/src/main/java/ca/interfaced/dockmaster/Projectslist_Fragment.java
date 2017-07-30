@@ -68,6 +68,10 @@ public class Projectslist_Fragment extends Fragment {
                 View content = dialogInflater.inflate(R.layout.add_project_item, null);
                 final EditText editProjectName = (EditText) content.findViewById(R.id.project_name);
                 final EditText editProjectAddress = (EditText) content.findViewById(R.id.project_address);
+                final EditText editProjectContactName = (EditText) content.findViewById(R.id.project_contact_name);
+                final EditText editProjectAssetName = (EditText) content.findViewById(R.id.project_asset_name);
+
+
 //                final EditText editThumbnail = (EditText) content.findViewById(R.id.thumbnail);
 //
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -85,6 +89,9 @@ public class Projectslist_Fragment extends Fragment {
                                     // TODO: set ID
                                     project.setProjectName(editProjectName.getText().toString());
                                     project.setProjectAddress(editProjectAddress.getText().toString());
+                                    project.setProjectContactName(editProjectContactName.getText().toString());
+                                    project.setProjectAssetName(editProjectAssetName.getText().toString());
+
                                     // TODO: set image
                                     realm.commitTransaction();
 //
@@ -147,8 +154,6 @@ public class Projectslist_Fragment extends Fragment {
                 }
             });
             mProjectNameTextView = (TextView) itemView.findViewById(R.id.project_name);
-
-
             mProjectAddressTextView = (TextView) itemView.findViewById(R.id.project_address);
         }
 

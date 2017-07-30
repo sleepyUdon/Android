@@ -17,9 +17,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:padding="@dimen/list_item_padding"
         card_view:cardBackgroundColor="@color/colorAccent"
-        card_view:cardCornerRadius="2dp"
-        >
+        card_view:cardCornerRadius="2dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,12 +36,12 @@
 
             <TextView
                 android:id="@+id/AssetName"
+                style="@style/ProjectTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingLeft="@dimen/list_item_padding"
                 android:text="@string/projectDescription_assetName"
-                style="@style/ProjectTitle"
                 />
 
             <Button
