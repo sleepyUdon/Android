@@ -107,7 +107,7 @@ public class Projectslist_Fragment extends Fragment {
             }
         });
 
-        mProjectRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        mProjectRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewProjectList);
         mProjectRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         Realm realm = Realm.getDefaultInstance();

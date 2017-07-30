@@ -76,12 +76,12 @@ public class ProjectDescription_Fragment extends Fragment{
         View v = inflater.inflate(R.layout.projectdescription_fragment, container, false);
 
 
-        mProjectName_ediText = (EditText) v.findViewById(R.id.projectDescription_projectName);
-        mProjectName_ediText.setText(mProjectName);
-
-
-        mProjectAddress_editText = (EditText) v.findViewById(R.id.projectDescription_projectAddress);
-        mProjectAddress_editText.setText(mProjectAddress);
+//        mProjectName_ediText = (EditText) v.findViewById(R.id.project);
+//        mProjectName_ediText.setText(mProjectName);
+//
+//
+//        mProjectAddress_editText = (EditText) v.findViewById(R.id.projectDescription_projectAddress);
+//        mProjectAddress_editText.setText(mProjectAddress);
 
         return v;
     }
