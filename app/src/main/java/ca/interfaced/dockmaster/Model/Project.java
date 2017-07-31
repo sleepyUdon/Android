@@ -11,15 +11,16 @@ import io.realm.annotations.PrimaryKey;
 
 public class Project extends RealmObject {
 
-    @PrimaryKey
     private long id;
     private String ProjectName;
     private String ProjectAddress;
-    private String ProjectContactName;
-    private String ProjectAssetName;
+    private RealmList<Asset>Assets;
+    private RealmList<User>Users;
+    private RealmList<User>Contacts;
 
-//    private RealmList<Asset>Assets;
-//    private RealmList<User>Users;
+    // TODO: project image
+
+
 
     public long getId() {
         return id;
@@ -45,42 +46,31 @@ public class Project extends RealmObject {
         ProjectAddress = projectAddress;
     }
 
-    public String getProjectContactName() {
-        return ProjectContactName;
+
+    public RealmList<User> getUsers() {
+        return Users; }
+
+    public void setUsers(RealmList<User> users) {
+        Users = users;
     }
 
-    public void setProjectContactName(String projectContactName) {
-        ProjectContactName = projectContactName;
+    public RealmList<Asset> getAssets() {
+        return Assets;
     }
 
-    public String getProjectAssetName() {
-        return ProjectAssetName;
+    public void setAssets(RealmList<Asset> assets) {
+        Assets = assets;
     }
 
-    public void setProjectAssetName(String projectAssetName) {
-        ProjectAssetName = projectAssetName;
+    public RealmList<User> getContacts() {
+        return Contacts;
     }
 
-//    public RealmList<Asset> getAssets() {
-//        return Assets;
-//    }
-//
-//    public void setAssets(RealmList<Asset> assets) {
-//        Assets = assets;
-//    }
-//
-//    public RealmList<User> getUsers() {
-//        return Users;
-//    }
-//
-//    public void setUsers(RealmList<User> users) {
-//        Users = users;
-//    }
-//    private String ProjectStatus;
-//    private Date mDate;
-//    private List<User> mUsers = new ArrayList<>();
+    public void setContacts(RealmList<User> contacts) {
+        Contacts = contacts;
+    }
 
-    // TODO: project image
+
 
 
 

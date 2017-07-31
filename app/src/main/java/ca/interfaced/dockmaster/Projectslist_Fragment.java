@@ -89,8 +89,8 @@ public class Projectslist_Fragment extends Fragment {
                                     // TODO: set ID
                                     project.setProjectName(editProjectName.getText().toString());
                                     project.setProjectAddress(editProjectAddress.getText().toString());
-                                    project.setProjectContactName(editProjectContactName.getText().toString());
-                                    project.setProjectAssetName(editProjectAssetName.getText().toString());
+//                                    project.setProjectContactName(editProjectContactName.getText().toString());
+//                                    project.setProjectAssetName(editProjectAssetName.getText().toString());
 
                                     // TODO: set image
                                     realm.commitTransaction();
@@ -118,9 +118,8 @@ public class Projectslist_Fragment extends Fragment {
         mProjectRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         Realm realm = Realm.getDefaultInstance();
-
-        RealmQuery<Project>query = realm.where(Project.class);
-        RealmResults<Project> projects = query.findAll();
+        RealmResults<Project> projects = realm.where(Project.class)
+                .findAll();
 
         mAdapter = new ProjectAdapter(projects);
         mProjectRecyclerView.setAdapter(mAdapter);
@@ -162,9 +161,10 @@ public class Projectslist_Fragment extends Fragment {
 
     private class ProjectAdapter extends RecyclerView.Adapter<ProjectHolder> {
         Realm realm = Realm.getDefaultInstance();
-        RealmQuery<Project>query = realm.where(Project.class);
-        RealmResults<Project> projects = query.findAll();
 
+        RealmResults<Project> projects = realm.where(Project.class)
+                .equalTo("Users.email", "vivianechan@hotmail.com")
+                .findAll();
         public ProjectAdapter(RealmResults<Project> projects) {
                         mProjects = projects;
         }

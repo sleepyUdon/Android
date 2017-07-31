@@ -59,8 +59,8 @@ public class ProjectDescription_Fragment extends Fragment {
         Project project = realm.where(Project.class)
                 .equalTo("id", projectID)
                 .findFirst();
-        mProjectContactName = project.getProjectContactName();
-        mProjectAssetName = project.getProjectAssetName();
+//        mProjectContactName = project.getProjectContactName();
+//        mProjectAssetName = project.getProjectAssetName();
     }
 
     @Override
@@ -157,8 +157,10 @@ public class ProjectDescription_Fragment extends Fragment {
 
     private class ContactAdapter extends RecyclerView.Adapter<ContactHolder> {
         Realm realm = Realm.getDefaultInstance();
-        RealmQuery<User> query = realm.where(User.class);
-        RealmResults<User> contacts = query.findAll();
+
+        RealmResults<User> contacts = realm.where(User.class)
+//                .equalTo("Projects.id", ARG_PROJECT_ID)
+                .findAll();
 
         public ContactAdapter(RealmResults<User> contacts) {
             mContacts = contacts;
@@ -187,8 +189,9 @@ public class ProjectDescription_Fragment extends Fragment {
 
     private class AssetAdapter extends RecyclerView.Adapter<AssetHolder> {
         Realm realm = Realm.getDefaultInstance();
-        RealmQuery<Asset> query = realm.where(Asset.class);
-        RealmResults<Asset> assets = query.findAll();
+        RealmResults<Asset> assets = realm.where(Asset.class)
+//                .equalTo("Projects.id", ARG_PROJECT_ID)
+                .findAll();
 
         public AssetAdapter(RealmResults<Asset> assets) {
             mAssets = assets;

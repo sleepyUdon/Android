@@ -61,33 +61,67 @@ public class Main_Activity extends AppCompatActivity  {
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-//        Realm.init(this);
+
+        // TODO: only load dummy data if realm is empty
+
         Realm realm = Realm.getDefaultInstance();
+
         realm.beginTransaction();
 
-        User user = new User();
-        user.setId(1);
-        user.setFirstName("Viviane");
-        user.setLastName("Chan");
-        user.setCompanyName("Interfaced");
-        user.setEmail("vivianechan@hotmail.com");
-        user.setPassword("interfaced");
-        user.setPhoneNumber("6478365162");
-        realm.insertOrUpdate(user);
+        Project project1 = realm.createObject(Project.class);
+        project1.setId(1);
+        project1.setProjectName("111 Richmond");
+        project1.setProjectAddress("111 Richmond Street, Toronto");
+        realm.insertOrUpdate(project1);
 
-        user.setId(1);
-        user.setFirstName("Viviane2");
-        user.setLastName("Chan2");
-        user.setCompanyName("Interfaced");
-        user.setEmail("vivianechan2@hotmail.com");
-        user.setPassword("interfaced");
-        user.setPhoneNumber("6478365163");
-        realm.insertOrUpdate(user);
+        Project project2 = realm.createObject(Project.class);
+        project2.setId(2);
+        project2.setProjectName("Manulife Center");
+        project2.setProjectAddress("50 Bloor Street West, Toronto");
+        realm.insertOrUpdate(project2);
 
-        Asset asset = new Asset();
-        asset.setId(1);
-        asset.setAssetName("Elevator A");
-        realm.insertOrUpdate(asset);
+        Project project3 = realm.createObject(Project.class);
+        project3.setId(3);
+        project3.setProjectName("Yonge and Sheppard");
+        project3.setProjectAddress("1856 Sheppard Avenue, Toronto");
+        realm.insertOrUpdate(project3);
+
+        User user1 = realm.createObject(User.class);
+        user1.setId(1);
+        user1.setFirstName("Viviane");
+        user1.setLastName("Chan");
+        user1.setCompanyName("Interfaced");
+        user1.setEmail("vivianechan@hotmail.com");
+        user1.setPassword("password");
+        user1.setPhoneNumber("6478365162");
+        realm.insertOrUpdate(user1);
+
+        User user2 = realm.createObject(User.class);
+        user2.setId(2);
+        user2.setFirstName("John");
+        user2.setLastName("Smith");
+        user2.setCompanyName("PCL Constructors Inc.");
+        user2.setEmail("john.smith@pcl.com");
+        user2.setPassword("password");
+        user2.setPhoneNumber("6471234567");
+        realm.insertOrUpdate(user2);
+
+        Asset asset1 = realm.createObject(Asset.class);
+        asset1.setId(1);
+        asset1.setAssetName("Elevator A");
+        realm.insertOrUpdate(asset1);
+
+        project1.getUsers().add(user1);
+        project1.getUsers().add(user2);
+        project2.getUsers().add(user1);
+        project2.getUsers().add(user2);
+        project3.getUsers().add(user2);
+
+        project1.getContacts().add(user2);
+        project2.getContacts().add(user2);
+        project3.getContacts().add(user2);
+
+        project1.getAssets().add(asset1);
 
         realm.commitTransaction();
 
