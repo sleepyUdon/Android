@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.interfaced.dockmaster.Model.Asset;
 import ca.interfaced.dockmaster.Model.Project;
 import ca.interfaced.dockmaster.Model.User;
 import io.realm.Realm;
@@ -82,6 +83,11 @@ public class Main_Activity extends AppCompatActivity  {
         user.setPassword("interfaced");
         user.setPhoneNumber("6478365163");
         realm.insertOrUpdate(user);
+
+        Asset asset = new Asset();
+        asset.setId(1);
+        asset.setAssetName("Elevator A");
+        realm.insertOrUpdate(asset);
 
         realm.commitTransaction();
 

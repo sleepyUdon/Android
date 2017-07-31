@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import ca.interfaced.dockmaster.Model.Asset;
 import ca.interfaced.dockmaster.Model.Project;
 import ca.interfaced.dockmaster.Model.User;
 import io.realm.Realm;
@@ -37,6 +38,7 @@ public class ProjectDescription_Fragment extends Fragment {
     private AssetAdapter mAssetAdapter;
     private RealmResults<Project> mProjects;
     private RealmResults<User> mContacts;
+    private RealmResults<Asset> mAssets;
 
 
     public static ProjectDescription_Fragment newInstance(long projectID) {
@@ -86,8 +88,11 @@ public class ProjectDescription_Fragment extends Fragment {
         RealmQuery<User> queryContacts = realm.where(User.class);
         RealmResults<User> contacts = queryContacts.findAll();
 
+        RealmQuery<Asset> queryAssets = realm.where(Asset.class);
+        RealmResults<Asset> assets = queryAssets.findAll();
+
         mContactAdapter = new ContactAdapter(contacts);
-        mAssetAdapter = new AssetAdapter(projects);
+        mAssetAdapter = new AssetAdapter(assets);
         
         mContactRecyclerView.setAdapter(mContactAdapter);
         mAssetRecyclerView.setAdapter(mAssetAdapter);
@@ -124,11 +129,11 @@ public class ProjectDescription_Fragment extends Fragment {
     }
 
     private class AssetHolder extends RecyclerView.ViewHolder {
-        private Project mProject;
+        private Asset mAsset;
 
-        public void bindProject(Project project) {
-            mProject = project;
-            mAssetNameTextView.setText(mProject.getProjectAssetName());
+        public void bindProject(Asset asset) {
+            mAsset = asset;
+            mAssetNameTextView.setText(mAsset.getAssetName());
         }
 
         public TextView mAssetNameTextView;
@@ -182,11 +187,11 @@ public class ProjectDescription_Fragment extends Fragment {
 
     private class AssetAdapter extends RecyclerView.Adapter<AssetHolder> {
         Realm realm = Realm.getDefaultInstance();
-        RealmQuery<Project> query = realm.where(Project.class);
-        RealmResults<Project> projects = query.findAll();
+        RealmQuery<Asset> query = realm.where(Asset.class);
+        RealmResults<Asset> assets = query.findAll();
 
-        public AssetAdapter(RealmResults<Project> projects) {
-            mProjects = projects;
+        public AssetAdapter(RealmResults<Asset> assets) {
+            mAssets = assets;
         }
 
 
@@ -200,13 +205,13 @@ public class ProjectDescription_Fragment extends Fragment {
 
         @Override
         public void onBindViewHolder(AssetHolder holder, final int position) {
-            Project project = projects.get(position);
-            holder.bindProject(project);
+            Asset asset = assets.get(position);
+            holder.bindProject(asset);
         }
 
         @Override
         public int getItemCount() {
-            return projects.size();
+            return assets.size();
         }
     }
 

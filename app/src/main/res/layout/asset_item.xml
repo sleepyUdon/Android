@@ -33,7 +33,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1.8"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/project1"/>
+                app:srcCompat="@drawable/elevator_icon"/>
 
             <TextView
                 android:id="@+id/AssetName"

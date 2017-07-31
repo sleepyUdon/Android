@@ -4,6 +4,7 @@
                                             xmlns:tools="http://schemas.android.com/tools"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
+                                            android:background="@color/colorPrimaryLight"
                                             app:layout_behavior="@string/appbar_scrolling_view_behavior"
                                             tools:context="ca.interfaced.dockmaster.ScrollingActivity" >
     <!--tools:showIn="@layout/content_scrolling">-->
@@ -24,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/project1"/>
+                app:srcCompat="@drawable/map"/>
 
         </RelativeLayout>
 
@@ -40,14 +41,12 @@
                 android:layout_height="match_parent"
                 android:background="@color/colorPrimaryLight"
                 android:paddingBottom="@dimen/list_item_padding"
+                android:paddingTop="@dimen/list_item_padding"
                 tools:listitem="@layout/contact_item">
 
             </android.support.v7.widget.RecyclerView>
 
         </RelativeLayout>
-
-        <include
-            layout="@layout/item_divider"/>
 
         <RelativeLayout
             android:layout_width="match_parent"

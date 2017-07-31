@@ -34,7 +34,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1.8"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/project1"/>
+                app:srcCompat="@drawable/img_profile_picture"/>
 
             <TextView
                 android:id="@+id/ContactName"
