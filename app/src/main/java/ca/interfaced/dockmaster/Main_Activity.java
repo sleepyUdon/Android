@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ca.interfaced.dockmaster.Model.Project;
+import ca.interfaced.dockmaster.Model.User;
 import io.realm.Realm;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -59,7 +60,30 @@ public class Main_Activity extends AppCompatActivity  {
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        Realm.init(this);
+//        Realm.init(this);
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+
+        User user = new User();
+        user.setId(1);
+        user.setFirstName("Viviane");
+        user.setLastName("Chan");
+        user.setCompanyName("Interfaced");
+        user.setEmail("vivianechan@hotmail.com");
+        user.setPassword("interfaced");
+        user.setPhoneNumber("6478365162");
+        realm.insertOrUpdate(user);
+
+        user.setId(1);
+        user.setFirstName("Viviane2");
+        user.setLastName("Chan2");
+        user.setCompanyName("Interfaced");
+        user.setEmail("vivianechan2@hotmail.com");
+        user.setPassword("interfaced");
+        user.setPhoneNumber("6478365163");
+        realm.insertOrUpdate(user);
+
+        realm.commitTransaction();
 
     }
 

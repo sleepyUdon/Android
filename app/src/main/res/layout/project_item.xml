@@ -21,7 +21,6 @@
         android:layout_margin="5dp"
         android:layout_weight="2"
         card_view:cardBackgroundColor="@color/colorAccent"
-        card_view:cardCornerRadius="2dp"
         style="@style/CardStyle"
         >
 

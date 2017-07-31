@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 
 import ca.interfaced.dockmaster.Model.Project;
+import ca.interfaced.dockmaster.Model.User;
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
@@ -35,6 +36,7 @@ public class ProjectDescription_Fragment extends Fragment {
     private ContactAdapter mContactAdapter;
     private AssetAdapter mAssetAdapter;
     private RealmResults<Project> mProjects;
+    private RealmResults<User> mContacts;
 
 
     public static ProjectDescription_Fragment newInstance(long projectID) {
@@ -78,10 +80,13 @@ public class ProjectDescription_Fragment extends Fragment {
 
         Realm realm = Realm.getDefaultInstance();
 
-        RealmQuery<Project> query = realm.where(Project.class);
-        RealmResults<Project> projects = query.findAll();
+        RealmQuery<Project> queryProjects = realm.where(Project.class);
+        RealmResults<Project> projects = queryProjects.findAll();
 
-        mContactAdapter = new ContactAdapter(projects);
+        RealmQuery<User> queryContacts = realm.where(User.class);
+        RealmResults<User> contacts = queryContacts.findAll();
+
+        mContactAdapter = new ContactAdapter(contacts);
         mAssetAdapter = new AssetAdapter(projects);
         
         mContactRecyclerView.setAdapter(mContactAdapter);
@@ -92,11 +97,11 @@ public class ProjectDescription_Fragment extends Fragment {
     }
 
     private class ContactHolder extends RecyclerView.ViewHolder {
-        private Project mProject;
+        private User mUser;
 
-        public void bindProject(Project project) {
-            mProject = project;
-            mContactNameTextView.setText(mProject.getProjectContactName());
+        public void bindProject(User user) {
+            mUser = user;
+            mContactNameTextView.setText(mUser.getFirstName());
         }
 
         public TextView mContactNameTextView;
@@ -147,11 +152,11 @@ public class ProjectDescription_Fragment extends Fragment {
 
     private class ContactAdapter extends RecyclerView.Adapter<ContactHolder> {
         Realm realm = Realm.getDefaultInstance();
-        RealmQuery<Project> query = realm.where(Project.class);
-        RealmResults<Project> projects = query.findAll();
+        RealmQuery<User> query = realm.where(User.class);
+        RealmResults<User> contacts = query.findAll();
 
-        public ContactAdapter(RealmResults<Project> projects) {
-            mProjects = projects;
+        public ContactAdapter(RealmResults<User> contacts) {
+            mContacts = contacts;
         }
 
 
@@ -165,13 +170,13 @@ public class ProjectDescription_Fragment extends Fragment {
 
         @Override
         public void onBindViewHolder(ContactHolder holder, final int position) {
-            Project project = projects.get(position);
-            holder.bindProject(project);
+            User user = contacts.get(position);
+            holder.bindProject(user);
         }
 
         @Override
         public int getItemCount() {
-            return projects.size();
+            return contacts.size();
         }
     }
 
