@@ -11,22 +11,22 @@ import io.realm.annotations.PrimaryKey;
 
 public class Project extends RealmObject {
 
-    private long id;
+    private String id;
     private String ProjectName;
     private String ProjectAddress;
-    private RealmList<Asset>Assets;
-    private RealmList<User>Users;
-    private RealmList<User>Contacts;
+    private RealmList<User> Users;
 
+    private RealmList<User> Contacts;
+    private RealmList<Asset> Assets;
     // TODO: project image
 
 
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

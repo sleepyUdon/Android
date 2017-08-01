@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,8 @@ import io.realm.RealmResults;
 public class ProjectDescription_Fragment extends Fragment {
 
     private static final String ARG_PROJECT_ID = "crime_id";
+    private static final String TAG = "Project ID";
+
 
     private String mProjectContactName;
     private String mProjectAssetName;
@@ -39,12 +42,13 @@ public class ProjectDescription_Fragment extends Fragment {
     private RealmResults<Project> mProjects;
     private RealmResults<User> mContacts;
     private RealmResults<Asset> mAssets;
+    private static String mprojectID ;
 
 
-    public static ProjectDescription_Fragment newInstance(long projectID) {
+    public static ProjectDescription_Fragment newInstance(String projectID) {
         Bundle args = new Bundle();
         args.putSerializable(ARG_PROJECT_ID, projectID);
-
+        mprojectID = projectID;
         ProjectDescription_Fragment fragment = new ProjectDescription_Fragment();
         fragment.setArguments(args);
         return fragment;
@@ -54,13 +58,13 @@ public class ProjectDescription_Fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        long projectID = (long) getArguments().getSerializable(ARG_PROJECT_ID);
+        String projectID = (String) getArguments().getSerializable(ARG_PROJECT_ID);
         Realm realm = Realm.getDefaultInstance();
         Project project = realm.where(Project.class)
                 .equalTo("id", projectID)
                 .findFirst();
-//        mProjectContactName = project.getProjectContactName();
-//        mProjectAssetName = project.getProjectAssetName();
+
+        Log.d(TAG, projectID);
     }
 
     @Override
@@ -159,7 +163,7 @@ public class ProjectDescription_Fragment extends Fragment {
         Realm realm = Realm.getDefaultInstance();
 
         RealmResults<User> contacts = realm.where(User.class)
-//                .equalTo("Projects.id", ARG_PROJECT_ID)
+                .equalTo("projects.id",mprojectID)
                 .findAll();
 
         public ContactAdapter(RealmResults<User> contacts) {
@@ -190,7 +194,7 @@ public class ProjectDescription_Fragment extends Fragment {
     private class AssetAdapter extends RecyclerView.Adapter<AssetHolder> {
         Realm realm = Realm.getDefaultInstance();
         RealmResults<Asset> assets = realm.where(Asset.class)
-//                .equalTo("Projects.id", ARG_PROJECT_ID)
+                .equalTo("projects.id",mprojectID)
                 .findAll();
 
         public AssetAdapter(RealmResults<Asset> assets) {

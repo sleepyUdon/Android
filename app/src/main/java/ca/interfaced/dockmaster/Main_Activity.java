@@ -69,25 +69,25 @@ public class Main_Activity extends AppCompatActivity  {
         realm.beginTransaction();
 
         Project project1 = realm.createObject(Project.class);
-        project1.setId(1);
+        project1.setId("1");
         project1.setProjectName("111 Richmond");
         project1.setProjectAddress("111 Richmond Street, Toronto");
         realm.insertOrUpdate(project1);
 
         Project project2 = realm.createObject(Project.class);
-        project2.setId(2);
+        project2.setId("2");
         project2.setProjectName("Manulife Center");
         project2.setProjectAddress("50 Bloor Street West, Toronto");
         realm.insertOrUpdate(project2);
 
         Project project3 = realm.createObject(Project.class);
-        project3.setId(3);
+        project3.setId("3");
         project3.setProjectName("Yonge and Sheppard");
         project3.setProjectAddress("1856 Sheppard Avenue, Toronto");
         realm.insertOrUpdate(project3);
 
         User user1 = realm.createObject(User.class);
-        user1.setId(1);
+        user1.setId("1");
         user1.setFirstName("Viviane");
         user1.setLastName("Chan");
         user1.setCompanyName("Interfaced");
@@ -97,7 +97,7 @@ public class Main_Activity extends AppCompatActivity  {
         realm.insertOrUpdate(user1);
 
         User user2 = realm.createObject(User.class);
-        user2.setId(2);
+        user2.setId("2");
         user2.setFirstName("John");
         user2.setLastName("Smith");
         user2.setCompanyName("PCL Constructors Inc.");
@@ -107,7 +107,7 @@ public class Main_Activity extends AppCompatActivity  {
         realm.insertOrUpdate(user2);
 
         Asset asset1 = realm.createObject(Asset.class);
-        asset1.setId(1);
+        asset1.setId("1");
         asset1.setAssetName("Elevator A");
         realm.insertOrUpdate(asset1);
 
