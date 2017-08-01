@@ -18,6 +18,7 @@ public class User extends RealmObject {
     private String email;
     private String password;
     private String phoneNumber;
+    private String image;
 
     @LinkingObjects("Contacts")
     private final RealmResults<Project> projects = null;
@@ -89,7 +90,13 @@ public class User extends RealmObject {
         return projects;
     }
 
+    public String getImage() {
+        return image;
+    }
 
+    public void setImage(String image) {
+        this.image = image;
+    }
 
 
 }

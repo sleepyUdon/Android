@@ -1,7 +1,11 @@
 package ca.interfaced.dockmaster;
 
 
+import android.graphics.drawable.Drawable;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,9 +13,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import java.lang.reflect.Field;
 
 import ca.interfaced.dockmaster.Model.Asset;
 import ca.interfaced.dockmaster.Model.Project;
@@ -34,6 +41,7 @@ public class ProjectDescription_Fragment extends Fragment {
     private String mProjectAssetName;
 
     private TextView mContactNameTextView;
+    private ImageView mContactImageImageView;
 
     private RecyclerView mContactRecyclerView;
     private RecyclerView mAssetRecyclerView;
@@ -111,9 +119,16 @@ public class ProjectDescription_Fragment extends Fragment {
         public void bindProject(User user) {
             mUser = user;
             mContactNameTextView.setText(mUser.getFirstName());
+
+            int resId = getResources().getIdentifier(mUser.getImage(),"drawable",getActivity().getPackageName());
+            Drawable contactThumbnail = getActivity().getResources().getDrawable(resId);
+
+            mContactImageImageView.setImageDrawable(contactThumbnail);
         }
 
         public TextView mContactNameTextView;
+        public ImageView mContactImageImageView;
+
 
 
         public ContactHolder(View itemView) {
@@ -128,6 +143,8 @@ public class ProjectDescription_Fragment extends Fragment {
                 }
             });
             mContactNameTextView = (TextView) itemView.findViewById(R.id.ContactName);
+            mContactImageImageView = (ImageView) itemView.findViewById(R.id.contactThumbnail);
+
         }
 
     }

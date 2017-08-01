@@ -94,6 +94,7 @@ public class Main_Activity extends AppCompatActivity  {
         user1.setEmail("vivianechan@hotmail.com");
         user1.setPassword("password");
         user1.setPhoneNumber("6478365162");
+        user1.setImage("vivianechan");
         realm.insertOrUpdate(user1);
 
         User user2 = realm.createObject(User.class);
@@ -104,6 +105,7 @@ public class Main_Activity extends AppCompatActivity  {
         user2.setEmail("john.smith@pcl.com");
         user2.setPassword("password");
         user2.setPhoneNumber("6471234567");
+        user2.setImage("johnsmith");
         realm.insertOrUpdate(user2);
 
         Asset asset1 = realm.createObject(Asset.class);
@@ -118,7 +120,7 @@ public class Main_Activity extends AppCompatActivity  {
         project3.getUsers().add(user2);
 
         project1.getContacts().add(user2);
-        project2.getContacts().add(user2);
+        project2.getContacts().add(user1);
         project3.getContacts().add(user2);
 
         project1.getAssets().add(asset1);
