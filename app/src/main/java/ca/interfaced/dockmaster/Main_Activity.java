@@ -72,12 +72,14 @@ public class Main_Activity extends AppCompatActivity  {
         project1.setId("1");
         project1.setProjectName("111 Richmond");
         project1.setProjectAddress("111 Richmond Street, Toronto");
+        project1.setImage("project1");
         realm.insertOrUpdate(project1);
 
         Project project2 = realm.createObject(Project.class);
         project2.setId("2");
         project2.setProjectName("Manulife Center");
         project2.setProjectAddress("50 Bloor Street West, Toronto");
+        project2.setImage("project2");
         realm.insertOrUpdate(project2);
 
         Project project3 = realm.createObject(Project.class);

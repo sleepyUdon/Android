@@ -3,6 +3,7 @@ package ca.interfaced.dockmaster;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +31,9 @@ public class Projectslist_Fragment extends Fragment {
     private FloatingActionButton fab;
     private LayoutInflater dialogInflater;
     private RealmResults<Project> mProjects;
+    public ImageView mProjectImageImageView;
+    public TextView mProjectNameTextView;
+    public TextView mProjectAddressTextView;
 
 
 
@@ -135,10 +140,14 @@ public class Projectslist_Fragment extends Fragment {
             mProject = project;
             mProjectNameTextView.setText(mProject.getProjectName().toUpperCase());
             mProjectAddressTextView.setText(mProject.getProjectAddress());
-        }
 
-        public TextView mProjectNameTextView;
-        public TextView mProjectAddressTextView;
+            int resId = getResources().getIdentifier(mProject.getImage(),"drawable",getActivity().getPackageName());
+            Drawable contactThumbnail = getActivity().getResources().getDrawable(resId);
+
+            mProjectImageImageView.setImageDrawable(contactThumbnail);        }
+
+
+
 
 
         public ProjectHolder(View itemView) {
@@ -154,6 +163,8 @@ public class Projectslist_Fragment extends Fragment {
             });
             mProjectNameTextView = (TextView) itemView.findViewById(R.id.project_name);
             mProjectAddressTextView = (TextView) itemView.findViewById(R.id.project_address);
+            mProjectImageImageView = (ImageView) itemView.findViewById(R.id.projectThumbnail);
+
         }
 
     }

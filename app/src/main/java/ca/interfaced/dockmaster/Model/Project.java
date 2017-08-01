@@ -14,11 +14,12 @@ public class Project extends RealmObject {
     private String id;
     private String ProjectName;
     private String ProjectAddress;
+    private String image;
+
     private RealmList<User> Users;
 
     private RealmList<User> Contacts;
     private RealmList<Asset> Assets;
-    // TODO: project image
 
 
 
@@ -46,6 +47,14 @@ public class Project extends RealmObject {
         ProjectAddress = projectAddress;
     }
 
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public RealmList<User> getUsers() {
         return Users; }

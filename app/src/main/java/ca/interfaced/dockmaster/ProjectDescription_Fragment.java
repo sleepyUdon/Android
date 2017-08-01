@@ -40,8 +40,8 @@ public class ProjectDescription_Fragment extends Fragment {
     private String mProjectContactName;
     private String mProjectAssetName;
 
-    private TextView mContactNameTextView;
-    private ImageView mContactImageImageView;
+    public TextView mContactNameTextView;
+    public ImageView mContactImageImageView;
 
     private RecyclerView mContactRecyclerView;
     private RecyclerView mAssetRecyclerView;
@@ -126,8 +126,7 @@ public class ProjectDescription_Fragment extends Fragment {
             mContactImageImageView.setImageDrawable(contactThumbnail);
         }
 
-        public TextView mContactNameTextView;
-        public ImageView mContactImageImageView;
+
 
 
 
