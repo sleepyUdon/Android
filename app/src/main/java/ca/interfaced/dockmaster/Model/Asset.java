@@ -15,6 +15,8 @@ public class Asset extends RealmObject {
 
     private String id;
     private String assetName;
+    private String image;
+
 
 
     @LinkingObjects("Assets")
@@ -40,6 +42,14 @@ public class Asset extends RealmObject {
 
     public RealmResults<Project> getProjects() {
         return projects;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 

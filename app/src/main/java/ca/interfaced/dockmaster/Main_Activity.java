@@ -113,6 +113,13 @@ public class Main_Activity extends AppCompatActivity  {
         Asset asset1 = realm.createObject(Asset.class);
         asset1.setId("1");
         asset1.setAssetName("Elevator A");
+        asset1.setImage("elevator");
+        realm.insertOrUpdate(asset1);
+
+        Asset asset2 = realm.createObject(Asset.class);
+        asset2.setId("2");
+        asset2.setAssetName("Crane 1");
+        asset2.setImage("crane");
         realm.insertOrUpdate(asset1);
 
         project1.getUsers().add(user1);
@@ -126,6 +133,7 @@ public class Main_Activity extends AppCompatActivity  {
         project3.getContacts().add(user2);
 
         project1.getAssets().add(asset1);
+        project2.getAssets().add(asset2);
 
         realm.commitTransaction();
 

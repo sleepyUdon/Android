@@ -33,24 +33,26 @@ import io.realm.RealmResults;
 
 public class ProjectDescription_Fragment extends Fragment {
 
-    private static final String ARG_PROJECT_ID = "crime_id";
-    private static final String TAG = "Project ID";
+    private static final String ARG_PROJECT_ID = "project_id";
 
-
+    private static String mprojectID ;
     private String mProjectContactName;
     private String mProjectAssetName;
-
     public TextView mContactNameTextView;
+    public TextView mAssetNameTextView;
+
     public ImageView mContactImageImageView;
+    public ImageView mAssetImageImageView;
 
     private RecyclerView mContactRecyclerView;
     private RecyclerView mAssetRecyclerView;
+
     private ContactAdapter mContactAdapter;
     private AssetAdapter mAssetAdapter;
+
     private RealmResults<Project> mProjects;
     private RealmResults<User> mContacts;
     private RealmResults<Asset> mAssets;
-    private static String mprojectID ;
 
 
     public static ProjectDescription_Fragment newInstance(String projectID) {
@@ -71,8 +73,6 @@ public class ProjectDescription_Fragment extends Fragment {
         Project project = realm.where(Project.class)
                 .equalTo("id", projectID)
                 .findFirst();
-
-        Log.d(TAG, projectID);
     }
 
     @Override
@@ -154,9 +154,13 @@ public class ProjectDescription_Fragment extends Fragment {
         public void bindProject(Asset asset) {
             mAsset = asset;
             mAssetNameTextView.setText(mAsset.getAssetName());
+
+            int resId = getResources().getIdentifier(mAsset.getImage(),"drawable",getActivity().getPackageName());
+            Drawable contactThumbnail = getActivity().getResources().getDrawable(resId);
+
+            mAssetImageImageView.setImageDrawable(contactThumbnail);
         }
 
-        public TextView mAssetNameTextView;
 
 
         public AssetHolder(View itemView) {
@@ -171,6 +175,7 @@ public class ProjectDescription_Fragment extends Fragment {
                 }
             });
             mAssetNameTextView = (TextView) itemView.findViewById(R.id.AssetName);
+            mAssetImageImageView = (ImageView) itemView.findViewById(R.id.assetThumbnail);
         }
 
     }

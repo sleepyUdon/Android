@@ -28,12 +28,12 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/projectThumbnail"
+                android:id="@+id/assetThumbnail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.8"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/elevator_icon"/>
+                app:srcCompat="@drawable/elevator"/>
 
             <TextView
                 android:id="@+id/AssetName"
