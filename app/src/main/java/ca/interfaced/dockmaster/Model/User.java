@@ -18,6 +18,7 @@ public class User extends RealmObject {
     private String email;
     private String password;
     private String phoneNumber;
+    private String mobileNumber;
     private String image;
 
     @LinkingObjects("Contacts")
@@ -84,6 +85,14 @@ public class User extends RealmObject {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
     public RealmResults<Project> getProjects() {

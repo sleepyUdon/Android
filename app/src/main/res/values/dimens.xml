@@ -16,7 +16,7 @@
     <!--<dimen name="text_size_xtiny">8sp</dimen>-->
     <!--<dimen name="text_size_small">12sp</dimen>-->
     <dimen name="text_size_normal">13sp</dimen>
-    <!--<dimen name="text_size_xnormal">16sp</dimen>-->
+    <dimen name="text_size_xnormal">16sp</dimen>
     <dimen name="text_size_xxnormal">18sp</dimen>
     <dimen name="text_size_header">20sp</dimen>
     <dimen name="text_size_large">24sp</dimen>
@@ -37,7 +37,7 @@
     <dimen name="margin_padding_normal">15dp</dimen>
     <!--<dimen name="margin_padding_xnormal">20dp</dimen>-->
     <!--<dimen name="margin_padding_xxnormal">25dp</dimen>-->
-    <!--<dimen name="margin_padding_large">30dp</dimen>-->
+    <dimen name="margin_padding_large">30dp</dimen>
     <!--<dimen name="margin_padding_xlarge">40dp</dimen>-->
     <!--<dimen name="margin_padding_xxlarge">50dp</dimen>-->
     <!--<dimen name="margin_large">70dp</dimen>-->

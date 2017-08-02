@@ -96,6 +96,7 @@ public class Main_Activity extends AppCompatActivity  {
         user1.setEmail("vivianechan@hotmail.com");
         user1.setPassword("password");
         user1.setPhoneNumber("6478365162");
+        user1.setMobileNumber("6478365162");
         user1.setImage("vivianechan");
         realm.insertOrUpdate(user1);
 
@@ -107,6 +108,7 @@ public class Main_Activity extends AppCompatActivity  {
         user2.setEmail("john.smith@pcl.com");
         user2.setPassword("password");
         user2.setPhoneNumber("6471234567");
+        user2.setMobileNumber("6471234567");
         user2.setImage("johnsmith");
         realm.insertOrUpdate(user2);
 

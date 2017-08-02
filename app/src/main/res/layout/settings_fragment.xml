@@ -12,7 +12,8 @@
         android:id="@+id/profile_image"
         android:layout_width="match_parent"
         android:layout_height="175dp"
-        android:padding="@dimen/list_item_padding"
+        android:background="@color/colorPrimaryLight"
+        android:paddingTop="@dimen/margin_padding_large"
         android:src="@drawable/johnsmith"/>
 
     <include

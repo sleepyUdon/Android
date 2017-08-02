@@ -24,7 +24,7 @@
                 android:text="First Name"/>
 
             <TextView
-                android:id="@+id/tvNumber1"
+                android:id="@+id/firstName"
                 style="@style/ProjectSubtitle"
                 android:text="Viviane "/>
 
@@ -41,7 +41,7 @@
                 />
 
             <TextView
-                android:id="@+id/tvNumber1"
+                android:id="@+id/lastName"
                 style="@style/ProjectSubtitle"
                 android:text="Chan"/>
 
@@ -56,7 +56,7 @@
                 android:text="Company"/>
 
             <TextView
-                android:id="@+id/tvNumber3"
+                android:id="@+id/companyName"
                 style="@style/ProjectSubtitle"
                 android:text="Interfaced Ltd"/>
 
@@ -72,7 +72,7 @@
                 android:text="Phone "/>
 
             <TextView
-                android:id="@+id/tvNumber5"
+                android:id="@+id/phoneNumber"
                 style="@style/ProjectSubtitle"
                 android:text="647 836 5162"/>
 
@@ -87,7 +87,7 @@
                 android:text="Mobile"/>
 
             <TextView
-                android:id="@+id/tvNumber5"
+                android:id="@+id/mobileNumber"
                 style="@style/ProjectSubtitle"
                 android:text="647 836 5162"/>
 
@@ -102,7 +102,7 @@
                 android:text="Email"/>
 
             <TextView
-                android:id="@+id/tvNumber4"
+                android:id="@+id/email"
                 style="@style/ProjectSubtitle"
                 android:text="vivianechan@interfaced.ca"/>
 
