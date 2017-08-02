@@ -132,6 +132,13 @@ public class Projectslist_Fragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+
+    }
+
+
 
     private class ProjectHolder extends RecyclerView.ViewHolder {
         private Project mProject;

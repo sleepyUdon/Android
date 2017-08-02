@@ -16,7 +16,7 @@
         </activity>
         <activity
             android:name=".ContactDescription_Activity"
-            android:parentActivityName=".ProjectDescription_Activity">
+            android:parentActivityName=".ProjectDescription_Activity"
             android:label="@string/title_activity_contact_description">
         </activity>
         <activity
@@ -33,6 +33,7 @@
         </activity>
         <activity
             android:name=".ProjectDescription_Activity"
+            android:launchMode="singleTop"
             android:parentActivityName=".ProjectsList_Activity">
         </activity>
         <activity

@@ -52,12 +52,13 @@ public class ContactDescription_Fragment extends Fragment {
         ContactDescription_Fragment fragment = new ContactDescription_Fragment();
         fragment.setArguments(args);
         return fragment;
-        }
+    }
 
 
     public static ca.interfaced.dockmaster.ContactDescription_Fragment newInstance() {
         return new ca.interfaced.dockmaster.ContactDescription_Fragment();
     }
+
     public ContactDescription_Fragment() {
         // Required empty public constructor
     }
@@ -78,8 +79,6 @@ public class ContactDescription_Fragment extends Fragment {
         phoneNumber = user.first().getPhoneNumber();
         mobileNumber = user.first().getMobileNumber();
         email = user.first().getEmail();
-
-
     }
 
 
@@ -106,7 +105,6 @@ public class ContactDescription_Fragment extends Fragment {
         email_textView.setText(email);
 
         return v;
-
     }
 }
 
