@@ -11,16 +11,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Login_Activity"
-            android:label="@string/title_activity_login">
-        </activity>
-        <activity
             android:name=".CreateAccount_Activity"
             android:label="@string/title_activity_create_account">
         </activity>
         <activity
+            android:name=".ContactDescription_Activity"
+            android:parentActivityName=".ProjectDescription_Activity">
+            android:label="@string/title_activity_contact_description">
+        </activity>
+        <activity
             android:name=".ForgotPassword_Activity"
             android:label="@string/title_activity_forgot_password">
+        </activity>
+        <activity
+            android:name=".Login_Activity"
+            android:label="@string/title_activity_login">
         </activity>
         <activity
             android:name=".ProjectsList_Activity"
@@ -33,8 +38,6 @@
         <activity
             android:name=".ProjectPager_Activity"
             android:parentActivityName=".ProjectsList_Activity">
-        </activity>
-        <activity android:name=".UserSettings_Activity">
         </activity>
         <activity
             android:name=".Main_Activity"

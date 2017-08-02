@@ -32,7 +32,7 @@
 
     <!--<dimen name="margin_padding_tiny">4dp</dimen>-->
     <dimen name="margin_padding_xtiny">6dp</dimen>
-    <!--<dimen name="margin_padding_small">9dp</dimen>-->
+    <dimen name="margin_padding_small">9dp</dimen>
     <!--<dimen name="margin_padding_xsmall">12dp</dimen>-->
     <dimen name="margin_padding_normal">15dp</dimen>
     <!--<dimen name="margin_padding_xnormal">20dp</dimen>-->

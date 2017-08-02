@@ -1,6 +1,7 @@
 package ca.interfaced.dockmaster;
 
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
@@ -137,8 +138,8 @@ public class ProjectDescription_Fragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(getActivity(), "Contact selected", Toast.LENGTH_SHORT).show();
-//                    Intent intent = ProjectDescription_Activity.newIntent(getActivity(), mProject.getId());
-//                    startActivity(intent);
+                    Intent intent = ContactDescription_Activity.newIntent(getActivity(), mUser.getId());
+                    startActivity(intent);
                 }
             });
             mContactNameTextView = (TextView) itemView.findViewById(R.id.ContactName);
@@ -170,8 +171,7 @@ public class ProjectDescription_Fragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(getActivity(), "Asset selected", Toast.LENGTH_SHORT).show();
-//                    Intent intent = ProjectDescription_Activity.newIntent(getActivity(), mProject.getId());
-//                    startActivity(intent);
+
                 }
             });
             mAssetNameTextView = (TextView) itemView.findViewById(R.id.AssetName);

@@ -32,6 +32,9 @@
     <string name="projectDescription_contactName">Contact Name</string>
     <string name="projectDescription_assetName">Asset Name</string>
 
+    <!--CONTACT DESCRIPTION PAGE-->
+    <string name="title_activity_contact_description">Contact Description</string>
+    title_activity_contact_description
 
     <!--MY SCHEDULE PAGE-->
 
