@@ -4,199 +4,109 @@
                                             xmlns:tools="http://schemas.android.com/tools"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
-                                            android:layout_marginTop="@dimen/activity_horizontal_margin"
+                                            android:background="@color/colorPrimaryLight"
                                             android:padding="@dimen/activity_horizontal_margin"
                                             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                                            tools:context="ca.interfaced.dockmaster.ScrollingActivity" >
-                                            <!--tools:showIn="@layout/content_scrolling">-->
+                                            tools:context="ca.interfaced.dockmaster.ScrollingActivity">
+    <!--tools:showIn="@layout/content_scrolling">-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:padding="@dimen/list_item_padding">
+        <LinearLayout
+            style="@style/ListBoxStyle">
 
             <TextView
-                android:id="@+id/tvNumber1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:text="Viviane "
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121"/>
-
+                android:id="@+id/textView7"
+                style="@style/ProjectSubtitleBold"
+                android:text="First Name"/>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvNumber1"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="6dp"
-                android:text="First Name"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="#727272"/>
+                android:id="@+id/firstName"
+                style="@style/ProjectSubtitle"
+                android:text="Viviane "/>
 
-        </RelativeLayout>
+        </LinearLayout>
 
-        <include
-            layout="@layout/item_divider"
-            android:layout_width="match_parent"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:padding="@dimen/list_item_padding">
-
-            <TextView
-                android:id="@+id/tvNumber1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:text="Chan"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121"/>
+        <LinearLayout
+            style="@style/ListBoxStyle">
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvNumber1"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="6dp"
-
+                style="@style/ProjectSubtitleBold"
                 android:text="Last Name"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="#727272"/>
 
-
-        </RelativeLayout>
-
-        <include layout="@layout/item_divider" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:padding="@dimen/list_item_padding">
+                />
 
             <TextView
-                android:id="@+id/tvNumber3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_toLeftOf="@+id/chkState3"
-                android:layout_toStartOf="@+id/chkState3"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="Interfaced Ltd"
-                android:textAlignment="viewStart"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121"/>
+                android:id="@+id/lastName"
+                style="@style/ProjectSubtitle"
+                android:text="Chan"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ListBoxStyle">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvNumber3"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="6dp"
-
-                android:text="Company"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="#727272"/>
-
-        </RelativeLayout>
-
-        <include layout="@layout/item_divider" />
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:padding="@dimen/list_item_padding">
+                android:id="@+id/textView8"
+                style="@style/ProjectSubtitleBold"
+                android:text="Company"/>
 
             <TextView
-                android:id="@+id/tvNumber4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_toLeftOf="@+id/chkState4"
-                android:layout_toStartOf="@+id/chkState4"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="vivianechan@interfaced.ca"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121"/>
+                android:id="@+id/companyName"
+                style="@style/ProjectSubtitle"
+                android:text="Interfaced Ltd"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            style="@style/ListBoxStyle">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvNumber4"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="6dp"
-
-                android:text="Email"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="#727272"/>
-
-        </RelativeLayout>
-
-        <include layout="@layout/item_divider" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:padding="@dimen/list_item_padding">
+                android:id="@+id/textView10"
+                style="@style/ProjectSubtitleBold"
+                android:text="Phone "/>
 
             <TextView
-                android:id="@+id/tvNumber5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_toLeftOf="@+id/chkState5"
-                android:layout_toStartOf="@+id/chkState5"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="647 836 5162"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121"/>
+                android:id="@+id/phoneNumber"
+                style="@style/ProjectSubtitle"
+                android:text="647 836 5162"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ListBoxStyle">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvNumber5"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="6dp"
+                android:id="@+id/textView10"
+                style="@style/ProjectSubtitleBold"
+                android:text="Mobile"/>
 
-                android:text="Phone Number"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="#727272"/>
+            <TextView
+                android:id="@+id/mobileNumber"
+                style="@style/ProjectSubtitle"
+                android:text="647 836 5162"/>
 
-        </RelativeLayout>
+        </LinearLayout>
 
-        <include layout="@layout/item_divider" />
+        <LinearLayout
+            style="@style/ListBoxStyle">
+
+            <TextView
+                android:id="@+id/textView9"
+                style="@style/ProjectSubtitleBold"
+                android:text="Email"/>
+
+            <TextView
+                android:id="@+id/email"
+                style="@style/ProjectSubtitle"
+                android:text="vivianechan@interfaced.ca"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

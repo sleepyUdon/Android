@@ -1,18 +1,34 @@
 package ca.interfaced.dockmaster;
 
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import ca.interfaced.dockmaster.Model.User;
 import io.realm.Realm;
+import io.realm.RealmQuery;
 import io.realm.RealmResults;
+import ca.interfaced.dockmaster.Model.User;
 
-public class Settings_Fragment extends Fragment {
-    
+
+
+/**
+ * Created by vivianechan on 2017-08-01.
+ */
+
+public class ContactDescription_Fragment extends Fragment {
+
+    private static final String ARG_CONTACT_ID = "contact_id";
+
+    private static String mContactID ;
     private static String firstName ;
     private static String lastName ;
     private static String companyName ;
@@ -27,10 +43,23 @@ public class Settings_Fragment extends Fragment {
     private TextView mobileNumber_textView;
     private TextView email_textView;
 
-    public static ca.interfaced.dockmaster.Settings_Fragment newInstance() {
-        return new ca.interfaced.dockmaster.Settings_Fragment();
+
+
+    public static ContactDescription_Fragment newInstance(String contactID) {
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_CONTACT_ID, contactID);
+        mContactID = contactID;
+        ContactDescription_Fragment fragment = new ContactDescription_Fragment();
+        fragment.setArguments(args);
+        return fragment;
     }
-    public Settings_Fragment() {
+
+
+    public static ca.interfaced.dockmaster.ContactDescription_Fragment newInstance() {
+        return new ca.interfaced.dockmaster.ContactDescription_Fragment();
+    }
+
+    public ContactDescription_Fragment() {
         // Required empty public constructor
     }
 
@@ -42,7 +71,7 @@ public class Settings_Fragment extends Fragment {
 
 
         RealmResults<User> user = realm.where(User.class)
-                .equalTo("id","1")
+                .equalTo("id",mContactID)
                 .findAll();
         firstName = user.first().getFirstName();
         lastName = user.first().getLastName();
@@ -55,7 +84,7 @@ public class Settings_Fragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.settings_fragment, container, false);
+        View v = inflater.inflate(R.layout.contact_description_fragment, container, false);
 
         firstName_textView = (TextView) v.findViewById(R.id.firstName);
         firstName_textView.setText(firstName);

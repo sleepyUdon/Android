@@ -2,45 +2,64 @@ package ca.interfaced.dockmaster;
 
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.v4.app.Fragment;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.UUID;
 
+import java.lang.reflect.Field;
+
+import ca.interfaced.dockmaster.Model.Asset;
 import ca.interfaced.dockmaster.Model.Project;
+import ca.interfaced.dockmaster.Model.User;
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 /**
  * Created by vivianechan on 2017-07-03.
  */
 
-public class ProjectDescription_Fragment extends Fragment{
+public class ProjectDescription_Fragment extends Fragment {
 
-    private static final String ARG_PROJECT_ID = "crime_id";
-    private static final String DIALOG_DATE = "DialogDate";
-    private static final int REQUEST_DATE = 0;
+    private static final String ARG_PROJECT_ID = "project_id";
 
-    private Project mProject;
-    private TextView mProjectName_ediText;
-    private TextView mProjectAddress_editText;
-    private TextView mProjectDate_textView;
-    private Button mBook_button;
+    private static String mprojectID ;
+    private String mProjectContactName;
+    private String mProjectAssetName;
+    public TextView mContactNameTextView;
+    public TextView mAssetNameTextView;
+
+    public ImageView mContactImageImageView;
+    public ImageView mAssetImageImageView;
+
+    private RecyclerView mContactRecyclerView;
+    private RecyclerView mAssetRecyclerView;
+
+    private ContactAdapter mContactAdapter;
+    private AssetAdapter mAssetAdapter;
+
+    private RealmResults<Project> mProjects;
+    private RealmResults<User> mContacts;
+    private RealmResults<Asset> mAssets;
 
 
-    public static ProjectDescription_Fragment newInstance(UUID projectID) {
+    public static ProjectDescription_Fragment newInstance(String projectID) {
         Bundle args = new Bundle();
         args.putSerializable(ARG_PROJECT_ID, projectID);
-
+        mprojectID = projectID;
         ProjectDescription_Fragment fragment = new ProjectDescription_Fragment();
         fragment.setArguments(args);
         return fragment;
@@ -50,16 +69,16 @@ public class ProjectDescription_Fragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        UUID projectID = (UUID) getArguments().getSerializable(ARG_PROJECT_ID);
-//        mProject = ProjectsList.get(getActivity()).getProject(projectID);
+        String projectID = (String) getArguments().getSerializable(ARG_PROJECT_ID);
+        Realm realm = Realm.getDefaultInstance();
+        Project project = realm.where(Project.class)
+                .equalTo("id", projectID)
+                .findFirst();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-
-//        ProjectsList.get(getActivity())
-//                .updateProject(mProject);
     }
 
 
@@ -68,79 +87,160 @@ public class ProjectDescription_Fragment extends Fragment{
         View v = inflater.inflate(R.layout.projectdescription_fragment, container, false);
 
 
-        mProjectName_ediText = (EditText) v.findViewById(R.id.projectDescription_projectName);
-        mProjectName_ediText.setText(mProject.getProjectName());
-        mProjectName_ediText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        mContactRecyclerView = (RecyclerView) v.findViewById(R.id.recyclerViewContacts);
+        mContactRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-            }
+        mAssetRecyclerView = (RecyclerView) v.findViewById(R.id.recyclerViewAssets);
+        mAssetRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mProject.setProjectName(s.toString());
-            }
+        Realm realm = Realm.getDefaultInstance();
 
-            @Override
-            public void afterTextChanged(Editable s) {
+        RealmQuery<Project> queryProjects = realm.where(Project.class);
+        RealmResults<Project> projects = queryProjects.findAll();
 
-            }
-        });
+        RealmQuery<User> queryContacts = realm.where(User.class);
+        RealmResults<User> contacts = queryContacts.findAll();
 
-        mProjectAddress_editText = (EditText) v.findViewById(R.id.projectDescription_projectAddress);
-        mProjectAddress_editText.setText(mProject.getProjectAddress());
-        mProjectAddress_editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        RealmQuery<Asset> queryAssets = realm.where(Asset.class);
+        RealmResults<Asset> assets = queryAssets.findAll();
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mProject.setProjectAddress(s.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+        mContactAdapter = new ContactAdapter(contacts);
+        mAssetAdapter = new AssetAdapter(assets);
+        
+        mContactRecyclerView.setAdapter(mContactAdapter);
+        mAssetRecyclerView.setAdapter(mAssetAdapter);
 
 
-        mProjectDate_textView = (TextView) v.findViewById(R.id.projectDescription_projectDate);
-
-        mBook_button = (Button) v.findViewById(R.id.projectDescription_bookButton);
-//        updateDate();
-//        mBook_button.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                FragmentManager manager = getFragmentManager();
-//                DatePicker_Fragment dialog = DatePicker_Fragment.newInstance(mProject.getDate());
-//                dialog.setTargetFragment(ProjectDescription_Fragment.this, REQUEST_DATE);
-//                dialog.show(manager, DIALOG_DATE);
-//            }
-//        });
         return v;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (resultCode != Activity.RESULT_OK) {
-//            return;
-//        }
-//        if (requestCode == REQUEST_DATE) {
-//            Date date = (Date) data.getSerializableExtra(DatePicker_Fragment.EXTRA_DATE);
-//            mProject.setDate(date);
-//            updateDate();
-//        }
+    private class ContactHolder extends RecyclerView.ViewHolder {
+        private User mUser;
+
+        public void bindProject(User user) {
+            mUser = user;
+            mContactNameTextView.setText(mUser.getFirstName());
+
+            int resId = getResources().getIdentifier(mUser.getImage(),"drawable",getActivity().getPackageName());
+            Drawable contactThumbnail = getActivity().getResources().getDrawable(resId);
+
+            mContactImageImageView.setImageDrawable(contactThumbnail);
+        }
+
+
+
+
+
+        public ContactHolder(View itemView) {
+            super(itemView);
+            // Define click listener for the ViewHolder's View.
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getActivity(), "Contact selected", Toast.LENGTH_SHORT).show();
+                    Intent intent = ContactDescription_Activity.newIntent(getActivity(), mUser.getId());
+                    startActivity(intent);
+                }
+            });
+            mContactNameTextView = (TextView) itemView.findViewById(R.id.ContactName);
+            mContactImageImageView = (ImageView) itemView.findViewById(R.id.contactThumbnail);
+
+        }
+
     }
 
-//    private void updateDate() {
-//        mBook_button.setText(mProject.getDate().toString());
-//    }
+    private class AssetHolder extends RecyclerView.ViewHolder {
+        private Asset mAsset;
 
+        public void bindProject(Asset asset) {
+            mAsset = asset;
+            mAssetNameTextView.setText(mAsset.getAssetName());
+
+            int resId = getResources().getIdentifier(mAsset.getImage(),"drawable",getActivity().getPackageName());
+            Drawable contactThumbnail = getActivity().getResources().getDrawable(resId);
+
+            mAssetImageImageView.setImageDrawable(contactThumbnail);
+        }
+
+
+
+        public AssetHolder(View itemView) {
+            super(itemView);
+            // Define click listener for the ViewHolder's View.
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getActivity(), "Asset selected", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+            mAssetNameTextView = (TextView) itemView.findViewById(R.id.AssetName);
+            mAssetImageImageView = (ImageView) itemView.findViewById(R.id.assetThumbnail);
+        }
+
+    }
+
+    private class ContactAdapter extends RecyclerView.Adapter<ContactHolder> {
+        Realm realm = Realm.getDefaultInstance();
+
+        RealmResults<User> contacts = realm.where(User.class)
+                .equalTo("projects.id",mprojectID)
+                .findAll();
+
+        public ContactAdapter(RealmResults<User> contacts) {
+            mContacts = contacts;
+        }
+
+
+        @Override
+        public ContactHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.contact_item, parent, false);
+
+            return new ContactHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(ContactHolder holder, final int position) {
+            User user = contacts.get(position);
+            holder.bindProject(user);
+        }
+
+        @Override
+        public int getItemCount() {
+            return contacts.size();
+        }
+    }
+
+    private class AssetAdapter extends RecyclerView.Adapter<AssetHolder> {
+        Realm realm = Realm.getDefaultInstance();
+        RealmResults<Asset> assets = realm.where(Asset.class)
+                .equalTo("projects.id",mprojectID)
+                .findAll();
+
+        public AssetAdapter(RealmResults<Asset> assets) {
+            mAssets = assets;
+        }
+
+
+        @Override
+        public AssetHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.asset_item, parent, false);
+
+            return new AssetHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(AssetHolder holder, final int position) {
+            Asset asset = assets.get(position);
+            holder.bindProject(asset);
+        }
+
+        @Override
+        public int getItemCount() {
+            return assets.size();
+        }
+    }
 
 }
-
-

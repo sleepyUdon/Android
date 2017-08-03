@@ -28,4 +28,20 @@
         android:hint="Image"
         android:inputType="text" />
 
+    <EditText
+        android:id="@+id/project_contact_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:hint="Project contact name"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/project_asset_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:hint="Project asset name"
+        android:inputType="text" />
+
 </LinearLayout>

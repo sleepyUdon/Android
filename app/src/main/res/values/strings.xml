@@ -29,9 +29,12 @@
     <string name="title_activity_projects_list">Project List</string>
 
     <!--PROJECTS DESCRIPTION PAGE-->
-    <string name="projectDescription_projectName">Project Name</string>
-    <string name="projectDescription_projectAddress">Project Address</string>
-    <string name="date_picker_title">Date of booking: </string>
+    <string name="projectDescription_contactName">Contact Name</string>
+    <string name="projectDescription_assetName">Asset Name</string>
+
+    <!--CONTACT DESCRIPTION PAGE-->
+    <string name="title_activity_contact_description">Contact Description</string>
+    title_activity_contact_description
 
     <!--MY SCHEDULE PAGE-->
 
@@ -43,12 +46,6 @@
     <string name="section_format">Hello World from section: %1$d</string>
 
 
-    <!-- FONT NAMES -->
-    <string name="asset_custom_font_headline">StagApp-Medium.ttf</string>
-    <string name="font_family_medium">sans-serif</string>
-    <string name="font_family_medium_bold">sans-serif-bold</string>
-    <string name="font_family_sans_medium">sans-serif-medium</string>
-
     <!-- PROJECT LIST -->
 
     <string name="project_name">Project Name</string>
@@ -56,6 +53,9 @@
 
 
 
+
+    <!-- FONT NAMES -->
+    <string name="avenir_next_demibold">sans-serif</string>
 
 
 </resources>

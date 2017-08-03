@@ -1,6 +1,8 @@
 package ca.interfaced.dockmaster.Model;
 
 import io.realm.RealmObject;
+import io.realm.RealmResults;
+import io.realm.annotations.LinkingObjects;
 
 /**
  * Created by vivianechan on 2017-06-30.
@@ -8,13 +10,20 @@ import io.realm.RealmObject;
 
 public class User extends RealmObject {
 
-    private long id;
+
+    private String id;
     private String firstName;
     private String lastName;
     private String companyName;
     private String email;
     private String password;
     private String phoneNumber;
+    private String mobileNumber;
+    private String image;
+
+    @LinkingObjects("Contacts")
+    private final RealmResults<Project> projects = null;
+
 
 
     // TODO: add firebase user ID
@@ -22,11 +31,11 @@ public class User extends RealmObject {
 
     // TODO: user picture
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -78,8 +87,25 @@ public class User extends RealmObject {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
 
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
 
+    public RealmResults<Project> getProjects() {
+        return projects;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
 
 }

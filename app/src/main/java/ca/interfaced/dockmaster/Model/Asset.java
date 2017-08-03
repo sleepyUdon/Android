@@ -2,6 +2,7 @@ package ca.interfaced.dockmaster.Model;
 
 
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.RealmResults;
 import io.realm.annotations.LinkingObjects;
@@ -12,17 +13,22 @@ import io.realm.annotations.LinkingObjects;
 
 public class Asset extends RealmObject {
 
-    private long id;
+    private String id;
     private String assetName;
+    private String image;
 
 
 
+    @LinkingObjects("Assets")
+    private final RealmResults<Project> projects = null;
 
-    public long getId() {
+
+
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -32,6 +38,18 @@ public class Asset extends RealmObject {
 
     public void setAssetName(String assetName) {
         this.assetName = assetName;
+    }
+
+    public RealmResults<Project> getProjects() {
+        return projects;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 

@@ -11,57 +11,75 @@ import io.realm.annotations.PrimaryKey;
 
 public class Project extends RealmObject {
 
-    @PrimaryKey
-    private long id;
-    private String mProjectName;
-    private String mProjectAddress;
-    private RealmList<Asset>mAssets;
-    private RealmList<User>mUsers;
+    private String id;
+    private String ProjectName;
+    private String ProjectAddress;
+    private String image;
 
-    public long getId() {
+    private RealmList<User> Users;
+
+    private RealmList<User> Contacts;
+    private RealmList<Asset> Assets;
+
+
+
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
     public String getProjectName() {
-        return mProjectName;
+        return ProjectName;
     }
 
     public void setProjectName(String projectName) {
-        mProjectName = projectName;
+        ProjectName = projectName;
     }
 
     public String getProjectAddress() {
-        return mProjectAddress;
+        return ProjectAddress;
     }
 
     public void setProjectAddress(String projectAddress) {
-        mProjectAddress = projectAddress;
+        ProjectAddress = projectAddress;
     }
 
-    public RealmList<Asset> getAssets() {
-        return mAssets;
+
+    public String getImage() {
+        return image;
     }
 
-    public void setAssets(RealmList<Asset> assets) {
-        mAssets = assets;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public RealmList<User> getUsers() {
-        return mUsers;
-    }
+        return Users; }
 
     public void setUsers(RealmList<User> users) {
-        mUsers = users;
+        Users = users;
     }
-//    private String ProjectStatus;
-//    private Date mDate;
-//    private List<User> mUsers = new ArrayList<>();
 
-    // TODO: project image
+    public RealmList<Asset> getAssets() {
+        return Assets;
+    }
+
+    public void setAssets(RealmList<Asset> assets) {
+        Assets = assets;
+    }
+
+    public RealmList<User> getContacts() {
+        return Contacts;
+    }
+
+    public void setContacts(RealmList<User> contacts) {
+        Contacts = contacts;
+    }
+
+
 
 
 

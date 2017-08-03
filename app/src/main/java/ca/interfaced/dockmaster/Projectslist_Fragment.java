@@ -2,6 +2,8 @@
 package ca.interfaced.dockmaster;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -12,15 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.List;
-import java.util.UUID;
-
 import ca.interfaced.dockmaster.Model.Project;
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
@@ -29,11 +28,12 @@ public class Projectslist_Fragment extends Fragment {
 
     private RecyclerView mProjectRecyclerView;
     private ProjectAdapter mAdapter;
-    private RealmResults<Project> mProjects;
-    private Realm realm;
     private FloatingActionButton fab;
-    private LayoutInflater inflater;
     private LayoutInflater dialogInflater;
+    private RealmResults<Project> mProjects;
+    public ImageView mProjectImageImageView;
+    public TextView mProjectNameTextView;
+    public TextView mProjectAddressTextView;
 
 
 
@@ -73,6 +73,10 @@ public class Projectslist_Fragment extends Fragment {
                 View content = dialogInflater.inflate(R.layout.add_project_item, null);
                 final EditText editProjectName = (EditText) content.findViewById(R.id.project_name);
                 final EditText editProjectAddress = (EditText) content.findViewById(R.id.project_address);
+                final EditText editProjectContactName = (EditText) content.findViewById(R.id.project_contact_name);
+                final EditText editProjectAssetName = (EditText) content.findViewById(R.id.project_asset_name);
+
+
 //                final EditText editThumbnail = (EditText) content.findViewById(R.id.thumbnail);
 //
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -90,6 +94,9 @@ public class Projectslist_Fragment extends Fragment {
                                     // TODO: set ID
                                     project.setProjectName(editProjectName.getText().toString());
                                     project.setProjectAddress(editProjectAddress.getText().toString());
+//                                    project.setProjectContactName(editProjectContactName.getText().toString());
+//                                    project.setProjectAssetName(editProjectAssetName.getText().toString());
+
                                     // TODO: set image
                                     realm.commitTransaction();
 //
@@ -112,13 +119,12 @@ public class Projectslist_Fragment extends Fragment {
             }
         });
 
-        mProjectRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        mProjectRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewProjectList);
         mProjectRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         Realm realm = Realm.getDefaultInstance();
-
-        RealmQuery<Project>query = realm.where(Project.class);
-        RealmResults<Project> projects = query.findAll();
+        RealmResults<Project> projects = realm.where(Project.class)
+                .findAll();
 
         mAdapter = new ProjectAdapter(projects);
         mProjectRecyclerView.setAdapter(mAdapter);
@@ -126,18 +132,29 @@ public class Projectslist_Fragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+
+    }
+
+
 
     private class ProjectHolder extends RecyclerView.ViewHolder {
         private Project mProject;
 
         public void bindProject(Project project) {
             mProject = project;
-            mProjectNameTextView.setText(mProject.getProjectName());
+            mProjectNameTextView.setText(mProject.getProjectName().toUpperCase());
             mProjectAddressTextView.setText(mProject.getProjectAddress());
-        }
 
-        public TextView mProjectNameTextView;
-        public TextView mProjectAddressTextView;
+            int resId = getResources().getIdentifier(mProject.getImage(),"drawable",getActivity().getPackageName());
+            Drawable contactThumbnail = getActivity().getResources().getDrawable(resId);
+
+            mProjectImageImageView.setImageDrawable(contactThumbnail);        }
+
+
+
 
 
         public ProjectHolder(View itemView) {
@@ -146,10 +163,14 @@ public class Projectslist_Fragment extends Fragment {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Toast.makeText(getActivity(), "Project selected", Toast.LENGTH_SHORT).show();
+                    Intent intent = ProjectDescription_Activity.newIntent(getActivity(), mProject.getId());
+                    startActivity(intent);
                 }
             });
             mProjectNameTextView = (TextView) itemView.findViewById(R.id.project_name);
             mProjectAddressTextView = (TextView) itemView.findViewById(R.id.project_address);
+            mProjectImageImageView = (ImageView) itemView.findViewById(R.id.projectThumbnail);
 
         }
 
@@ -158,9 +179,10 @@ public class Projectslist_Fragment extends Fragment {
 
     private class ProjectAdapter extends RecyclerView.Adapter<ProjectHolder> {
         Realm realm = Realm.getDefaultInstance();
-        RealmQuery<Project>query = realm.where(Project.class);
-        RealmResults<Project> projects = query.findAll();
 
+        RealmResults<Project> projects = realm.where(Project.class)
+                .equalTo("Users.email", "vivianechan@hotmail.com")
+                .findAll();
         public ProjectAdapter(RealmResults<Project> projects) {
                         mProjects = projects;
         }

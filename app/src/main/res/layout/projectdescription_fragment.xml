@@ -1,43 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:gravity="top"
-              android:orientation="vertical">
-
-
-    <EditText
-        android:id="@+id/projectDescription_projectName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="4dp"
-        />
-
-    <EditText
-        android:id="@+id/projectDescription_projectAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="4dp"
-        android:text="Project Address"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        />
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                                            xmlns:tools="http://schemas.android.com/tools"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:background="@color/colorPrimaryLight"
+                                            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                                            tools:context="ca.interfaced.dockmaster.ScrollingActivity" >
+    <!--tools:showIn="@layout/content_scrolling">-->
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/projectDescription_projectDate"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"/>
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true">
 
-        <Button
-            android:id="@+id/projectDescription_bookButton"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/map"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewContacts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryLight"
+                android:paddingBottom="@dimen/list_item_padding"
+                android:paddingTop="@dimen/list_item_padding"
+                tools:listitem="@layout/contact_item">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="BOOK"/>
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewAssets"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryLight"
+                android:paddingBottom="@dimen/list_item_padding"
+                tools:listitem="@layout/asset_item">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </RelativeLayout>
     </LinearLayout>
 
-</LinearLayout>
+</android.support.v4.widget.NestedScrollView>
+
+
+
+
+
