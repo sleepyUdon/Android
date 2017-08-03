@@ -50,7 +50,7 @@
                 android:text="@string/projectDescription_contactName"/>
 
             <Button
-                android:id="@+id/Book"
+                android:id="@+id/contactButton"
                 style="@style/Button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

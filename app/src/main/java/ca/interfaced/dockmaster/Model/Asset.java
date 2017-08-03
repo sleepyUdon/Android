@@ -16,6 +16,7 @@ public class Asset extends RealmObject {
     private String id;
     private String assetName;
     private String image;
+    private String sitePlan;
 
 
 
@@ -52,7 +53,13 @@ public class Asset extends RealmObject {
         this.image = image;
     }
 
+    public String getSitePlan() {
+        return sitePlan;
+    }
 
+    public void setSitePlan(String sitePlan) {
+        this.sitePlan = sitePlan;
+    }
 //    private String mType;
 //    private String mKey;
 //    private String mOpeningTime;

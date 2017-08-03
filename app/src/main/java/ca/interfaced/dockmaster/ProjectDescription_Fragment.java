@@ -134,7 +134,7 @@ public class ProjectDescription_Fragment extends Fragment {
         public ContactHolder(View itemView) {
             super(itemView);
             // Define click listener for the ViewHolder's View.
-            itemView.setOnClickListener(new View.OnClickListener() {
+            itemView.findViewById(R.id.contactButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(getActivity(), "Contact selected", Toast.LENGTH_SHORT).show();
@@ -167,11 +167,20 @@ public class ProjectDescription_Fragment extends Fragment {
         public AssetHolder(View itemView) {
             super(itemView);
             // Define click listener for the ViewHolder's View.
-            itemView.setOnClickListener(new View.OnClickListener() {
+            itemView.findViewById(R.id.infoButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getActivity(), "Asset selected", Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(getActivity(), "Asset info selected", Toast.LENGTH_SHORT).show();
+                    Intent intent = SiteInfo_Activity.newIntent(getActivity(), mAsset.getId());
+                    startActivity(intent);
+                }
+            });
+            itemView.findViewById(R.id.bookButton).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getActivity(), "Asset book selected", Toast.LENGTH_SHORT).show();
+//                    Intent intent = ContactDescription_Activity.newIntent(getActivity(), mAsset.getId());
+//                    startActivity(intent);
                 }
             });
             mAssetNameTextView = (TextView) itemView.findViewById(R.id.AssetName);

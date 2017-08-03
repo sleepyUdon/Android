@@ -1,6 +1,8 @@
 package ca.interfaced.dockmaster;
 
 
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import ca.interfaced.dockmaster.Model.User;
@@ -29,6 +32,7 @@ public class ContactDescription_Fragment extends Fragment {
     private static final String ARG_CONTACT_ID = "contact_id";
 
     private static String mContactID ;
+    private static String picture;
     private static String firstName ;
     private static String lastName ;
     private static String companyName ;
@@ -36,6 +40,7 @@ public class ContactDescription_Fragment extends Fragment {
     private static String mobileNumber ;
     private static String email ;
 
+    private ImageView picture_imageView;
     private TextView firstName_textView;
     private TextView lastName_textView;
     private TextView companyName_textView;
@@ -73,6 +78,7 @@ public class ContactDescription_Fragment extends Fragment {
         RealmResults<User> user = realm.where(User.class)
                 .equalTo("id",mContactID)
                 .findAll();
+        picture = user.first().getImage();
         firstName = user.first().getFirstName();
         lastName = user.first().getLastName();
         companyName = user.first().getCompanyName();
@@ -85,6 +91,11 @@ public class ContactDescription_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.contact_description_fragment, container, false);
+
+        picture_imageView = (ImageView) v.findViewById(R.id.profile_image);
+        int resId = getResources().getIdentifier(picture,"drawable",getActivity().getPackageName());
+        Drawable sitePlan = getActivity().getResources().getDrawable(resId);
+        picture_imageView.setImageDrawable(sitePlan);
 
         firstName_textView = (TextView) v.findViewById(R.id.firstName);
         firstName_textView.setText(firstName);

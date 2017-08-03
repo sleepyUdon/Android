@@ -123,12 +123,14 @@ public class Main_Activity extends AppCompatActivity  {
         asset1.setId("1");
         asset1.setAssetName("Elevator A");
         asset1.setImage("elevator");
+        asset1.setSitePlan("map");
         realm.insertOrUpdate(asset1);
 
         Asset asset2 = realm.createObject(Asset.class);
         asset2.setId("2");
         asset2.setAssetName("Crane 1");
         asset2.setImage("crane");
+        asset2.setSitePlan("map");
         realm.insertOrUpdate(asset1);
 
         project1.getUsers().add(user1);
