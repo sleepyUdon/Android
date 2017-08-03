@@ -53,7 +53,8 @@
             android:parentActivityName=".ProjectsList_Activity">
         </activity>
         <activity
-            android:name=".SiteInfo_Activity">
+            android:name=".SiteInfo_Activity"
+            android:parentActivityName=".ProjectDescription_Activity">
         </activity>
     </application>
 

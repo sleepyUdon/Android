@@ -28,7 +28,7 @@ public class Projectslist_Fragment extends Fragment {
 
     private RecyclerView mProjectRecyclerView;
     private ProjectAdapter mAdapter;
-    private FloatingActionButton fab;
+//    private FloatingActionButton fab;
     private LayoutInflater dialogInflater;
     private RealmResults<Project> mProjects;
     public ImageView mProjectImageImageView;
@@ -64,60 +64,60 @@ public class Projectslist_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.projectslist_fragment, container, false);
 
-        fab = (FloatingActionButton) view.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                dialogInflater = getActivity().getLayoutInflater();
-                View content = dialogInflater.inflate(R.layout.add_project_item, null);
-                final EditText editProjectName = (EditText) content.findViewById(R.id.project_name);
-                final EditText editProjectAddress = (EditText) content.findViewById(R.id.project_address);
-                final EditText editProjectContactName = (EditText) content.findViewById(R.id.project_contact_name);
-                final EditText editProjectAssetName = (EditText) content.findViewById(R.id.project_asset_name);
-
-
-//                final EditText editThumbnail = (EditText) content.findViewById(R.id.thumbnail);
+//        fab = (FloatingActionButton) view.findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
 //
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setView(content)
-                        .setTitle("Add project")
-                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (editProjectName.getText() == null || editProjectAddress.getText().toString().equals("")) {
-                                    Toast.makeText(getActivity(), "Entry not saved, missing title", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Realm realm = Realm.getDefaultInstance();
-                                    realm.beginTransaction();
-                                    Project project = realm.createObject(Project.class, System.currentTimeMillis());
-                                    // TODO: set ID
-                                    project.setProjectName(editProjectName.getText().toString());
-                                    project.setProjectAddress(editProjectAddress.getText().toString());
-//                                    project.setProjectContactName(editProjectContactName.getText().toString());
-//                                    project.setProjectAssetName(editProjectAssetName.getText().toString());
-
-                                    // TODO: set image
-                                    realm.commitTransaction();
+//                dialogInflater = getActivity().getLayoutInflater();
+//                View content = dialogInflater.inflate(R.layout.add_project_item, null);
+//                final EditText editProjectName = (EditText) content.findViewById(R.id.project_name);
+//                final EditText editProjectAddress = (EditText) content.findViewById(R.id.project_address);
+//                final EditText editProjectContactName = (EditText) content.findViewById(R.id.project_contact_name);
+//                final EditText editProjectAssetName = (EditText) content.findViewById(R.id.project_asset_name);
 //
-                                    mAdapter.notifyDataSetChanged();
 //
-//                                    // scroll the recycler view to bottom
-//                                    recycler.scrollToPosition(RealmController.getInstance().getBooks().size() - 1);
-                                }
-                            }
-                        })
-                        .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
-        });
+////                final EditText editThumbnail = (EditText) content.findViewById(R.id.thumbnail);
+////
+//                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//                builder.setView(content)
+//                        .setTitle("Add project")
+//                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                if (editProjectName.getText() == null || editProjectAddress.getText().toString().equals("")) {
+//                                    Toast.makeText(getActivity(), "Entry not saved, missing title", Toast.LENGTH_SHORT).show();
+//                                } else {
+//                                    Realm realm = Realm.getDefaultInstance();
+//                                    realm.beginTransaction();
+//                                    Project project = realm.createObject(Project.class, System.currentTimeMillis());
+//                                    // TODO: set ID
+//                                    project.setProjectName(editProjectName.getText().toString());
+//                                    project.setProjectAddress(editProjectAddress.getText().toString());
+////                                    project.setProjectContactName(editProjectContactName.getText().toString());
+////                                    project.setProjectAssetName(editProjectAssetName.getText().toString());
+//
+//                                    // TODO: set image
+//                                    realm.commitTransaction();
+////
+//                                    mAdapter.notifyDataSetChanged();
+////
+////                                    // scroll the recycler view to bottom
+////                                    recycler.scrollToPosition(RealmController.getInstance().getBooks().size() - 1);
+//                                }
+//                            }
+//                        })
+//                        .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+//
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                dialog.dismiss();
+//                            }
+//                        });
+//                AlertDialog dialog = builder.create();
+//                dialog.show();
+//            }
+//        });
 
         mProjectRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewProjectList);
         mProjectRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
