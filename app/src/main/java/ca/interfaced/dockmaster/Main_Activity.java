@@ -66,6 +66,13 @@ public class Main_Activity extends AppCompatActivity  {
 
         Realm realm = Realm.getDefaultInstance();
 
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.deleteAll();
+            }
+        });
+
         realm.beginTransaction();
 
         Project project1 = realm.createObject(Project.class);

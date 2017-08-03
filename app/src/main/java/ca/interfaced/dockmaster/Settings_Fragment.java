@@ -12,9 +12,7 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 
 public class Settings_Fragment extends Fragment {
-
-
-    private static String mContactID ;
+    
     private static String firstName ;
     private static String lastName ;
     private static String companyName ;
