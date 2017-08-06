@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="ca.interfaced.dockmaster">
 
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
+
+
     <application
         android:name=".app.MyApplication"
         android:allowBackup="true"
