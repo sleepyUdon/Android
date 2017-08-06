@@ -163,14 +163,14 @@ public class ProjectDescription_Fragment extends Fragment {
             itemView.findViewById(R.id.infoButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = SiteInfo_Activity.newIntent(getActivity(), mAsset.getId());
+                    Intent intent = AssetDescription_Activity.newIntent(getActivity(), mAsset.getId());
                     startActivity(intent);
                 }
             });
             itemView.findViewById(R.id.bookButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Intent intent = ContactDescription_Activity.newIntent(getActivity(), mAsset.getId());
+//                    Intent intent = AssetDescription_Activity.newIntent(getActivity(), mAsset.getId());
 //                    startActivity(intent);
                 }
             });

@@ -16,6 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".AssetDescription_Activity"
+            android:parentActivityName=".ProjectDescription_Activity"
+            android:label="Asset Description">
+        </activity>
+        <activity
             android:name=".CreateAccount_Activity"
             android:label="@string/title_activity_create_account">
         </activity>
