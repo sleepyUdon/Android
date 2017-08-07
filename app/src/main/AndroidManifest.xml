@@ -66,6 +66,9 @@
             android:name=".SiteInfo_Activity"
             android:parentActivityName=".ProjectDescription_Activity">
         </activity>
+        <activity
+            android:name=".Splash_Activity">
+        </activity>
     </application>
 
 </manifest>

@@ -40,12 +40,14 @@
     <!-- Button Styles. -->
 
     <style name="Button">
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:paddingTop">@dimen/margin_padding_normal</item>
         <item name="android:paddingBottom">@dimen/margin_padding_normal</item>
         <item name="android:paddingLeft">@dimen/margin_padding_normal</item>
         <item name="android:paddingRight">@dimen/margin_padding_normal</item>
         <item name="android:background">@color/colorAccent</item>
         <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:layout_gravity">center_horizontal</item>
     </style>
 
     <style name="RoundedButton">
@@ -64,6 +66,27 @@
 
 
     <!-- Text Styles. -->
+
+    <style name="SplashTitle">
+        <item name="android:textSize">@dimen/text_size_huge</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        fontPath="fonts/Montserrat-Bold.ttf"
+    </style>
+
+    <style name="SplashSubtitle">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        fontPath="fonts/Montserrat-Bold.ttf"
+    </style>
+
+    <style name="SplashCaption">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        fontPath="fonts/Montserrat-Bold.ttf"
+    </style>
 
     <style name="ProjectTitle">
         <item name="android:textSize">@dimen/text_size_xxnormal</item>
