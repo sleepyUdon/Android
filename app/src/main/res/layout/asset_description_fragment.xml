@@ -9,9 +9,10 @@
               android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/assetImage"
         android:layout_width="match_parent"
         android:layout_height="175dp"
+        android:layout_marginBottom="@dimen/margin_padding_large"
         app:srcCompat="@drawable/project2"/>
 
     <LinearLayout

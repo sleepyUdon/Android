@@ -17,6 +17,14 @@ public class Asset extends RealmObject {
     private String assetName;
     private String image;
     private String sitePlan;
+    private String description;
+
+    //    private String mType;
+//    private String mKey;
+//    private String mOpeningTime;
+//    private String mClosingTime;
+//    private String mNotes;
+//    private List<String> images = new ArrayList<>();
 
 
 
@@ -60,12 +68,15 @@ public class Asset extends RealmObject {
     public void setSitePlan(String sitePlan) {
         this.sitePlan = sitePlan;
     }
-//    private String mType;
-//    private String mKey;
-//    private String mOpeningTime;
-//    private String mClosingTime;
-//    private String mNotes;
-//    private List<String> images = new ArrayList<>();
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 
 
 }

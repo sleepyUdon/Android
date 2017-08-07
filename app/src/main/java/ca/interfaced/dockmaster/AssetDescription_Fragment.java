@@ -1,25 +1,15 @@
 package ca.interfaced.dockmaster;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
+
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import ca.interfaced.dockmaster.Model.Asset;
-import ca.interfaced.dockmaster.Model.User;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -34,7 +24,11 @@ public class AssetDescription_Fragment extends Fragment {
     private static String mAssetID;
     private static String assetImage;
     private static String assetName;
+    private static String assetDescription;
+
     private static TextView assetName_textView;
+    private static TextView assetDescription_textView;
+    private static ImageView assetImage_imageView;
 
 
     public static AssetDescription_Fragment newInstance(String assetID) {
@@ -67,6 +61,7 @@ public class AssetDescription_Fragment extends Fragment {
                 .findAll();
         assetImage = asset.first().getImage();
         assetName = asset.first().getAssetName();
+        assetDescription = asset.first().getDescription();
     }
 
 
@@ -77,9 +72,15 @@ public class AssetDescription_Fragment extends Fragment {
         assetName_textView = (TextView) v.findViewById(R.id.assetTitleDescription);
         assetName_textView.setText(assetName);
 
+        assetDescription_textView = (TextView) v.findViewById(R.id.assetDescription);
+        assetDescription_textView.setText(assetDescription);
+
+        assetImage_imageView = (ImageView) v.findViewById(R.id.assetImage);
+        int resId = getResources().getIdentifier(assetImage, "drawable", getActivity().getPackageName());
+        Drawable image = getActivity().getResources().getDrawable(resId);
+        assetImage_imageView.setImageDrawable(image);
         return v;
     }
 }
-
 
 
