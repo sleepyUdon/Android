@@ -20,12 +20,20 @@
             android:background="?attr/selectableItemBackground"
             android:clickable="true">
 
-            <ImageView
-                android:id="@+id/map"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/map"/>
+            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                      xmlns:tools="http://schemas.android.com/tools"
+                      android:id="@+id/map"
+                      android:name="com.google.android.gms.maps.SupportMapFragment"
+                      android:layout_width="match_parent"
+                      android:layout_height="250dp"
+                      tools:context="ca.interfaced.dockmaster.Map_Activity"/>
+
+            <!--<ImageView-->
+                <!--android:id="@+id/map"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="200dp"-->
+                <!--android:scaleType="centerCrop"-->
+                <!--app:srcCompat="@drawable/map"/>-->
 
         </RelativeLayout>
 

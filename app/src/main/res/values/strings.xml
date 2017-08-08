@@ -52,10 +52,9 @@
     <string name="project_address">Project Address</string>
 
 
-
-
     <!-- FONT NAMES -->
     <string name="avenir_next_demibold">sans-serif</string>
+    <string name="title_activity_map_">Map</string>
 
 
 </resources>
