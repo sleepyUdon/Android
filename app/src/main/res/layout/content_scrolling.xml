@@ -25,7 +25,7 @@
 
             <TextView
                 android:id="@+id/firstName"
-                style="@style/ProjectSubtitle"
+                style="@style/ProjectSubtitleGray"
                 android:text="Viviane "/>
 
         </LinearLayout>
@@ -42,7 +42,7 @@
 
             <TextView
                 android:id="@+id/lastName"
-                style="@style/ProjectSubtitle"
+                style="@style/ProjectSubtitleGray"
                 android:text="Chan"/>
 
         </LinearLayout>
@@ -57,7 +57,7 @@
 
             <TextView
                 android:id="@+id/companyName"
-                style="@style/ProjectSubtitle"
+                style="@style/ProjectSubtitleGray"
                 android:text="Interfaced Ltd"/>
 
         </LinearLayout>
@@ -73,7 +73,7 @@
 
             <TextView
                 android:id="@+id/phoneNumber"
-                style="@style/ProjectSubtitle"
+                style="@style/ProjectSubtitleGray"
                 android:text="647 836 5162"/>
 
         </LinearLayout>
@@ -88,7 +88,7 @@
 
             <TextView
                 android:id="@+id/mobileNumber"
-                style="@style/ProjectSubtitle"
+                style="@style/ProjectSubtitleGray"
                 android:text="647 836 5162"/>
 
         </LinearLayout>
@@ -103,7 +103,7 @@
 
             <TextView
                 android:id="@+id/email"
-                style="@style/ProjectSubtitle"
+                style="@style/ProjectSubtitleGray"
                 android:text="vivianechan@interfaced.ca"/>
 
         </LinearLayout>

@@ -94,16 +94,25 @@
         fontPath="fonts/Montserrat-Bold.ttf"
     </style>
 
-    <style name="ProjectSubtitle">
+    <style name="ProjectSubtitleGray">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center_vertical</item>
         <item name="fontPath">fonts/AvenirLTStd-Book.ttf</item>
         <item name="android:textSize">@dimen/text_size_xnormal</item>
-
+        <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
+    <style name="ProjectSubtitleBlack">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="fontPath">fonts/AvenirLTStd-Book.ttf</item>
+        <item name="android:textSize">@dimen/text_size_xnormal</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
 
     <style name="ProjectSubtitleBold">
         <item name="android:textSize">@dimen/text_size_xnormal</item>
@@ -116,6 +125,13 @@
         <item name="fontPath">fonts/AvenirLTStd-Medium.ttf</item>
     </style>
 
+    <style name="TimeLabel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="fontPath">fonts/AvenirLTStd-Book.ttf</item>
+        <item name="android:textSize">@dimen/text_size_xnormal</item>
+    </style>
 
 
     <!--<style name="Body">-->
