@@ -17,6 +17,7 @@ import java.util.List;
 
 import ca.interfaced.dockmaster.Model.Asset;
 import ca.interfaced.dockmaster.Model.Project;
+import ca.interfaced.dockmaster.Model.Reservation;
 import ca.interfaced.dockmaster.Model.User;
 import io.realm.Realm;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -136,6 +137,17 @@ public class Main_Activity extends AppCompatActivity  {
         asset2.setSitePlan("map");
         asset2.setDescription("20-storeys crane");
         realm.insertOrUpdate(asset1);
+
+        Reservation reservation1 = realm.createObject(Reservation.class);
+        reservation1.setId("1");
+        reservation1.setProjectName("Richmond");
+        reservation1.setAssetName("Elevator A");
+        reservation1.setStartDate("15 July 2017, 11:00 AM");
+        reservation1.setEndDate("15 July 2017, 11:30 AM");
+        reservation1.setNotes("Delivery of tables");
+        realm.insertOrUpdate(reservation1);
+
+        reservation1.getUsers().add(user1);
 
         project1.getUsers().add(user1);
         project1.getUsers().add(user2);

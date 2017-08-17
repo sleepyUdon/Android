@@ -1,23 +1,33 @@
 package ca.interfaced.dockmaster.Model;
 
 import io.realm.RealmList;
+import io.realm.RealmModel;
+import io.realm.RealmObject;
 
 /**
  * Created by vivianechan on 2017-08-16.
  */
 
-public class Reservation {
+public class Reservation extends RealmObject {
 
+    private String id;
     private String startDate;
     private String endDate;
     private String assetName;
     private String notes;
     private String projectName;
 
+    private RealmList<User> Users;
 
-    private RealmList<User> User;
-    private RealmList<Project> Project;
-    private RealmList<Asset> Asset;
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getStartDate() {
         return startDate;
@@ -59,27 +69,11 @@ public class Reservation {
         this.projectName = projectName;
     }
 
-    public RealmList<ca.interfaced.dockmaster.Model.User> getUser() {
-        return User;
+    public RealmList<User> getUsers() {
+        return Users;
     }
 
-    public void setUser(RealmList<ca.interfaced.dockmaster.Model.User> user) {
-        User = user;
-    }
-
-    public RealmList<ca.interfaced.dockmaster.Model.Project> getProject() {
-        return Project;
-    }
-
-    public void setProject(RealmList<ca.interfaced.dockmaster.Model.Project> project) {
-        Project = project;
-    }
-
-    public RealmList<ca.interfaced.dockmaster.Model.Asset> getAsset() {
-        return Asset;
-    }
-
-    public void setAsset(RealmList<ca.interfaced.dockmaster.Model.Asset> asset) {
-        Asset = asset;
+    public void setUsers(RealmList<User> users) {
+        Users = users;
     }
 }

@@ -1,7 +1,6 @@
 package ca.interfaced.dockmaster;
 
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,11 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import ca.interfaced.dockmaster.Model.Project;
+import ca.interfaced.dockmaster.Model.Reservation;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -22,7 +21,7 @@ public class MySchedule_Fragment extends Fragment {
 
     private RecyclerView mScheduleRecyclerView;
     private MySchedule_Fragment.ScheduleAdapter mAdapter;
-    private RealmResults<Project> mProjects;
+    private RealmResults<Reservation> mReservations;
     public TextView mTimeTextView;
     public TextView mProjectNameTextView;
     public TextView mAssetNameTextView;
@@ -67,10 +66,10 @@ public class MySchedule_Fragment extends Fragment {
         mScheduleRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         Realm realm = Realm.getDefaultInstance();
-        RealmResults<Project> projects = realm.where(Project.class)
+        RealmResults<Reservation> reservations = realm.where(Reservation.class)
                 .findAll();
 
-        mAdapter = new MySchedule_Fragment.ScheduleAdapter(projects);
+        mAdapter = new MySchedule_Fragment.ScheduleAdapter(reservations);
         mScheduleRecyclerView.setAdapter(mAdapter);
 
         return view;
@@ -85,15 +84,15 @@ public class MySchedule_Fragment extends Fragment {
 
 
     private class ScheduleHolder extends RecyclerView.ViewHolder {
-        private Project mProject;
+        private Reservation mReservation;
 
-        public void bindProject(Project project) {
-            mProject = project;
-            mTimeTextView.setText(mProject.getProjectName().toUpperCase());
-            mProjectNameTextView.setText(mProject.getProjectName().toUpperCase());
-            mCompanyNameTextView.setText(mProject.getProjectName().toUpperCase());
-            mAssetNameTextView.setText(mProject.getProjectName().toUpperCase());
-            mNotesTextView.setText(mProject.getProjectName().toUpperCase());
+        public void bindProject(Reservation reservation) {
+            mReservation = reservation;
+            mTimeTextView.setText(mReservation.getStartDate());
+            mProjectNameTextView.setText(mReservation.getProjectName());
+            mCompanyNameTextView.setText(mReservation.getProjectName().toUpperCase());
+            mAssetNameTextView.setText(mReservation.getAssetName());
+            mNotesTextView.setText(mReservation.getNotes());
 
         }
 
@@ -126,11 +125,11 @@ public class MySchedule_Fragment extends Fragment {
     private class ScheduleAdapter extends RecyclerView.Adapter<MySchedule_Fragment.ScheduleHolder> {
         Realm realm = Realm.getDefaultInstance();
 
-        RealmResults<Project> projects = realm.where(Project.class)
+        RealmResults<Reservation> reservations = realm.where(Reservation.class)
                 .equalTo("Users.email", "vivianechan@hotmail.com")
                 .findAll();
-        public ScheduleAdapter(RealmResults<Project> projects) {
-            mProjects = projects;
+        public ScheduleAdapter(RealmResults<Reservation> reservations) {
+            mReservations = reservations;
         }
 
 
@@ -144,13 +143,13 @@ public class MySchedule_Fragment extends Fragment {
 
         @Override
         public void onBindViewHolder(MySchedule_Fragment.ScheduleHolder holder, final int position) {
-            Project project = projects.get(position);
-            holder.bindProject(project);
+            Reservation reservation = reservations.get(position);
+            holder.bindProject(reservation);
         }
 
         @Override
         public int getItemCount() {
-            return projects.size();
+            return reservations.size();
         }
     }
 

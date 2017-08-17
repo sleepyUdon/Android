@@ -1,5 +1,6 @@
 package ca.interfaced.dockmaster.Model;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.RealmResults;
 import io.realm.annotations.LinkingObjects;
@@ -20,6 +21,9 @@ public class User extends RealmObject {
     private String phoneNumber;
     private String mobileNumber;
     private String image;
+
+    private RealmList<Reservation> Reservations;
+
 
     @LinkingObjects("Contacts")
     private final RealmResults<Project> projects = null;
@@ -107,5 +111,12 @@ public class User extends RealmObject {
         this.image = image;
     }
 
+    public RealmList<Reservation> getReservations() {
+        return Reservations;
+    }
+
+    public void setReservations(RealmList<Reservation> reservations) {
+        Reservations = reservations;
+    }
 
 }
