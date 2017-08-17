@@ -17,7 +17,6 @@ public class Project extends RealmObject {
     private String image;
 
     private RealmList<User> Users;
-
     private RealmList<User> Contacts;
     private RealmList<Asset> Assets;
 

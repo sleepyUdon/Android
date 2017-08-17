@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryLight"
         android:paddingBottom="@dimen/list_item_padding"
-        tools:listitem="@layout/project_item">
+        tools:listitem="@layout/schedule_item">
 
     </android.support.v7.widget.RecyclerView>
 
