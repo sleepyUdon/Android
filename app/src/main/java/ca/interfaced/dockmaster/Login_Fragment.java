@@ -1,5 +1,6 @@
 package ca.interfaced.dockmaster;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -10,25 +11,31 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import ca.interfaced.dockmaster.Model.Project;
 import ca.interfaced.dockmaster.Model.User;
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * Created by vivianechan on 2017-06-30.
  */
 
 public class Login_Fragment extends Fragment {
+
+
     private EditText muserName_textField;
     private EditText mpassword_textField;
     private Button mlogin_button;
     private Button mcreateAccount_button;
     private Button mforgotPassword_button;
+    public static final String EXTRA_MESSAGE = "com.interfaced.dockmaster.MESSAGE";
 
-    private User mUser;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mUser = new User();
+
     }
 
     @Override
@@ -76,7 +83,12 @@ public class Login_Fragment extends Fragment {
         mlogin_button = (Button)v.findViewById(R.id.login_button);
         // check if userName/password combination exists in database
         // return message is it doesn't exist
-
+        mlogin_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Main_Activity.class);
+                Login_Fragment.this.startActivity(intent);
+            }
+        });
 
 
         mcreateAccount_button = (Button)v.findViewById(R.id.createAccount_button);

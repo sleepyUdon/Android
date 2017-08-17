@@ -2,6 +2,7 @@ package ca.interfaced.dockmaster;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -39,6 +40,10 @@ public class Main_Activity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(Login_Fragment.EXTRA_MESSAGE);
+
 
         Realm.init(this);
         setContentView(R.layout.main);
