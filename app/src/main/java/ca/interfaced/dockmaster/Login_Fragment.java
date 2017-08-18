@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -199,7 +200,10 @@ public class Login_Fragment extends Fragment {
                 if (userQuery.count()!= 0) {
                     Intent intent = new Intent(getActivity(), Main_Activity.class);
                     Toast.makeText(getActivity(), userID, Toast.LENGTH_SHORT).show();
+                    intent.putExtra("userID", userID);
                     Login_Fragment.this.startActivity(intent);
+                    Log.d("UserID", userID);
+
                 } else {
                     Toast.makeText(getActivity(), "Invalid username / password", Toast.LENGTH_SHORT).show();
                 }

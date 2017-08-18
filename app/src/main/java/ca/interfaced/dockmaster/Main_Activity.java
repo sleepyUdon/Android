@@ -12,6 +12,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +48,8 @@ public class Main_Activity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
-        String message = intent.getStringExtra(Login_Fragment.EXTRA_MESSAGE);
-
+        String userID = intent.getStringExtra("userID");
+        Log.d("extraFromLogin", userID);
 
         Realm.init(this);
         setContentView(R.layout.main);
