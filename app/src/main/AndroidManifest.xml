@@ -21,13 +21,13 @@
             android:label="Asset Description">
         </activity>
         <activity
-            android:name=".CreateAccount_Activity"
-            android:label="@string/title_activity_create_account">
-        </activity>
-        <activity
             android:name=".ContactDescription_Activity"
             android:parentActivityName=".ProjectDescription_Activity"
             android:label="@string/title_activity_contact_description">
+        </activity>
+        <activity
+            android:name=".CreateAccount_Activity"
+            android:label="@string/title_activity_create_account">
         </activity>
         <activity
             android:name=".ForgotPassword_Activity"
@@ -42,16 +42,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Main_Activity"
             android:label="@string/title_activity_main_"
             android:theme="@style/AppTheme.NoActionBar">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN"/>-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-            <!--</intent-filter>-->
         </activity>
 
         <activity

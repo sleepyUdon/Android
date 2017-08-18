@@ -92,9 +92,20 @@ public class Login_Fragment extends Fragment {
 
 
         mcreateAccount_button = (Button)v.findViewById(R.id.createAccount_button);
-
+        mcreateAccount_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CreateAccount_Activity.class);
+                Login_Fragment.this.startActivity(intent);
+            }
+        });
 
         mforgotPassword_button = (Button)v.findViewById(R.id.forgotPassword_button);
+        mforgotPassword_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ForgotPassword_Activity.class);
+                Login_Fragment.this.startActivity(intent);
+            }
+        });
 
         return v;
 

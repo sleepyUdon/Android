@@ -10,3 +10,4 @@ public class ForgotPassword_Activity extends SingleFragment_Activity {
     }
 
 }
+
