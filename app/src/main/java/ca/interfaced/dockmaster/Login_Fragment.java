@@ -195,8 +195,10 @@ public class Login_Fragment extends Fragment {
                 userQuery.equalTo("email", mUserName)
                         .equalTo("password", mPassword)
                         .findAll();
+                String userID = userQuery.findFirst().getEmail();
                 if (userQuery.count()!= 0) {
                     Intent intent = new Intent(getActivity(), Main_Activity.class);
+                    Toast.makeText(getActivity(), userID, Toast.LENGTH_SHORT).show();
                     Login_Fragment.this.startActivity(intent);
                 } else {
                     Toast.makeText(getActivity(), "Invalid username / password", Toast.LENGTH_SHORT).show();

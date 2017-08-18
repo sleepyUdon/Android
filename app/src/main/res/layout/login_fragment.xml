@@ -59,4 +59,10 @@
         android:background="@color/colorPrimary"
         android:text="Forgot Password?"/>
 
+    <TextView
+        android:id="@+id/Copyright"
+        style="@style/SplashCaption"
+        android:layout_marginTop="@dimen/margin_padding_small"
+        android:text="By Interfaced.ca"/>
+
 </LinearLayout>
