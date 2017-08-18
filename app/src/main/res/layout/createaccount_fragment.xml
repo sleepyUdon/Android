@@ -6,11 +6,11 @@
               android:background="@color/colorPrimary"
               android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/imageView"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:color/darker_gray"/>
+        android:layout_height="135dp"
+        android:src="@drawable/johnsmith"/>
 
     <EditText
         android:id="@+id/firstName_textEdit"
@@ -19,7 +19,7 @@
         android:layout_marginBottom="@dimen/margin_padding_normal"
         android:layout_marginLeft="@dimen/margin_padding_normal"
         android:layout_marginRight="@dimen/margin_padding_normal"
-        android:layout_marginTop="@dimen/margin_padding_xxlarge"
+        android:layout_marginTop="@dimen/margin_padding_large"
         android:hint="@string/firstName_label"/>
 
     <EditText
@@ -72,7 +72,7 @@
         style="@style/RoundedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_padding_xxlarge"
+        android:layout_marginTop="@dimen/margin_padding_normal"
         android:paddingLeft="@dimen/margin_padding_small"
         android:paddingRight="@dimen/margin_padding_small"
         android:text="@string/createAccount_button"/>
