@@ -1,10 +1,12 @@
 package ca.interfaced.dockmaster;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import ca.interfaced.dockmaster.Model.User;
@@ -26,6 +28,8 @@ public class Settings_Fragment extends Fragment {
     private TextView phoneNumber_textView;
     private TextView mobileNumber_textView;
     private TextView email_textView;
+
+    private Button logout_button;
 
     public static ca.interfaced.dockmaster.Settings_Fragment newInstance() {
         return new ca.interfaced.dockmaster.Settings_Fragment();
@@ -74,6 +78,14 @@ public class Settings_Fragment extends Fragment {
 
         email_textView = (TextView) v.findViewById(R.id.email);
         email_textView.setText(email);
+
+        logout_button = (Button) v.findViewById(R.id.logoutButton);
+        logout_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Login_Activity.class);
+                Settings_Fragment.this.startActivity(intent);
+            }
+        });
 
         return v;
     }

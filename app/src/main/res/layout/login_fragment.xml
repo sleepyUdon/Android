@@ -27,7 +27,7 @@
         android:layout_marginLeft="@dimen/margin_padding_xxxlarge"
         android:layout_marginRight="@dimen/margin_padding_xxxlarge"
         android:hint="Email"
-        android:inputType="textPassword"/>
+        android:inputType="text"/>
 
     <EditText
         android:id="@+id/password_textField"

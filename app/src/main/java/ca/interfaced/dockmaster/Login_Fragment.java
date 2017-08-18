@@ -10,10 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import ca.interfaced.dockmaster.Model.Asset;
 import ca.interfaced.dockmaster.Model.Project;
 import ca.interfaced.dockmaster.Model.User;
 import io.realm.Realm;
+import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
 /**
@@ -22,6 +25,8 @@ import io.realm.RealmResults;
 
 public class Login_Fragment extends Fragment {
 
+    private String mUserName;
+    private String mPassword;
 
     private EditText muserName_textField;
     private EditText mpassword_textField;
@@ -38,6 +43,7 @@ public class Login_Fragment extends Fragment {
 
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.login_fragment, container, false);
@@ -51,12 +57,12 @@ public class Login_Fragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // check if userName exists in database
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                mUserName = muserName_textField.getText().toString();
             }
         });
 
@@ -69,13 +75,11 @@ public class Login_Fragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // check if password exists in database
 
             }
-
             @Override
             public void afterTextChanged(Editable s) {
-
+                mPassword = mpassword_textField.getText().toString();
             }
         });
 
@@ -85,8 +89,17 @@ public class Login_Fragment extends Fragment {
         // return message is it doesn't exist
         mlogin_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Main_Activity.class);
-                Login_Fragment.this.startActivity(intent);
+                Realm realm = Realm.getDefaultInstance();
+                RealmQuery<User> userQuery = realm.where(User.class);
+                userQuery.equalTo("email", mUserName)
+                        .equalTo("password", mPassword)
+                        .findAll();
+                if (userQuery.count()!= 0) {
+                    Intent intent = new Intent(getActivity(), Main_Activity.class);
+                    Login_Fragment.this.startActivity(intent);
+                } else {
+                    Toast.makeText(getActivity(), "Invalid username / password", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
