@@ -131,8 +131,8 @@ public class ProjectDescription_Fragment extends Fragment {
             itemView.findViewById(R.id.contactButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = ContactDescription_Activity.newIntent(getActivity(), mUser.getId());
-                    startActivity(intent);
+//                    Intent intent = ContactDescription_Activity.newIntent(getActivity(), mUser.getId());
+//                    startActivity(intent);
                 }
             });
             mContactNameTextView = (TextView) itemView.findViewById(R.id.ContactName);

@@ -210,8 +210,8 @@ public class Login_Fragment extends Fragment {
                 userQuery.equalTo("email", mUserName)
                         .equalTo("password", mPassword)
                         .findAll();
-                String userID = userQuery.findFirst().getEmail();
                 if (userQuery.count()!= 0) {
+                    String userID = userQuery.findFirst().getEmail();
                     Intent intent = new Intent(getActivity(), Main_Activity.class);
                     Toast.makeText(getActivity(), userID, Toast.LENGTH_SHORT).show();
                     intent.putExtra("userID", userID);

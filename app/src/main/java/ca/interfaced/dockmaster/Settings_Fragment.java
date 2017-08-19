@@ -1,12 +1,15 @@
 package ca.interfaced.dockmaster;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import ca.interfaced.dockmaster.Model.User;
@@ -21,7 +24,10 @@ public class Settings_Fragment extends Fragment {
     private static String phoneNumber ;
     private static String mobileNumber ;
     private static String email ;
+    private static String picture;
+    private User mUser ;
 
+    private ImageView picture_imageView;
     private TextView firstName_textView;
     private TextView lastName_textView;
     private TextView companyName_textView;
@@ -42,24 +48,34 @@ public class Settings_Fragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        String userID = getActivity().getIntent().getExtras().getString("userID");
+        Log.d("extraFromLogin", userID);
+
         Realm realm = Realm.getDefaultInstance();
+        User user = realm.where(User.class)
+                .equalTo("email", userID)
+                .findFirst();
+        mUser = user;
 
-
-        RealmResults<User> user = realm.where(User.class)
-                .equalTo("id","1")
-                .findAll();
-        firstName = user.first().getFirstName();
-        lastName = user.first().getLastName();
-        companyName = user.first().getCompanyName();
-        phoneNumber = user.first().getPhoneNumber();
-        mobileNumber = user.first().getMobileNumber();
-        email = user.first().getEmail();
+        picture = user.getImage();
+        firstName = user.getFirstName();
+        lastName = user.getLastName();
+        companyName = user.getCompanyName();
+        phoneNumber = user.getPhoneNumber();
+        mobileNumber = user.getMobileNumber();
+        email = user.getEmail();
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.settings_fragment, container, false);
+
+        picture_imageView = (ImageView) v.findViewById(R.id.profile_image);
+        int resId = getResources().getIdentifier(mUser.getImage(),"drawable",getActivity().getPackageName());
+        Drawable contactThumbnail = getActivity().getResources().getDrawable(resId);
+        picture_imageView.setImageDrawable(contactThumbnail);
+
 
         firstName_textView = (TextView) v.findViewById(R.id.firstName);
         firstName_textView.setText(firstName);

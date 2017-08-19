@@ -59,6 +59,7 @@ public class Projectslist_Fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         String userID = getActivity().getIntent().getExtras().getString("userID");
         Log.d("extraFromLogin", userID);
         mUserID = userID;
