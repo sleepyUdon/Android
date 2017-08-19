@@ -117,40 +117,54 @@ public class Settings_Fragment extends Fragment {
 
                 dialogInflater = getActivity().getLayoutInflater();
                 View content = dialogInflater.inflate(R.layout.edit_contact_item, null);
-                final EditText editProjectName = (EditText) content.findViewById(R.id.project_name);
-//                final EditText editProjectAddress = (EditText) content.findViewById(R.id.project_address);
-//                final EditText editProjectContactName = (EditText) content.findViewById(R.id.project_contact_name);
-//                final EditText editProjectAssetName = (EditText) content.findViewById(R.id.project_asset_name);
 
+                final EditText editFirstName = (EditText) content.findViewById(R.id.first_name);
+                editFirstName.setText(mUser.getFirstName());
 
-//                final EditText editThumbnail = (EditText) content.findViewById(R.id.thumbnail);
-//
+                final EditText editLastName = (EditText) content.findViewById(R.id.last_name);
+                editLastName.setText(mUser.getLastName());
+
+                final EditText editCompanyName = (EditText) content.findViewById(R.id.company_name);
+                editCompanyName.setText(mUser.getCompanyName());
+
+                final EditText editPhoneNumber = (EditText) content.findViewById(R.id.phone_number);
+                editPhoneNumber.setText(mUser.getPhoneNumber());
+
+                final EditText editMobilePhoneNumber = (EditText) content.findViewById(R.id.mobile_number);
+                editMobilePhoneNumber.setText(mUser.getMobileNumber());
+
+                final EditText editEmail = (EditText) content.findViewById(R.id.email);
+                editEmail.setText(mUser.getEmail());
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setView(content)
                         .setTitle("Edit contact")
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-//                                if (editProjectName.getText() == null || editProjectAddress.getText().toString().equals("")) {
-//                                    Toast.makeText(getActivity(), "Entry not saved, missing title", Toast.LENGTH_SHORT).show();
-//                                } else {
-//                                    Realm realm = Realm.getDefaultInstance();
-//                                    realm.beginTransaction();
-//                                    Project project = realm.createObject(Project.class, System.currentTimeMillis());
-//                                    // TODO: set ID
-//                                    project.setProjectName(editProjectName.getText().toString());
-//                                    project.setProjectAddress(editProjectAddress.getText().toString());
-//                                    project.setProjectContactName(editProjectContactName.getText().toString());
-//                                    project.setProjectAssetName(editProjectAssetName.getText().toString());
-
+                                if (editFirstName.getText() == null || editLastName.getText() == null || editCompanyName.getText() == null ||
+                                        editMobilePhoneNumber.getText() == null || editPhoneNumber.getText() == null || editEmail.getText() == null) {
+                                    Toast.makeText(getActivity(), "Entry not saved, missing or invalid fields", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Realm realm = Realm.getDefaultInstance();
+                                    realm.beginTransaction();
+                                    User user = realm.where(User.class)
+                                            .equalTo("email", mUser.getEmail())
+                                            .findFirst();
+                                    user.setFirstName(editFirstName.getText().toString());
+                                    user.setLastName(editLastName.getText().toString());
+                                    user.setCompanyName(editCompanyName.getText().toString());
+                                    user.setPhoneNumber(editPhoneNumber.getText().toString());
+                                    user.setMobileNumber(editMobilePhoneNumber.getText().toString());
+                                    user.setEmail(editEmail.getText().toString());
                                     // TODO: set image
-//                                    realm.commitTransaction();
+
+                                    realm.commitTransaction();
 //
-//                                    mAdapter.notifyDataSetChanged();
 //
 //                                    // scroll the recycler view to bottom
 //                                    recycler.scrollToPosition(RealmController.getInstance().getBooks().size() - 1);
-//                                }
+                                }
                             }
                         })
                         .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
