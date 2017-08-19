@@ -49,7 +49,6 @@ public class Main_Activity extends AppCompatActivity  {
 
         Intent intent = getIntent();
         String userID = intent.getStringExtra("userID");
-        Log.d("extraFromLogin", userID);
 
         Realm.init(this);
         setContentView(R.layout.main);

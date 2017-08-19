@@ -18,6 +18,9 @@ public class Asset extends RealmObject {
     private String image;
     private String sitePlan;
     private String description;
+    private Project project;
+    private RealmList<Reservation> Reservations;
+
 
     //    private String mType;
 //    private String mKey;
@@ -25,13 +28,6 @@ public class Asset extends RealmObject {
 //    private String mClosingTime;
 //    private String mNotes;
 //    private List<String> images = new ArrayList<>();
-
-
-
-    @LinkingObjects("Assets")
-    private final RealmResults<Project> projects = null;
-
-
 
     public String getId() {
         return id;
@@ -47,10 +43,6 @@ public class Asset extends RealmObject {
 
     public void setAssetName(String assetName) {
         this.assetName = assetName;
-    }
-
-    public RealmResults<Project> getProjects() {
-        return projects;
     }
 
     public String getImage() {
@@ -77,6 +69,19 @@ public class Asset extends RealmObject {
         this.description = description;
     }
 
+    public Project getProject() {
+        return project;
+    }
 
+    public void setProject(Project project) {
+        this.project = project;
+    }
 
+    public RealmList<Reservation> getReservations() {
+        return Reservations;
+    }
+
+    public void setReservations(RealmList<Reservation> reservations) {
+        Reservations = reservations;
+    }
 }

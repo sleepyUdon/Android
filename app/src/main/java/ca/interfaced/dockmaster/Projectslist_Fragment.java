@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,18 +20,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import ca.interfaced.dockmaster.Model.Project;
+import ca.interfaced.dockmaster.Model.User;
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
 
 public class Projectslist_Fragment extends Fragment {
 
+    private String mUserID;
+
     private RecyclerView mProjectRecyclerView;
     private ProjectAdapter mAdapter;
 //    private FloatingActionButton fab;
     private LayoutInflater dialogInflater;
-    private RealmResults<Project> mProjects;
+    private RealmList<Project> mProjects;
     public ImageView mProjectImageImageView;
     public TextView mProjectNameTextView;
     public TextView mProjectAddressTextView;
@@ -54,7 +59,16 @@ public class Projectslist_Fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String userID = getActivity().getIntent().getExtras().getString("userID");
+        Log.d("extraFromLogin", userID);
+        mUserID = userID;
 
+        Realm realm = Realm.getDefaultInstance();
+        User user = realm.where(User.class)
+                .equalTo("email", mUserID)
+                .findFirst();
+        RealmList<Project> projects = user.getProjects();
+        mProjects = projects;
     }
 
 
@@ -122,11 +136,9 @@ public class Projectslist_Fragment extends Fragment {
         mProjectRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewProjectList);
         mProjectRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        Realm realm = Realm.getDefaultInstance();
-        RealmResults<Project> projects = realm.where(Project.class)
-                .findAll();
 
-        mAdapter = new ProjectAdapter(projects);
+
+        mAdapter = new ProjectAdapter(mProjects);
         mProjectRecyclerView.setAdapter(mAdapter);
 
         return view;
@@ -181,9 +193,10 @@ public class Projectslist_Fragment extends Fragment {
         Realm realm = Realm.getDefaultInstance();
 
         RealmResults<Project> projects = realm.where(Project.class)
-                .equalTo("Users.email", "vivianechan@hotmail.com")
+                .equalTo("Users.email", mUserID)
                 .findAll();
-        public ProjectAdapter(RealmResults<Project> projects) {
+
+        public ProjectAdapter(RealmList<Project> projects) {
                         mProjects = projects;
         }
 
@@ -198,13 +211,14 @@ public class Projectslist_Fragment extends Fragment {
 
         @Override
         public void onBindViewHolder(ProjectHolder holder, final int position) {
-            Project project = projects.get(position);
+            Project project = mProjects.get(position);
             holder.bindProject(project);
         }
 
         @Override
         public int getItemCount() {
-            return projects.size();
+            Log.d("count", String.format("%d", mProjects.size()));
+            return mProjects.size();
         }
     }
 

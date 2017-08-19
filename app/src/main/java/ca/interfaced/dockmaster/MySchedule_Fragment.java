@@ -89,9 +89,9 @@ public class MySchedule_Fragment extends Fragment {
         public void bindProject(Reservation reservation) {
             mReservation = reservation;
             mTimeTextView.setText(mReservation.getStartDate());
-            mProjectNameTextView.setText(mReservation.getProjectName());
-            mCompanyNameTextView.setText(mReservation.getProjectName().toUpperCase());
-            mAssetNameTextView.setText(mReservation.getAssetName());
+            mProjectNameTextView.setText(mReservation.getProject().getProjectName());
+            mCompanyNameTextView.setText(mReservation.getUser().getCompanyName());
+            mAssetNameTextView.setText(mReservation.getAsset().getAssetName());
             mNotesTextView.setText(mReservation.getNotes());
 
         }
@@ -126,7 +126,7 @@ public class MySchedule_Fragment extends Fragment {
         Realm realm = Realm.getDefaultInstance();
 
         RealmResults<Reservation> reservations = realm.where(Reservation.class)
-                .equalTo("Users.email", "vivianechan@hotmail.com")
+//                .equalTo("Users.email", "vivianechan@hotmail.com")
                 .findAll();
         public ScheduleAdapter(RealmResults<Reservation> reservations) {
             mReservations = reservations;

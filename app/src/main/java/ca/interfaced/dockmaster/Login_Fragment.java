@@ -73,6 +73,7 @@ public class Login_Fragment extends Fragment {
         project3.setId("3");
         project3.setProjectName("Yonge and Sheppard");
         project3.setProjectAddress("1856 Sheppard Avenue, Toronto");
+        project3.setImage("map");
         realm.insertOrUpdate(project3);
 
         User user1 = realm.createObject(User.class);
@@ -86,8 +87,8 @@ public class Login_Fragment extends Fragment {
         user1.setMobileNumber("6478365162");
         user1.setImage("vivianechan");
         realm.insertOrUpdate(user1);
-
         User user2 = realm.createObject(User.class);
+
         user2.setId("2");
         user2.setFirstName("John");
         user2.setLastName("Smith");
@@ -115,18 +116,14 @@ public class Login_Fragment extends Fragment {
         asset2.setImage("crane");
         asset2.setSitePlan("map");
         asset2.setDescription("20-storeys crane");
-        realm.insertOrUpdate(asset1);
+        realm.insertOrUpdate(asset2);
 
         Reservation reservation1 = realm.createObject(Reservation.class);
         reservation1.setId("1");
-        reservation1.setProjectName("Richmond");
-        reservation1.setAssetName("Elevator A");
         reservation1.setStartDate("15 July 2017, 11:00 AM");
         reservation1.setEndDate("15 July 2017, 11:30 AM");
         reservation1.setNotes("Delivery of tables");
         realm.insertOrUpdate(reservation1);
-
-        reservation1.getUsers().add(user1);
 
         project1.getUsers().add(user1);
         project1.getUsers().add(user2);
@@ -134,12 +131,29 @@ public class Login_Fragment extends Fragment {
         project2.getUsers().add(user2);
         project3.getUsers().add(user2);
 
+//        user1.getProjects().add(project1);
+//        user1.getProjects().add(project2);
+//        user2.getProjects().add(project1);
+//        user2.getProjects().add(project2);
+//        user2.getProjects().add(project3);
+
+
         project1.getContacts().add(user2);
         project2.getContacts().add(user1);
         project3.getContacts().add(user2);
 
+        user1.getProjects().add(project2);
+        user2.getProjects().add(project1);
+        user2.getProjects().add(project3);
+
+
         project1.getAssets().add(asset1);
         project2.getAssets().add(asset2);
+
+        reservation1.setUser(user1);
+        reservation1.setProject(project1);
+        reservation1.setAsset(asset2);
+
 
         realm.commitTransaction();
 
@@ -202,7 +216,6 @@ public class Login_Fragment extends Fragment {
                     Toast.makeText(getActivity(), userID, Toast.LENGTH_SHORT).show();
                     intent.putExtra("userID", userID);
                     Login_Fragment.this.startActivity(intent);
-                    Log.d("UserID", userID);
 
                 } else {
                     Toast.makeText(getActivity(), "Invalid username / password", Toast.LENGTH_SHORT).show();

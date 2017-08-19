@@ -11,9 +11,6 @@ import io.realm.annotations.LinkingObjects;
 
 public class User extends RealmObject {
 
-
-    private String id;
-    private String firstName;
     private String lastName;
     private String companyName;
     private String email;
@@ -22,18 +19,12 @@ public class User extends RealmObject {
     private String mobileNumber;
     private String image;
 
-    private RealmList<Reservation> Reservations;
+    private RealmList<Reservation> reservations;
+    private RealmList<Project> projects;
 
 
-    @LinkingObjects("Contacts")
-    private final RealmResults<Project> projects = null;
-
-
-
-    // TODO: add firebase user ID
-
-
-    // TODO: user picture
+    private String id;
+    private String firstName;
 
     public String getId() {
         return id;
@@ -99,10 +90,6 @@ public class User extends RealmObject {
         this.mobileNumber = mobileNumber;
     }
 
-    public RealmResults<Project> getProjects() {
-        return projects;
-    }
-
     public String getImage() {
         return image;
     }
@@ -112,11 +99,23 @@ public class User extends RealmObject {
     }
 
     public RealmList<Reservation> getReservations() {
-        return Reservations;
+        return reservations;
     }
 
     public void setReservations(RealmList<Reservation> reservations) {
-        Reservations = reservations;
+        this.reservations = reservations;
     }
+
+    public RealmList<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(RealmList<Project> projects) {
+        this.projects = projects;
+    }
+
+
+
+
 
 }

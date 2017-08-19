@@ -3,6 +3,8 @@ package ca.interfaced.dockmaster.Model;
 import io.realm.RealmList;
 import io.realm.RealmModel;
 import io.realm.RealmObject;
+import io.realm.RealmResults;
+import io.realm.annotations.LinkingObjects;
 
 /**
  * Created by vivianechan on 2017-08-16.
@@ -13,12 +15,11 @@ public class Reservation extends RealmObject {
     private String id;
     private String startDate;
     private String endDate;
-    private String assetName;
     private String notes;
-    private String projectName;
 
-    private RealmList<User> Users;
-
+    private Project project;
+    private Asset asset;
+    private User user;
 
 
     public String getId() {
@@ -45,14 +46,6 @@ public class Reservation extends RealmObject {
         this.endDate = endDate;
     }
 
-    public String getAssetName() {
-        return assetName;
-    }
-
-    public void setAssetName(String assetName) {
-        this.assetName = assetName;
-    }
-
     public String getNotes() {
         return notes;
     }
@@ -61,19 +54,28 @@ public class Reservation extends RealmObject {
         this.notes = notes;
     }
 
-    public String getProjectName() {
-        return projectName;
+    public Project getProject() {
+        return project;
     }
 
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
+    public void setProject(Project project) {
+        this.project = project;
     }
 
-    public RealmList<User> getUsers() {
-        return Users;
+    public Asset getAsset() {
+        return asset;
     }
 
-    public void setUsers(RealmList<User> users) {
-        Users = users;
+    public void setAsset(Asset asset) {
+        this.asset = asset;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 }
