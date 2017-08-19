@@ -113,7 +113,9 @@ public class ProjectDescription_Fragment extends Fragment {
 
         public void bindProject(User user) {
             mUser = user;
-            mContactNameTextView.setText(mUser.getFirstName());
+            String firstName = mUser.getFirstName();
+            String lastName  = mUser.getLastName();
+            mContactNameTextView.setText(firstName + " " + lastName);
 
             int resId = getResources().getIdentifier(mUser.getImage(),"drawable",getActivity().getPackageName());
             Drawable contactThumbnail = getActivity().getResources().getDrawable(resId);
@@ -131,8 +133,8 @@ public class ProjectDescription_Fragment extends Fragment {
             itemView.findViewById(R.id.contactButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Intent intent = ContactDescription_Activity.newIntent(getActivity(), mUser.getId());
-//                    startActivity(intent);
+                    Intent intent = ContactDescription_Activity.newIntent(getActivity(), mUser.getId());
+                    startActivity(intent);
                 }
             });
             mContactNameTextView = (TextView) itemView.findViewById(R.id.ContactName);

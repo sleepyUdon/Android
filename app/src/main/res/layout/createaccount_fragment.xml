@@ -17,8 +17,8 @@
         style="@style/InputTextField"
         android:layout_width="match_parent"
         android:layout_marginBottom="@dimen/margin_padding_normal"
-        android:layout_marginLeft="@dimen/margin_padding_normal"
-        android:layout_marginRight="@dimen/margin_padding_normal"
+        android:layout_marginLeft="@dimen/margin_padding_large"
+        android:layout_marginRight="@dimen/margin_padding_large"
         android:layout_marginTop="@dimen/margin_padding_large"
         android:hint="@string/firstName_label"/>
 
@@ -27,8 +27,8 @@
         style="@style/InputTextField"
         android:layout_width="match_parent"
         android:layout_marginBottom="@dimen/margin_padding_normal"
-        android:layout_marginLeft="@dimen/margin_padding_normal"
-        android:layout_marginRight="@dimen/margin_padding_normal"
+        android:layout_marginLeft="@dimen/margin_padding_large"
+        android:layout_marginRight="@dimen/margin_padding_large"
         android:hint="@string/lastName_label"/>
 
     <EditText
@@ -36,8 +36,8 @@
         style="@style/InputTextField"
         android:layout_width="match_parent"
         android:layout_marginBottom="@dimen/margin_padding_normal"
-        android:layout_marginLeft="@dimen/margin_padding_normal"
-        android:layout_marginRight="@dimen/margin_padding_normal"
+        android:layout_marginLeft="@dimen/margin_padding_large"
+        android:layout_marginRight="@dimen/margin_padding_large"
         android:hint="@string/companyName_label"/>
 
     <EditText
@@ -45,8 +45,8 @@
         style="@style/InputTextField"
         android:layout_width="match_parent"
         android:layout_marginBottom="@dimen/margin_padding_normal"
-        android:layout_marginLeft="@dimen/margin_padding_normal"
-        android:layout_marginRight="@dimen/margin_padding_normal"
+        android:layout_marginLeft="@dimen/margin_padding_large"
+        android:layout_marginRight="@dimen/margin_padding_large"
         android:hint="@string/email_label"/>
 
     <EditText
@@ -54,8 +54,8 @@
         style="@style/InputTextField"
         android:layout_width="match_parent"
         android:layout_marginBottom="@dimen/margin_padding_normal"
-        android:layout_marginLeft="@dimen/margin_padding_normal"
-        android:layout_marginRight="@dimen/margin_padding_normal"
+        android:layout_marginLeft="@dimen/margin_padding_large"
+        android:layout_marginRight="@dimen/margin_padding_large"
         android:hint="@string/password_label"/>
 
     <EditText
@@ -63,8 +63,8 @@
         style="@style/InputTextField"
         android:layout_width="match_parent"
         android:layout_marginBottom="@dimen/margin_padding_normal"
-        android:layout_marginLeft="@dimen/margin_padding_normal"
-        android:layout_marginRight="@dimen/margin_padding_normal"
+        android:layout_marginLeft="@dimen/margin_padding_large"
+        android:layout_marginRight="@dimen/margin_padding_large"
         android:hint="@string/phoneNumber_label"/>
 
     <Button
@@ -72,9 +72,8 @@
         style="@style/RoundedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_padding_normal"
-        android:paddingLeft="@dimen/margin_padding_small"
-        android:paddingRight="@dimen/margin_padding_small"
+        android:paddingLeft="@dimen/margin_padding_xxlarge"
+        android:paddingRight="@dimen/margin_padding_xxlarge"
         android:text="@string/createAccount_button"/>
 </LinearLayout>
 

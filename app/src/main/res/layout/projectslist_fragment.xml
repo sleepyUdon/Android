@@ -23,6 +23,7 @@
         android:id="@+id/recyclerViewProjectList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_padding_normal"
         android:background="@color/colorPrimaryLight"
         android:paddingBottom="@dimen/list_item_padding"
         tools:listitem="@layout/project_item">

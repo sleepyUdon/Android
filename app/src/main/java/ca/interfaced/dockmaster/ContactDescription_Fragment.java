@@ -14,7 +14,6 @@ import android.support.v4.content.ContextCompat;
 import android.telephony.SmsManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,10 +23,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import ca.interfaced.dockmaster.Model.Project;
 import ca.interfaced.dockmaster.Model.User;
 import io.realm.Realm;
-import io.realm.RealmList;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 import ca.interfaced.dockmaster.Model.User;
@@ -44,7 +41,6 @@ public class ContactDescription_Fragment extends Fragment {
     private static final String ARG_CONTACT_ID = "contact_id";
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 0;
 
-    private static User mUser;
     private static String mContactID;
     private static String picture;
     private static String firstName;
@@ -66,6 +62,16 @@ public class ContactDescription_Fragment extends Fragment {
     private TextView email_textView;
 
 
+    public static ContactDescription_Fragment newInstance(String contactID) {
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_CONTACT_ID, contactID);
+        mContactID = contactID;
+        ContactDescription_Fragment fragment = new ContactDescription_Fragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+
     public static ca.interfaced.dockmaster.ContactDescription_Fragment newInstance() {
         return new ca.interfaced.dockmaster.ContactDescription_Fragment();
     }
@@ -75,39 +81,28 @@ public class ContactDescription_Fragment extends Fragment {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-    }
-
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String contactID = getActivity().getIntent().getExtras().getString("userID");
-        Log.d("extraFromLogin", contactID);
-        mContactID = contactID;
-
         Realm realm = Realm.getDefaultInstance();
-        User user = realm.where(User.class)
-                .equalTo("email", mContactID)
-                .findFirst();
-        mUser = user;
 
-        picture = user.getImage();
-        firstName = user.getFirstName();
-        lastName = user.getLastName();
-        companyName = user.getCompanyName();
-        phoneNumber = user.getPhoneNumber();
-        mobileNumber = user.getMobileNumber();
-        email = user.getEmail();
 
+        RealmResults<User> user = realm.where(User.class)
+                .equalTo("id", mContactID)
+                .findAll();
+        picture = user.first().getImage();
+        firstName = user.first().getFirstName();
+        lastName = user.first().getLastName();
+        companyName = user.first().getCompanyName();
+        phoneNumber = user.first().getPhoneNumber();
+        mobileNumber = user.first().getMobileNumber();
+        email = user.first().getEmail();
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.contact_description_fragment, container, false);
-
-
 
         picture_imageView = (ImageView) v.findViewById(R.id.profile_image);
         int resId = getResources().getIdentifier(picture, "drawable", getActivity().getPackageName());

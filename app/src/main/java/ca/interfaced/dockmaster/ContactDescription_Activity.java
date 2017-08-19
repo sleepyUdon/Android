@@ -11,11 +11,20 @@ import android.support.v4.app.Fragment;
 
 public class ContactDescription_Activity extends SingleFragment_Activity {
 
+    private static final String EXTRA_CONTACT_ID = "ca.interfaced.dockmaster.contact_id";
+
+    public static Intent newIntent(Context packageContext, String contactID) {
+        Intent intent = new Intent(packageContext, ContactDescription_Activity.class);
+        intent.putExtra(EXTRA_CONTACT_ID, contactID);
+        return intent;
+    }
 
     @Override
     protected Fragment createFragment() {
 
-        return new ContactDescription_Fragment().newInstance();
+        String contactID = (String) getIntent().getSerializableExtra(EXTRA_CONTACT_ID);
+
+        return new ContactDescription_Fragment().newInstance(contactID);
     }
 }
 
