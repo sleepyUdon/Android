@@ -215,7 +215,7 @@ public class ProjectDescription_Fragment extends Fragment {
     private class AssetAdapter extends RecyclerView.Adapter<AssetHolder> {
         Realm realm = Realm.getDefaultInstance();
         RealmResults<Asset> assets = realm.where(Asset.class)
-                .equalTo("projects.id",mprojectID)
+                .equalTo("project.id",mprojectID)
                 .findAll();
 
         public AssetAdapter(RealmResults<Asset> assets) {

@@ -41,8 +41,9 @@
     <Button
         android:id="@+id/login_button"
         style="@style/RoundedButton"
-        android:layout_width="120dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:paddingLeft="@dimen/margin_padding_xxlarge"
+        android:paddingRight="@dimen/margin_padding_xxlarge"
         android:layout_marginBottom="20dp"
         android:text="@string/login_button"/>
 

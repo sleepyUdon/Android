@@ -77,11 +77,5 @@ public class Asset extends RealmObject {
         this.project = project;
     }
 
-    public RealmList<Reservation> getReservations() {
-        return Reservations;
-    }
 
-    public void setReservations(RealmList<Reservation> reservations) {
-        Reservations = reservations;
-    }
 }

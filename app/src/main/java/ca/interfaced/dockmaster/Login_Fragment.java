@@ -73,7 +73,7 @@ public class Login_Fragment extends Fragment {
         project3.setId("3");
         project3.setProjectName("Yonge and Sheppard");
         project3.setProjectAddress("1856 Sheppard Avenue, Toronto");
-        project3.setImage("map");
+        project3.setImage("project3");
         realm.insertOrUpdate(project3);
 
         User user1 = realm.createObject(User.class);
@@ -131,13 +131,6 @@ public class Login_Fragment extends Fragment {
         project2.getUsers().add(user2);
         project3.getUsers().add(user2);
 
-//        user1.getProjects().add(project1);
-//        user1.getProjects().add(project2);
-//        user2.getProjects().add(project1);
-//        user2.getProjects().add(project2);
-//        user2.getProjects().add(project3);
-
-
         project1.getContacts().add(user2);
         project2.getContacts().add(user1);
         project3.getContacts().add(user2);
@@ -146,9 +139,11 @@ public class Login_Fragment extends Fragment {
         user2.getProjects().add(project1);
         user2.getProjects().add(project3);
 
-
         project1.getAssets().add(asset1);
         project2.getAssets().add(asset2);
+
+        asset1.setProject(project1);
+        asset2.setProject(project2);
 
         reservation1.setUser(user1);
         reservation1.setProject(project1);
