@@ -133,8 +133,7 @@ public class Settings_Fragment extends Fragment {
                 final EditText editMobilePhoneNumber = (EditText) content.findViewById(R.id.mobile_number);
                 editMobilePhoneNumber.setText(mUser.getMobileNumber());
 
-                final EditText editEmail = (EditText) content.findViewById(R.id.email);
-                editEmail.setText(mUser.getEmail());
+
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setView(content)
@@ -143,7 +142,7 @@ public class Settings_Fragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if (editFirstName.getText() == null || editLastName.getText() == null || editCompanyName.getText() == null ||
-                                        editMobilePhoneNumber.getText() == null || editPhoneNumber.getText() == null || editEmail.getText() == null) {
+                                        editMobilePhoneNumber.getText() == null || editPhoneNumber.getText() == null ) {
                                     Toast.makeText(getActivity(), "Entry not saved, missing or invalid fields", Toast.LENGTH_SHORT).show();
                                 } else {
                                     Realm realm = Realm.getDefaultInstance();
@@ -151,19 +150,30 @@ public class Settings_Fragment extends Fragment {
                                     User user = realm.where(User.class)
                                             .equalTo("email", mUser.getEmail())
                                             .findFirst();
-                                    user.setFirstName(editFirstName.getText().toString());
-                                    user.setLastName(editLastName.getText().toString());
-                                    user.setCompanyName(editCompanyName.getText().toString());
-                                    user.setPhoneNumber(editPhoneNumber.getText().toString());
-                                    user.setMobileNumber(editMobilePhoneNumber.getText().toString());
-                                    user.setEmail(editEmail.getText().toString());
+                                    String firstName = editFirstName.getText().toString();
+                                    user.setFirstName(firstName);
+                                    firstName_textView.setText(firstName);
+
+                                    String lastName = editLastName.getText().toString();
+                                    user.setLastName(lastName);
+                                    lastName_textView.setText(lastName);
+
+                                    String companyName = editCompanyName.getText().toString();
+                                    user.setCompanyName(companyName);
+                                    companyName_textView.setText(companyName);
+
+                                    String phoneNumber = editPhoneNumber.getText().toString();
+                                    user.setPhoneNumber(phoneNumber);
+                                    phoneNumber_textView.setText(phoneNumber);
+
+                                    String mobileNumber = editMobilePhoneNumber.getText().toString();
+                                    user.setMobileNumber(mobileNumber);
+                                    mobileNumber_textView.setText(mobileNumber);
+
+
                                     // TODO: set image
 
                                     realm.commitTransaction();
-//
-//
-//                                    // scroll the recycler view to bottom
-//                                    recycler.scrollToPosition(RealmController.getInstance().getBooks().size() - 1);
                                 }
                             }
                         })

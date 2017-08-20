@@ -31,8 +31,6 @@ public class ProjectDescription_Fragment extends Fragment {
     private static final String ARG_PROJECT_ID = "project_id";
 
     private static String mprojectID ;
-//    private String mProjectContactName;
-//    private String mProjectAssetName;
     public TextView mContactNameTextView;
     public TextView mAssetNameTextView;
 
@@ -45,7 +43,6 @@ public class ProjectDescription_Fragment extends Fragment {
     private ContactAdapter mContactAdapter;
     private AssetAdapter mAssetAdapter;
 
-//    private RealmResults<Project> mProjects;
     private RealmResults<User> mContacts;
     private RealmResults<Asset> mAssets;
 

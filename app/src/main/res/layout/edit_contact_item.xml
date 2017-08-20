@@ -8,42 +8,86 @@
         android:id="@+id/first_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:inputType="text" />
+        android:layout_marginLeft="@dimen/margin_padding_small"
+        android:layout_marginRight="@dimen/margin_padding_small"
+        android:layout_marginTop="@dimen/margin_padding_xtiny"
+        android:inputType="text"/>
+
+    <TextView
+        android:id="@+id/first_name_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_padding_small"
+        android:layout_marginRight="@dimen/margin_padding_small"
+        android:text="First Name"/>
 
     <EditText
         android:id="@+id/last_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/margin_padding_xtiny"
+        android:layout_marginLeft="@dimen/margin_padding_small"
+        android:layout_marginRight="@dimen/margin_padding_small"
         android:inputType="text" />
+
+    <TextView
+        android:id="@+id/last_name_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_padding_small"
+        android:layout_marginRight="@dimen/margin_padding_small"
+        android:text="Last Name"/>
 
     <EditText
         android:id="@+id/company_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/margin_padding_xtiny"
+        android:layout_marginLeft="@dimen/margin_padding_small"
+        android:layout_marginRight="@dimen/margin_padding_small"
         android:inputType="text" />
+
+    <TextView
+        android:id="@+id/company_name_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_padding_small"
+        android:layout_marginRight="@dimen/margin_padding_small"
+        android:text="Company Name"/>
 
     <EditText
         android:id="@+id/phone_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/margin_padding_xtiny"
+        android:layout_marginLeft="@dimen/margin_padding_small"
+        android:layout_marginRight="@dimen/margin_padding_small"
         android:inputType="phone" />
+
+    <TextView
+        android:id="@+id/phone_number_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_padding_small"
+        android:layout_marginRight="@dimen/margin_padding_small"
+        android:text="Phone Number"/>
 
     <EditText
         android:id="@+id/mobile_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/margin_padding_xtiny"
+        android:layout_marginLeft="@dimen/margin_padding_small"
+        android:layout_marginRight="@dimen/margin_padding_small"
         android:inputType="phone" />
 
-    <EditText
-        android:id="@+id/email"
+    <TextView
+        android:id="@+id/mobile_number_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:inputType="textEmailAddress" />
+        android:layout_marginLeft="@dimen/margin_padding_small"
+        android:layout_marginRight="@dimen/margin_padding_small"
+        android:text="Mobile Number"/>
+
 
 </LinearLayout>
