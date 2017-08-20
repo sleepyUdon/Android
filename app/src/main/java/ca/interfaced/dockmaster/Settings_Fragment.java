@@ -18,10 +18,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import ca.interfaced.dockmaster.Model.User;
+import ca.interfaced.dockmaster.app.SessionManager;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
 public class Settings_Fragment extends Fragment {
+
+    SessionManager session;
     
     private static String firstName ;
     private static String lastName ;
@@ -54,6 +57,8 @@ public class Settings_Fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        session = new SessionManager(getActivity().getApplicationContext());
 
         String userID = getActivity().getIntent().getExtras().getString("userID");
         Log.d("extraFromLogin", userID);
@@ -105,6 +110,7 @@ public class Settings_Fragment extends Fragment {
         logout_button = (Button) v.findViewById(R.id.logoutButton);
         logout_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                session.logoutUser();
                 Intent intent = new Intent(getActivity(), Login_Activity.class);
                 Settings_Fragment.this.startActivity(intent);
             }

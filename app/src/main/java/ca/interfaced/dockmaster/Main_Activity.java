@@ -15,17 +15,21 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import ca.interfaced.dockmaster.Model.Asset;
 import ca.interfaced.dockmaster.Model.Project;
 import ca.interfaced.dockmaster.Model.Reservation;
 import ca.interfaced.dockmaster.Model.User;
+import ca.interfaced.dockmaster.app.SessionManager;
 import io.realm.Realm;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 public class Main_Activity extends AppCompatActivity  {
+
+    SessionManager session;
 
     private List<Fragment> fragmentList = new ArrayList<>();
     private List<String> tabTitles = new ArrayList<>();
@@ -46,6 +50,11 @@ public class Main_Activity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        session = new SessionManager(getApplicationContext());
+        session.checkLogin();
+        HashMap<String, String> user = session.getUserDetails();
+
 
         Intent intent = getIntent();
         String userID = intent.getStringExtra("userID");

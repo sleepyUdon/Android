@@ -13,10 +13,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.HashMap;
+
 import ca.interfaced.dockmaster.Model.Asset;
 import ca.interfaced.dockmaster.Model.Project;
 import ca.interfaced.dockmaster.Model.Reservation;
 import ca.interfaced.dockmaster.Model.User;
+import ca.interfaced.dockmaster.app.SessionManager;
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
@@ -26,6 +29,8 @@ import io.realm.RealmResults;
  */
 
 public class Login_Fragment extends Fragment {
+
+    SessionManager session;
 
     private String mUserName;
     private String mPassword;
@@ -159,7 +164,22 @@ public class Login_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.login_fragment, container, false);
 
+        session = new SessionManager(getActivity().getApplicationContext());
         muserName_textField = (EditText)v.findViewById(R.id.userName_textField);
+        mpassword_textField = (EditText)v.findViewById(R.id.password_textField);
+
+        HashMap<String, String> user = session.getUserDetails();
+
+        String email = user.get(SessionManager.KEY_EMAIL);
+        mUserName = email;
+        String password = user.get(SessionManager.KEY_PASSWORD);
+        mPassword = password;
+
+        if (email != null && password != null) {
+            muserName_textField.setText(email);
+            mpassword_textField.setText(password);
+        }
+
         muserName_textField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -177,7 +197,6 @@ public class Login_Fragment extends Fragment {
             }
         });
 
-        mpassword_textField = (EditText)v.findViewById(R.id.password_textField);
         mpassword_textField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -210,6 +229,7 @@ public class Login_Fragment extends Fragment {
                     Intent intent = new Intent(getActivity(), Main_Activity.class);
                     Toast.makeText(getActivity(), userID, Toast.LENGTH_SHORT).show();
                     intent.putExtra("userID", userID);
+                    session.createLoginSession(mUserName,mPassword);
                     Login_Fragment.this.startActivity(intent);
 
                 } else {
