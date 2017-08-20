@@ -22,10 +22,10 @@ public class MySchedule_Fragment extends Fragment {
     private RecyclerView mScheduleRecyclerView;
     private MySchedule_Fragment.ScheduleAdapter mAdapter;
     private RealmResults<Reservation> mReservations;
-    public TextView mTimeTextView;
+    public TextView mStartTimeTextView;
+    public TextView mEndStartTimeTextView;
     public TextView mProjectNameTextView;
     public TextView mAssetNameTextView;
-    public TextView mCompanyNameTextView;
     public TextView mNotesTextView;
 
 
@@ -88,12 +88,11 @@ public class MySchedule_Fragment extends Fragment {
 
         public void bindProject(Reservation reservation) {
             mReservation = reservation;
-            mTimeTextView.setText(mReservation.getStartDate());
+            mStartTimeTextView.setText(mReservation.getStartTime());
+            mEndStartTimeTextView.setText(mReservation.getEndTime());
             mProjectNameTextView.setText(mReservation.getProject().getProjectName());
-            mCompanyNameTextView.setText(mReservation.getUser().getCompanyName());
             mAssetNameTextView.setText(mReservation.getAsset().getAssetName());
             mNotesTextView.setText(mReservation.getNotes());
-
         }
 
 
@@ -111,9 +110,9 @@ public class MySchedule_Fragment extends Fragment {
 //                    startActivity(intent);
                 }
             });
-            mTimeTextView = (TextView) itemView.findViewById(R.id.time_textView);
+            mStartTimeTextView = (TextView) itemView.findViewById(R.id.start_time_textView);
+            mEndStartTimeTextView = (TextView) itemView.findViewById(R.id.end_time_textView);
             mProjectNameTextView = (TextView) itemView.findViewById(R.id.project_name_textView);
-            mCompanyNameTextView = (TextView) itemView.findViewById(R.id.company_name_textView);
             mAssetNameTextView = (TextView) itemView.findViewById(R.id.asset_name_textView);
             mNotesTextView = (TextView) itemView.findViewById(R.id.notes_textView);
 

@@ -42,7 +42,9 @@ public class Settings_Fragment extends Fragment {
     private TextView phoneNumber_textView;
     private TextView mobileNumber_textView;
     private TextView email_textView;
-    private FloatingActionButton fab;
+    private Button edit_picture_button;
+    private Button edit_profile_button;
+
     private LayoutInflater dialogInflater;
 
     private Button logout_button;
@@ -116,8 +118,10 @@ public class Settings_Fragment extends Fragment {
             }
         });
 
-        fab = (FloatingActionButton) v.findViewById(R.id.editFabButton);
-        fab.setOnClickListener(new View.OnClickListener() {
+        edit_picture_button = (Button) v.findViewById(R.id.edit_picture_button);
+
+        edit_profile_button = (Button) v.findViewById(R.id.edit_profile_button);
+        edit_profile_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

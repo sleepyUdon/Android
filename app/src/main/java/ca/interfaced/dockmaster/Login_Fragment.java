@@ -125,8 +125,9 @@ public class Login_Fragment extends Fragment {
 
         Reservation reservation1 = realm.createObject(Reservation.class);
         reservation1.setId("1");
-        reservation1.setStartDate("15 July 2017, 11:00 AM");
-        reservation1.setEndDate("15 July 2017, 11:30 AM");
+        reservation1.setDate("15 July 2017");
+        reservation1.setStartTime("10:30 AM");
+        reservation1.setEndTime("11:30 AM");
         reservation1.setNotes("Delivery of tables");
         realm.insertOrUpdate(reservation1);
 

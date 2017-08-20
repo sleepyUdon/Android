@@ -13,14 +13,14 @@ import io.realm.annotations.LinkingObjects;
 public class Reservation extends RealmObject {
 
     private String id;
-    private String startDate;
-    private String endDate;
+    private String date;
+    private String startTime;
+    private String endTime;
     private String notes;
 
     private Project project;
     private Asset asset;
     private User user;
-
 
     public String getId() {
         return id;
@@ -30,20 +30,28 @@ public class Reservation extends RealmObject {
         this.id = id;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public String getDate() {
+        return date;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public String getEndDate() {
-        return endDate;
+    public String getStartTime() {
+        return startTime;
     }
 
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
     public String getNotes() {
@@ -77,5 +85,8 @@ public class Reservation extends RealmObject {
     public void setUser(User user) {
         this.user = user;
     }
+
+
+
 
 }
