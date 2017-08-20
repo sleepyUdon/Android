@@ -30,11 +30,11 @@ import io.realm.RealmResults;
 public class Projectslist_Fragment extends Fragment {
 
     private String mUserID;
+    private RealmList<Project> mProjects;
 
     private RecyclerView mProjectRecyclerView;
     private ProjectAdapter mAdapter;
 
-    private RealmList<Project> mProjects;
     public ImageView mProjectImageImageView;
     public TextView mProjectNameTextView;
     public TextView mProjectAddressTextView;
@@ -137,11 +137,6 @@ public class Projectslist_Fragment extends Fragment {
 
 
     private class ProjectAdapter extends RecyclerView.Adapter<ProjectHolder> {
-        Realm realm = Realm.getDefaultInstance();
-
-        RealmResults<Project> projects = realm.where(Project.class)
-                .equalTo("Users.email", mUserID)
-                .findAll();
 
         public ProjectAdapter(RealmList<Project> projects) {
                         mProjects = projects;

@@ -155,6 +155,8 @@ public class Login_Fragment extends Fragment {
         reservation1.setProject(project1);
         reservation1.setAsset(asset2);
 
+        user1.getReservations().add(reservation1);
+
 
         realm.commitTransaction();
 

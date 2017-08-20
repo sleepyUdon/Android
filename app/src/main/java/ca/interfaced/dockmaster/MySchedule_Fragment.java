@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,23 +14,25 @@ import android.widget.Toast;
 
 import ca.interfaced.dockmaster.Model.Project;
 import ca.interfaced.dockmaster.Model.Reservation;
+import ca.interfaced.dockmaster.Model.User;
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 
 
 public class MySchedule_Fragment extends Fragment {
 
+    private String mUserID;
+    private RealmList<Reservation> mReservations;
+
+
     private RecyclerView mScheduleRecyclerView;
     private MySchedule_Fragment.ScheduleAdapter mAdapter;
-    private RealmResults<Reservation> mReservations;
     public TextView mStartTimeTextView;
     public TextView mEndStartTimeTextView;
     public TextView mProjectNameTextView;
     public TextView mAssetNameTextView;
     public TextView mNotesTextView;
-
-
-
 
 
 
@@ -51,6 +54,16 @@ public class MySchedule_Fragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        String userID = getActivity().getIntent().getExtras().getString("userID");
+        Log.d("extraFromLogin", userID);
+        mUserID = userID;
+
+        Realm realm = Realm.getDefaultInstance();
+        User user = realm.where(User.class)
+                .equalTo("email", mUserID)
+                .findFirst();
+        RealmList<Reservation> reservations = user.getReservations();
+        mReservations = reservations;
     }
 
 
@@ -61,24 +74,13 @@ public class MySchedule_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.myschedule_fragment, container, false);
 
 
-
         mScheduleRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewScheduleList);
         mScheduleRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        Realm realm = Realm.getDefaultInstance();
-        RealmResults<Reservation> reservations = realm.where(Reservation.class)
-                .findAll();
-
-        mAdapter = new MySchedule_Fragment.ScheduleAdapter(reservations);
+        mAdapter = new MySchedule_Fragment.ScheduleAdapter(mReservations);
         mScheduleRecyclerView.setAdapter(mAdapter);
 
         return view;
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-
     }
 
 
@@ -122,33 +124,29 @@ public class MySchedule_Fragment extends Fragment {
 
 
     private class ScheduleAdapter extends RecyclerView.Adapter<MySchedule_Fragment.ScheduleHolder> {
-        Realm realm = Realm.getDefaultInstance();
-
-        RealmResults<Reservation> reservations = realm.where(Reservation.class)
-//                .equalTo("Users.email", "vivianechan@hotmail.com")
-                .findAll();
-        public ScheduleAdapter(RealmResults<Reservation> reservations) {
+        
+        public ScheduleAdapter(RealmList<Reservation> reservations) {
             mReservations = reservations;
         }
 
 
         @Override
-        public MySchedule_Fragment.ScheduleHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public ScheduleHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.schedule_item, parent, false);
 
-            return new MySchedule_Fragment.ScheduleHolder(view);
+            return new ScheduleHolder(view);
         }
 
         @Override
         public void onBindViewHolder(MySchedule_Fragment.ScheduleHolder holder, final int position) {
-            Reservation reservation = reservations.get(position);
+            Reservation reservation = mReservations.get(position);
             holder.bindProject(reservation);
         }
 
         @Override
         public int getItemCount() {
-            return reservations.size();
+            return mReservations.size();
         }
     }
 
