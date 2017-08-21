@@ -3,23 +3,17 @@ package ca.interfaced.dockmaster;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.DrawableRes;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
-import java.lang.reflect.Field;
 
 import ca.interfaced.dockmaster.Model.Asset;
 import ca.interfaced.dockmaster.Model.Project;
@@ -37,8 +31,6 @@ public class ProjectDescription_Fragment extends Fragment {
     private static final String ARG_PROJECT_ID = "project_id";
 
     private static String mprojectID ;
-    private String mProjectContactName;
-    private String mProjectAssetName;
     public TextView mContactNameTextView;
     public TextView mAssetNameTextView;
 
@@ -51,7 +43,6 @@ public class ProjectDescription_Fragment extends Fragment {
     private ContactAdapter mContactAdapter;
     private AssetAdapter mAssetAdapter;
 
-    private RealmResults<Project> mProjects;
     private RealmResults<User> mContacts;
     private RealmResults<Asset> mAssets;
 
@@ -119,7 +110,9 @@ public class ProjectDescription_Fragment extends Fragment {
 
         public void bindProject(User user) {
             mUser = user;
-            mContactNameTextView.setText(mUser.getFirstName());
+            String firstName = mUser.getFirstName();
+            String lastName  = mUser.getLastName();
+            mContactNameTextView.setText(firstName + " " + lastName);
 
             int resId = getResources().getIdentifier(mUser.getImage(),"drawable",getActivity().getPackageName());
             Drawable contactThumbnail = getActivity().getResources().getDrawable(resId);
@@ -134,10 +127,9 @@ public class ProjectDescription_Fragment extends Fragment {
         public ContactHolder(View itemView) {
             super(itemView);
             // Define click listener for the ViewHolder's View.
-            itemView.setOnClickListener(new View.OnClickListener() {
+            itemView.findViewById(R.id.contactButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getActivity(), "Contact selected", Toast.LENGTH_SHORT).show();
                     Intent intent = ContactDescription_Activity.newIntent(getActivity(), mUser.getId());
                     startActivity(intent);
                 }
@@ -167,11 +159,18 @@ public class ProjectDescription_Fragment extends Fragment {
         public AssetHolder(View itemView) {
             super(itemView);
             // Define click listener for the ViewHolder's View.
-            itemView.setOnClickListener(new View.OnClickListener() {
+            itemView.findViewById(R.id.infoButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getActivity(), "Asset selected", Toast.LENGTH_SHORT).show();
-
+                    Intent intent = AssetDescription_Activity.newIntent(getActivity(), mAsset.getId());
+                    startActivity(intent);
+                }
+            });
+            itemView.findViewById(R.id.bookButton).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    Intent intent = AssetDescription_Activity.newIntent(getActivity(), mAsset.getId());
+//                    startActivity(intent);
                 }
             });
             mAssetNameTextView = (TextView) itemView.findViewById(R.id.AssetName);
@@ -215,7 +214,7 @@ public class ProjectDescription_Fragment extends Fragment {
     private class AssetAdapter extends RecyclerView.Adapter<AssetHolder> {
         Realm realm = Realm.getDefaultInstance();
         RealmResults<Asset> assets = realm.where(Asset.class)
-                .equalTo("projects.id",mprojectID)
+                .equalTo("project.id",mprojectID)
                 .findAll();
 
         public AssetAdapter(RealmResults<Asset> assets) {

@@ -17,11 +17,8 @@ public class Project extends RealmObject {
     private String image;
 
     private RealmList<User> Users;
-
     private RealmList<User> Contacts;
     private RealmList<Asset> Assets;
-
-
 
     public String getId() {
         return id;
@@ -47,7 +44,6 @@ public class Project extends RealmObject {
         ProjectAddress = projectAddress;
     }
 
-
     public String getImage() {
         return image;
     }
@@ -57,18 +53,11 @@ public class Project extends RealmObject {
     }
 
     public RealmList<User> getUsers() {
-        return Users; }
+        return Users;
+    }
 
     public void setUsers(RealmList<User> users) {
         Users = users;
-    }
-
-    public RealmList<Asset> getAssets() {
-        return Assets;
-    }
-
-    public void setAssets(RealmList<Asset> assets) {
-        Assets = assets;
     }
 
     public RealmList<User> getContacts() {
@@ -79,11 +68,12 @@ public class Project extends RealmObject {
         Contacts = contacts;
     }
 
+    public RealmList<Asset> getAssets() {
+        return Assets;
+    }
 
-
-
-
-
-
+    public void setAssets(RealmList<Asset> assets) {
+        Assets = assets;
+    }
 
 }

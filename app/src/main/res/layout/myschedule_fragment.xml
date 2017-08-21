@@ -1,16 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:gravity="center"
               android:orientation="vertical">
 
 
-    <EditText
-        android:id="@+id/editText2"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewScheduleList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="My Schedule"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_padding_normal"
+        android:background="@color/colorPrimaryLight"
+        android:paddingBottom="@dimen/list_item_padding"
+        tools:listitem="@layout/schedule_item">
+
+    </android.support.v7.widget.RecyclerView>
+
 </LinearLayout>

@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="ca.interfaced.dockmaster">
 
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
+
+
     <application
         android:name=".app.MyApplication"
         android:allowBackup="true"
@@ -11,13 +16,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".CreateAccount_Activity"
-            android:label="@string/title_activity_create_account">
+            android:name=".AssetDescription_Activity"
+            android:parentActivityName=".ProjectDescription_Activity"
+            android:label="Asset Description">
         </activity>
         <activity
             android:name=".ContactDescription_Activity"
             android:parentActivityName=".ProjectDescription_Activity"
             android:label="@string/title_activity_contact_description">
+        </activity>
+        <activity
+            android:name=".CreateAccount_Activity"
+            android:label="@string/title_activity_create_account">
         </activity>
         <activity
             android:name=".ForgotPassword_Activity"
@@ -26,7 +36,18 @@
         <activity
             android:name=".Login_Activity"
             android:label="@string/title_activity_login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
+        <activity
+            android:name=".Main_Activity"
+            android:label="@string/title_activity_main_"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
         <activity
             android:name=".ProjectsList_Activity"
             android:label="@string/title_activity_projects_list">
@@ -41,16 +62,8 @@
             android:parentActivityName=".ProjectsList_Activity">
         </activity>
         <activity
-            android:name=".Main_Activity"
-            android:label="@string/title_activity_main_"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-        <activity android:name=".Settings_Fragment">
+            android:name=".SiteInfo_Activity"
+            android:parentActivityName=".ProjectDescription_Activity">
         </activity>
     </application>
 

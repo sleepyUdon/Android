@@ -2,6 +2,7 @@ package ca.interfaced.dockmaster.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import ca.interfaced.dockmaster.BuildConfig;
 import ca.interfaced.dockmaster.R;

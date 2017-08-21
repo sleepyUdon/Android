@@ -6,6 +6,7 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:background="@color/colorPrimaryLight"
               android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -16,8 +17,43 @@
         android:paddingTop="@dimen/margin_padding_large"
         android:src="@drawable/johnsmith"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/edit_picture_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_padding_large"
+            android:layout_marginRight="@dimen/margin_padding_large"
+            android:layout_marginTop="@dimen/margin_padding_xtiny"
+            android:layout_weight="1"
+            android:text="Edit Picture"/>
+
+        <Button
+            android:id="@+id/edit_profile_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_padding_large"
+            android:layout_marginRight="@dimen/margin_padding_large"
+            android:layout_marginTop="@dimen/margin_padding_xtiny"
+            android:layout_weight="1"
+            android:text="Edit Profile"/>
+    </LinearLayout>
+
     <include
         layout="@layout/content_scrolling"
-        android:layout_width="match_parent"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/logoutButton"
+        style="@style/RoundedButton"
+        android:layout_width="wrap_content"
+        android:paddingLeft="@dimen/margin_padding_xxlarge"
+        android:paddingRight="@dimen/margin_padding_xxlarge"
+        android:text="LOG OUT"/>
 
 </LinearLayout>

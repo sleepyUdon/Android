@@ -2,66 +2,68 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:background="@drawable/project2"
               android:gravity="center"
               android:orientation="vertical">
 
-    <EditText
+    <TextView
         android:id="@+id/title_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10"
+        style="@style/SplashTitle"
         android:inputType="textPersonName"
-        android:text="@string/title_label"
-        android:textAlignment="center"/>
+        android:text="DOCKMASTER"/>
 
-    <EditText
+    <TextView
         android:id="@+id/subTitle_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10"
+        style="@style/SplashSubtitle"
+        android:layout_marginBottom="75dp"
+        android:layout_marginTop="20dp"
         android:inputType="textPersonName"
-        android:text="@string/subTitle_label"
-        android:textAlignment="center"/>
+        android:text="@string/subTitle_label"/>
 
     <EditText
         android:id="@+id/userName_textField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10"
+        style="@style/InputTextField"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="@dimen/margin_padding_xxxlarge"
+        android:layout_marginRight="@dimen/margin_padding_xxxlarge"
         android:hint="Email"
-        android:inputType="textPassword"/>
+        android:inputType="text"/>
 
     <EditText
         android:id="@+id/password_textField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10"
+        style="@style/InputTextField"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="@dimen/margin_padding_xxxlarge"
+        android:layout_marginRight="@dimen/margin_padding_xxxlarge"
         android:hint="Password"
         android:inputType="textPassword"/>
 
     <Button
         android:id="@+id/login_button"
+        style="@style/RoundedButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:paddingLeft="@dimen/margin_padding_xxlarge"
+        android:paddingRight="@dimen/margin_padding_xxlarge"
+        android:layout_marginBottom="20dp"
         android:text="@string/login_button"/>
 
     <Button
         android:id="@+id/createAccount_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        style="@style/TextButton"
+        android:layout_marginBottom="15dp"
+        android:background="@color/colorPrimary"
         android:text="Create Account >"/>
 
     <Button
         android:id="@+id/forgotPassword_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        style="@style/TextButton"
+        android:background="@color/colorPrimary"
         android:text="Forgot Password?"/>
+
+    <TextView
+        android:id="@+id/Copyright"
+        style="@style/SplashCaption"
+        android:layout_marginTop="@dimen/margin_padding_small"
+        android:text="By Interfaced.ca"/>
 
 </LinearLayout>

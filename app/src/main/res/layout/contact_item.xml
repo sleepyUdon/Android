@@ -50,15 +50,15 @@
                 android:text="@string/projectDescription_contactName"/>
 
             <Button
-                android:id="@+id/Book"
-                style="@style/Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1.5"
-                android:background="@color/colorAccent"
+                android:id="@+id/contactButton"
+                style="@style/RoundedButton"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/margin_padding_small"
                 android:text="CONTACT"/>
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
 
 </FrameLayout>
+

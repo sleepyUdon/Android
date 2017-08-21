@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,18 +20,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import ca.interfaced.dockmaster.Model.Project;
+import ca.interfaced.dockmaster.Model.User;
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
 
 public class Projectslist_Fragment extends Fragment {
 
+    private String mUserID;
+    private RealmList<Project> mProjects;
+
     private RecyclerView mProjectRecyclerView;
     private ProjectAdapter mAdapter;
-    private FloatingActionButton fab;
-    private LayoutInflater dialogInflater;
-    private RealmResults<Project> mProjects;
+
     public ImageView mProjectImageImageView;
     public TextView mProjectNameTextView;
     public TextView mProjectAddressTextView;
@@ -55,6 +59,16 @@ public class Projectslist_Fragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        String userID = getActivity().getIntent().getExtras().getString("userID");
+        Log.d("extraFromLogin", userID);
+        mUserID = userID;
+
+        Realm realm = Realm.getDefaultInstance();
+        User user = realm.where(User.class)
+                .equalTo("email", mUserID)
+                .findFirst();
+        RealmList<Project> projects = user.getProjects();
+        mProjects = projects;
     }
 
 
@@ -64,69 +78,15 @@ public class Projectslist_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.projectslist_fragment, container, false);
 
-        fab = (FloatingActionButton) view.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+//        fab = (FloatingActionButton) view.findViewById(R.id.fab);
 
-                dialogInflater = getActivity().getLayoutInflater();
-                View content = dialogInflater.inflate(R.layout.add_project_item, null);
-                final EditText editProjectName = (EditText) content.findViewById(R.id.project_name);
-                final EditText editProjectAddress = (EditText) content.findViewById(R.id.project_address);
-                final EditText editProjectContactName = (EditText) content.findViewById(R.id.project_contact_name);
-                final EditText editProjectAssetName = (EditText) content.findViewById(R.id.project_asset_name);
-
-
-//                final EditText editThumbnail = (EditText) content.findViewById(R.id.thumbnail);
-//
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setView(content)
-                        .setTitle("Add project")
-                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (editProjectName.getText() == null || editProjectAddress.getText().toString().equals("")) {
-                                    Toast.makeText(getActivity(), "Entry not saved, missing title", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Realm realm = Realm.getDefaultInstance();
-                                    realm.beginTransaction();
-                                    Project project = realm.createObject(Project.class, System.currentTimeMillis());
-                                    // TODO: set ID
-                                    project.setProjectName(editProjectName.getText().toString());
-                                    project.setProjectAddress(editProjectAddress.getText().toString());
-//                                    project.setProjectContactName(editProjectContactName.getText().toString());
-//                                    project.setProjectAssetName(editProjectAssetName.getText().toString());
-
-                                    // TODO: set image
-                                    realm.commitTransaction();
-//
-                                    mAdapter.notifyDataSetChanged();
-//
-//                                    // scroll the recycler view to bottom
-//                                    recycler.scrollToPosition(RealmController.getInstance().getBooks().size() - 1);
-                                }
-                            }
-                        })
-                        .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
-        });
 
         mProjectRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewProjectList);
         mProjectRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        Realm realm = Realm.getDefaultInstance();
-        RealmResults<Project> projects = realm.where(Project.class)
-                .findAll();
 
-        mAdapter = new ProjectAdapter(projects);
+
+        mAdapter = new ProjectAdapter(mProjects);
         mProjectRecyclerView.setAdapter(mAdapter);
 
         return view;
@@ -137,7 +97,6 @@ public class Projectslist_Fragment extends Fragment {
         super.onResume();
 
     }
-
 
 
     private class ProjectHolder extends RecyclerView.ViewHolder {
@@ -178,12 +137,8 @@ public class Projectslist_Fragment extends Fragment {
 
 
     private class ProjectAdapter extends RecyclerView.Adapter<ProjectHolder> {
-        Realm realm = Realm.getDefaultInstance();
 
-        RealmResults<Project> projects = realm.where(Project.class)
-                .equalTo("Users.email", "vivianechan@hotmail.com")
-                .findAll();
-        public ProjectAdapter(RealmResults<Project> projects) {
+        public ProjectAdapter(RealmList<Project> projects) {
                         mProjects = projects;
         }
 
@@ -198,13 +153,14 @@ public class Projectslist_Fragment extends Fragment {
 
         @Override
         public void onBindViewHolder(ProjectHolder holder, final int position) {
-            Project project = projects.get(position);
+            Project project = mProjects.get(position);
             holder.bindProject(project);
         }
 
         @Override
         public int getItemCount() {
-            return projects.size();
+            Log.d("count", String.format("%d", mProjects.size()));
+            return mProjects.size();
         }
     }
 
