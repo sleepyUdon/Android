@@ -124,7 +124,7 @@ public class MySchedule_Fragment extends Fragment {
 
 
     private class ScheduleAdapter extends RecyclerView.Adapter<MySchedule_Fragment.ScheduleHolder> {
-        
+
         public ScheduleAdapter(RealmList<Reservation> reservations) {
             mReservations = reservations;
         }
