@@ -1,9 +1,14 @@
 package ca.interfaced.dockmaster;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -17,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+
 import ca.interfaced.dockmaster.Model.User;
 import ca.interfaced.dockmaster.app.SessionManager;
 import io.realm.Realm;
@@ -25,7 +32,8 @@ import io.realm.RealmResults;
 public class Settings_Fragment extends Fragment {
 
     SessionManager session;
-    
+    private String mPhotoFile;
+
     private static String firstName ;
     private static String lastName ;
     private static String companyName ;
@@ -54,6 +62,7 @@ public class Settings_Fragment extends Fragment {
     }
     public Settings_Fragment() {
         // Required empty public constructor
+
     }
 
     @Override
@@ -78,17 +87,21 @@ public class Settings_Fragment extends Fragment {
         phoneNumber = user.getPhoneNumber();
         mobileNumber = user.getMobileNumber();
         email = user.getEmail();
+
+        mPhotoFile = mUser.getPhotoFilename();
+
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View v = inflater.inflate(R.layout.settings_fragment, container, false);
 
-        picture_imageView = (ImageView) v.findViewById(R.id.profile_image);
-        int resId = getResources().getIdentifier(mUser.getImage(),"drawable",getActivity().getPackageName());
-        Drawable contactThumbnail = getActivity().getResources().getDrawable(resId);
-        picture_imageView.setImageDrawable(contactThumbnail);
+//        picture_imageView = (ImageView) v.findViewById(R.id.profile_image);
+//        int resId = getResources().getIdentifier(mUser.getImage(),"drawable",getActivity().getPackageName());
+//        Drawable contactThumbnail = getActivity().getResources().getDrawable(resId);
+//        picture_imageView.setImageDrawable(contactThumbnail);
 
 
         firstName_textView = (TextView) v.findViewById(R.id.firstName);
@@ -119,6 +132,25 @@ public class Settings_Fragment extends Fragment {
         });
 
         edit_picture_button = (Button) v.findViewById(R.id.edit_picture_button);
+        final Intent captureImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        //TODO: condition for taking picture
+        boolean canTakePhoto = true;
+        edit_picture_button.setEnabled(canTakePhoto);
+
+        if (canTakePhoto) {
+            captureImage.putExtra(MediaStore.EXTRA_OUTPUT, mPhotoFile);
+            Toast.makeText(getActivity(), mPhotoFile, Toast.LENGTH_SHORT).show();
+        }
+        edit_picture_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(captureImage, 2);
+            }
+        });
+
+        picture_imageView = (ImageView) v.findViewById(R.id.profile_image);
+
 
         edit_profile_button = (Button) v.findViewById(R.id.edit_profile_button);
         edit_profile_button.setOnClickListener(new View.OnClickListener() {
@@ -201,6 +233,8 @@ public class Settings_Fragment extends Fragment {
 
         return v;
     }
+
+
 }
 
 

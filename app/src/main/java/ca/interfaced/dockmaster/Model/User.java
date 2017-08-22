@@ -114,6 +114,10 @@ public class User extends RealmObject {
         this.projects = projects;
     }
 
+    public String getPhotoFilename() {
+        return "IMG_" + getEmail().toString() + ".jpg";
+    }
+
 
 
 
