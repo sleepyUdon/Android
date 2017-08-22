@@ -98,6 +98,14 @@
         fontPath="fonts/Montserrat-Bold.ttf"
     </style>
 
+    <style name="Header">
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+
     <style name="ProjectTitle">
         <item name="android:textSize">@dimen/text_size_xxnormal</item>
         <item name="android:textColor">@color/colorBlack</item>
