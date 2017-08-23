@@ -12,9 +12,9 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
         android:layout_width="match_parent"
-        android:layout_height="175dp"
+        android:layout_height="150dp"
         android:background="@color/colorPrimaryLight"
-        android:paddingTop="@dimen/margin_padding_large"
+        android:paddingTop="@dimen/margin_padding_normal"
         android:src="@drawable/johnsmith"/>
 
     <LinearLayout
