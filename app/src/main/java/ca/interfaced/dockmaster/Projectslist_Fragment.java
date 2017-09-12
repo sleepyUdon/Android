@@ -19,6 +19,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -43,20 +44,19 @@ public class Projectslist_Fragment extends Fragment {
 //    private String mUserID;
 
 
-
     private RecyclerView mProjectRecyclerView;
     private DatabaseReference mFirebaseDatabaseReference;
     private FirebaseRecyclerAdapter<ProjectItem, ProjectHolder>
             mFirebaseAdapter;
     private LinearLayoutManager mLinearLayoutManager;
 
-    ArrayList<ProjectItem> projectsArraylist = new ArrayList<>();
+    private ProjectItem mProjectItem;
+
 
 
     public ImageView mProjectImageImageView;
     public TextView mProjectNameTextView;
     public TextView mProjectAddressTextView;
-
 
 
     public static ca.interfaced.dockmaster.Projectslist_Fragment newInstance() {
@@ -79,6 +79,30 @@ public class Projectslist_Fragment extends Fragment {
 
         String userID = getActivity().getIntent().getExtras().getString("userID");
         Log.d("extraFromLogin", userID);
+
+        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference("Dockmaster");
+        mFirebaseDatabaseReference.child("projects").addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot projectSnapShot : dataSnapshot.getChildren()) {
+//                    ProjectItem projectItem = projectSnapShot.getValue(ProjectItem.class);
+//                    Log.i("Chat", projectItem.getName()+": "+projectItem.getAddress());
+                    Log.e("test", "tndksfmkm");
+
+
+
+                }
+                Log.e("test", "tndksfmkm");
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("test", "test");
+            }
+        });
+
 //        mUserID = userID;
 
 //        Realm realm = Realm.getDefaultInstance();
@@ -91,7 +115,6 @@ public class Projectslist_Fragment extends Fragment {
 
 
     }
-
 
 
     @Override
@@ -107,75 +130,12 @@ public class Projectslist_Fragment extends Fragment {
         mProjectRecyclerView.setLayoutManager(mLinearLayoutManager);
 
 
-        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
-        //ValueEventListener projectsListener =
-        mFirebaseDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                ProjectItem projectItem = dataSnapshot.getValue(ProjectItem.class);
-                Log.d(projectItem.getId(), projectItem.getName());
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<ProjectItem, ProjectHolder>(
-                ProjectItem.class,
-                R.layout.project_item,
-                ProjectHolder.class,
-                mFirebaseDatabaseReference.child("Dockmaster").child("projects")) {
-
-            @Override
-            protected ProjectItem parseSnapshot(DataSnapshot snapshot) {
-                ProjectItem projectItem = super.parseSnapshot(snapshot);
-                if (projectItem != null) {
-                    projectItem.setId(snapshot.getKey());
-                }
-                return projectItem;
-            }
-
-            @Override
-            protected void populateViewHolder(ProjectHolder viewHolder,
-                                              ProjectItem project, int position) {
-                viewHolder.mProjectAddressTextView.setText(project.getName());
-                viewHolder.mProjectAddressTextView.setVisibility(TextView.VISIBLE);
-                viewHolder.mProjectNameTextView.setText("HELLo");
-                viewHolder.mProjectNameTextView.setVisibility(TextView.VISIBLE);
-            }
-        };
-
-        mFirebaseAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-            @Override
-            public void onItemRangeInserted(int positionStart, int itemCount) {
-                super.onItemRangeInserted(positionStart, itemCount);
-                int friendlyMessageCount = mFirebaseAdapter.getItemCount();
-                int lastVisiblePosition =
-                        mLinearLayoutManager.findLastCompletelyVisibleItemPosition();
-                // If the recycler view is initially being loaded or the
-                // user is at the bottom of the list, scroll to the bottom
-                // of the list to show the newly added message.
-                if (lastVisiblePosition == -1 ||
-                        (positionStart >= (friendlyMessageCount - 1) &&
-                                lastVisiblePosition == (positionStart - 1))) {
-                    mProjectRecyclerView.scrollToPosition(positionStart);
-                }
-            }
-        });
-
-        mProjectRecyclerView.setAdapter(mFirebaseAdapter);
-
-
         return view;
     }
 
 
-
-
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
 
     }
@@ -245,6 +205,57 @@ public class Projectslist_Fragment extends Fragment {
 //            return mProjects.size();
 //        }
 //    }
+
+    @Override
+    public void onActivityCreated(Bundle saved) {
+        super.onActivityCreated(saved);
+
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<ProjectItem, ProjectHolder>(
+                ProjectItem.class,
+                R.layout.project_item,
+                ProjectHolder.class,
+                mFirebaseDatabaseReference.child("Dockmaster").child("projects")) {
+
+            @Override
+            protected ProjectItem parseSnapshot(DataSnapshot snapshot) {
+                ProjectItem projectItem = super.parseSnapshot(snapshot);
+                if (projectItem != null) {
+                    projectItem.setName(snapshot.getKey());
+                }
+                return projectItem;
+            }
+
+            @Override
+            protected void populateViewHolder(ProjectHolder viewHolder,
+                                              ProjectItem project, int position) {
+                viewHolder.mProjectAddressTextView.setText(project.getName());
+                viewHolder.mProjectAddressTextView.setVisibility(TextView.VISIBLE);
+                viewHolder.mProjectNameTextView.setText("HELLo");
+                viewHolder.mProjectNameTextView.setVisibility(TextView.VISIBLE);
+            }
+        };
+        mFirebaseAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                int friendlyMessageCount = mFirebaseAdapter.getItemCount();
+                int lastVisiblePosition =
+                        mLinearLayoutManager.findLastCompletelyVisibleItemPosition();
+                // If the recycler view is initially being loaded or the
+                // user is at the bottom of the list, scroll to the bottom
+                // of the list to show the newly added message.
+                if (lastVisiblePosition == -1 ||
+                        (positionStart >= (friendlyMessageCount - 1) &&
+                                lastVisiblePosition == (positionStart - 1))) {
+                    mProjectRecyclerView.scrollToPosition(positionStart);
+                }
+            }
+        });
+
+        mProjectRecyclerView.setAdapter(mFirebaseAdapter);
+    }
+
+
 
 
 }
