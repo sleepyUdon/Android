@@ -123,13 +123,13 @@ public class Login_Fragment extends Fragment {
         asset2.setDescription("20-storeys crane");
         realm.insertOrUpdate(asset2);
 
-        Reservation reservation1 = realm.createObject(Reservation.class);
-        reservation1.setId("1");
-        reservation1.setDate("15 July 2017");
-        reservation1.setStartTime("10:30 AM");
-        reservation1.setEndTime("11:30 AM");
-        reservation1.setNotes("Delivery of tables");
-        realm.insertOrUpdate(reservation1);
+//        Reservation reservation1 = realm.createObject(Reservation.class);
+//        reservation1.setId("1");
+//        reservation1.setDate("15 July 2017");
+//        reservation1.setStartTime("10:30 AM");
+//        reservation1.setEndTime("11:30 AM");
+//        reservation1.setNotes("Delivery of tables");
+//        realm.insertOrUpdate(reservation1);
 
         project1.getUsers().add(user1);
         project1.getUsers().add(user2);
@@ -141,9 +141,9 @@ public class Login_Fragment extends Fragment {
         project2.getContacts().add(user1);
         project3.getContacts().add(user2);
 
-        user1.getProjects().add(project2);
-        user2.getProjects().add(project1);
-        user2.getProjects().add(project3);
+//        user1.getProjects().add(project2);
+//        user2.getProjects().add(project1);
+//        user2.getProjects().add(project3);
 
         project1.getAssets().add(asset1);
         project2.getAssets().add(asset2);
@@ -151,11 +151,11 @@ public class Login_Fragment extends Fragment {
         asset1.setProject(project1);
         asset2.setProject(project2);
 
-        reservation1.setUser(user1);
-        reservation1.setProject(project1);
-        reservation1.setAsset(asset2);
-
-        user1.getReservations().add(reservation1);
+//        reservation1.setUser(user1);
+//        reservation1.setProject(project1);
+//        reservation1.setAsset(asset2);
+//
+//        user1.getReservations().add(reservation1);
 
 
         realm.commitTransaction();

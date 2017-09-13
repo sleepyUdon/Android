@@ -19,8 +19,8 @@ public class User extends RealmObject {
     private String mobileNumber;
     private String image;
 
-    private RealmList<Reservation> reservations;
-    private RealmList<Project> projects;
+//    private RealmList<Reservation> reservations;
+//    private RealmList<Project> projects;
 
 
     private String id;
@@ -98,21 +98,21 @@ public class User extends RealmObject {
         this.image = image;
     }
 
-    public RealmList<Reservation> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(RealmList<Reservation> reservations) {
-        this.reservations = reservations;
-    }
-
-    public RealmList<Project> getProjects() {
-        return projects;
-    }
-
-    public void setProjects(RealmList<Project> projects) {
-        this.projects = projects;
-    }
+//    public RealmList<Reservation> getReservations() {
+//        return reservations;
+//    }
+//
+//    public void setReservations(RealmList<Reservation> reservations) {
+//        this.reservations = reservations;
+//    }
+//
+//    public RealmList<Project> getProjects() {
+//        return projects;
+//    }
+//
+//    public void setProjects(RealmList<Project> projects) {
+//        this.projects = projects;
+//    }
 
 
 

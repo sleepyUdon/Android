@@ -10,48 +10,76 @@ import io.realm.annotations.LinkingObjects;
  * Created by vivianechan on 2017-08-16.
  */
 
-public class Reservation extends RealmObject {
+public class Reservation {
 
-    private String id;
-    private String date;
-    private String startTime;
-    private String endTime;
+    private String address;
+    private String companyName;
+    private String endDate;
+    private String fullName;
+    private String itemName;
     private String notes;
+    private String projectName;
+    private String startDate;
+    private String userId;
 
-    private Project project;
-    private Asset asset;
-    private User user;
-
-    public String getId() {
-        return id;
+    public Reservation() {
+        // Default constructor required for calls to DataSnapshot.getValue(Comment.class)
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public Reservation(String address,String companyName,
+                       String endDate, String fullName, String itemName,
+                       String notes, String projectName, String startDate,
+                       String userId) {
+
+        this.address = address;
+        this.companyName = companyName;
+        this.endDate = endDate;
+        this.fullName = fullName;
+        this.itemName = itemName;
+        this.notes = notes;
+        this.projectName = projectName;
+        this.startDate = startDate;
+        this.userId = userId;
     }
 
-    public String getDate() {
-        return date;
+    public String getAddress() {
+        return address;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getStartTime() {
-        return startTime;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
-    public String getEndTime() {
-        return endTime;
+    public String getEndDate() {
+        return endDate;
     }
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
     public String getNotes() {
@@ -62,31 +90,27 @@ public class Reservation extends RealmObject {
         this.notes = notes;
     }
 
-    public Project getProject() {
-        return project;
+    public String getProjectName() {
+        return projectName;
     }
 
-    public void setProject(Project project) {
-        this.project = project;
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
-    public Asset getAsset() {
-        return asset;
+    public String getStartDate() {
+        return startDate;
     }
 
-    public void setAsset(Asset asset) {
-        this.asset = asset;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
 
-    public User getUser() {
-        return user;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
-
-
-
-
 }

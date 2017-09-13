@@ -19,7 +19,7 @@ public class Asset extends RealmObject {
     private String sitePlan;
     private String description;
     private Project project;
-    private RealmList<Reservation> Reservations;
+//    private RealmList<Reservation> Reservations;
 
 
     //    private String mType;

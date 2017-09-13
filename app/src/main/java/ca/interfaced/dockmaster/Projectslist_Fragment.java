@@ -2,6 +2,9 @@
 package ca.interfaced.dockmaster;
 
 
+import android.content.Context;
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
@@ -25,25 +29,10 @@ import ca.interfaced.dockmaster.Model.ProjectItem;
 
 public class Projectslist_Fragment extends Fragment {
 
-
-    public static class ProjectHolder extends RecyclerView.ViewHolder {
-        public TextView mProjectAddressTextView;
-        public TextView mProjectNameTextView;
-
-        public ProjectHolder(View v) {
-            super(v);
-            mProjectAddressTextView = (TextView) itemView.findViewById(R.id.project_address);
-            mProjectNameTextView = (TextView) itemView.findViewById(R.id.project_name);
-        }
-    }
-
-
     private RecyclerView mProjectRecyclerView;
     private DatabaseReference mFirebaseDatabaseReference;
-    private FirebaseRecyclerAdapter<ProjectItem, ProjectHolder>
-            mFirebaseAdapter;
+    private FirebaseRecyclerAdapter<ProjectItem, ProjectHolder> mFirebaseAdapter;
     private LinearLayoutManager mLinearLayoutManager;
-
 
 
     public static ca.interfaced.dockmaster.Projectslist_Fragment newInstance() {
@@ -61,6 +50,33 @@ public class Projectslist_Fragment extends Fragment {
     }
 
 
+    public static class ProjectHolder extends RecyclerView.ViewHolder {
+
+        public ProjectItem projectItem;
+        public TextView mProjectAddressTextView;
+        public TextView mProjectNameTextView;
+        public ImageView mImageView;
+
+        public ProjectHolder(View v) {
+            super(v);
+
+            mProjectAddressTextView = (TextView) itemView.findViewById(R.id.project_address);
+            mProjectNameTextView = (TextView) itemView.findViewById(R.id.project_name);
+            mImageView = (ImageView) itemView.findViewById(R.id.profile_image);
+
+            v.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+
+        }
+
+    }
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +85,9 @@ public class Projectslist_Fragment extends Fragment {
         Log.d("extraFromLogin", userID);
 
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //TODO: ADD QUERY
+
         mFirebaseDatabaseReference.child("projects").addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -113,6 +132,9 @@ public class Projectslist_Fragment extends Fragment {
     public void onActivityCreated(Bundle saved) {
         super.onActivityCreated(saved);
 
+        //TODO: ADD QUERY
+
+
         mFirebaseAdapter = new FirebaseRecyclerAdapter<ProjectItem, ProjectHolder>(
                 ProjectItem.class,
                 R.layout.project_item,
@@ -136,6 +158,8 @@ public class Projectslist_Fragment extends Fragment {
                 viewHolder.mProjectAddressTextView.setVisibility(TextView.VISIBLE);
                 viewHolder.mProjectNameTextView.setText(project.getName());
                 viewHolder.mProjectNameTextView.setVisibility(TextView.VISIBLE);
+
+
             }
         };
         mFirebaseAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
@@ -158,8 +182,5 @@ public class Projectslist_Fragment extends Fragment {
 
         mProjectRecyclerView.setAdapter(mFirebaseAdapter);
     }
-
-
-
 
 }
