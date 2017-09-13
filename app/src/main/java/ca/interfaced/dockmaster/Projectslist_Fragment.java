@@ -2,11 +2,14 @@
 package ca.interfaced.dockmaster;
 
 
-import android.content.Context;
-import android.content.Intent;
-import android.media.Image;
+
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,22 +18,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+import com.bumptech.glide.Glide;
 
+
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 
 import ca.interfaced.dockmaster.Model.ProjectItem;
+
+import static ca.interfaced.dockmaster.R.id.image;
 
 
 public class Projectslist_Fragment extends Fragment {
 
     private RecyclerView mProjectRecyclerView;
     private DatabaseReference mFirebaseDatabaseReference;
+    private StorageReference mStorageReference;
     private FirebaseRecyclerAdapter<ProjectItem, ProjectHolder> mFirebaseAdapter;
     private LinearLayoutManager mLinearLayoutManager;
 
@@ -62,7 +76,7 @@ public class Projectslist_Fragment extends Fragment {
 
             mProjectAddressTextView = (TextView) itemView.findViewById(R.id.project_address);
             mProjectNameTextView = (TextView) itemView.findViewById(R.id.project_name);
-            mImageView = (ImageView) itemView.findViewById(R.id.profile_image);
+            mImageView = (ImageView) itemView.findViewById(R.id.projectThumbnail);
 
             v.setOnClickListener(new View.OnClickListener() {
 
@@ -152,16 +166,27 @@ public class Projectslist_Fragment extends Fragment {
 //            }
 
             @Override
-            protected void populateViewHolder(ProjectHolder viewHolder,
-                                              ProjectItem project, int position) {
-                viewHolder.mProjectAddressTextView.setText(project.getAddress());
+            protected void populateViewHolder(final ProjectHolder viewHolder,
+                                              ProjectItem projectItem, int position) {
+                viewHolder.mProjectAddressTextView.setText(projectItem.getAddress());
                 viewHolder.mProjectAddressTextView.setVisibility(TextView.VISIBLE);
-                viewHolder.mProjectNameTextView.setText(project.getName());
+
+                viewHolder.mProjectNameTextView.setText(projectItem.getName());
                 viewHolder.mProjectNameTextView.setVisibility(TextView.VISIBLE);
 
+//                viewHolder.mImageView.setImageResource(R.drawable.johnsmith);
 
+                Uri url = Uri.parse(projectItem.getListingImage());
+
+                Glide.with(getActivity())
+                        .load(url)
+                        .centerCrop()
+                        //TODO: Add placeholder image
+//                        .placeholder(R.drawable.project1)
+                        .into(viewHolder.mImageView);
             }
         };
+
         mFirebaseAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
