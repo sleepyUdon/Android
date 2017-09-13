@@ -7,21 +7,21 @@ import java.util.ArrayList;
 /**
  * Created by vivianechan on 2017-09-05.
  */
-@IgnoreExtraProperties
+//@IgnoreExtraProperties
 
 public class ProjectItem {
 
     public String address;
-    public ArrayList<User> authorizedUsers;
-    public String bannerImage;
+//    public ArrayList<User> authorizedUsers;
+//    public String bannerImage;
 //    public ArrayList<User> contacts;
 //    public ArrayList<Asset> items;
 //    public String lat;
-    public String listingImage;
+//    public String listingImage;
 //    public String lon;
     public String name;
-    public String projectName;
-    public String status;
+//    public String projectName;
+//    public String status;
 
     public String getAddress() {
         return address;
@@ -31,21 +31,21 @@ public class ProjectItem {
         this.address = address;
     }
 
-    public ArrayList<User> getAuthorizedUsers() {
-        return authorizedUsers;
-    }
-
-    public void setAuthorizedUsers(ArrayList<User> authorizedUsers) {
-        this.authorizedUsers = authorizedUsers;
-    }
-
-    public String getBannerImage() {
-        return bannerImage;
-    }
-
-    public void setBannerImage(String bannerImage) {
-        this.bannerImage = bannerImage;
-    }
+//    public ArrayList<User> getAuthorizedUsers() {
+//        return authorizedUsers;
+//    }
+//
+//    public void setAuthorizedUsers(ArrayList<User> authorizedUsers) {
+//        this.authorizedUsers = authorizedUsers;
+//    }
+//
+//    public String getBannerImage() {
+//        return bannerImage;
+//    }
+//
+//    public void setBannerImage(String bannerImage) {
+//        this.bannerImage = bannerImage;
+//    }
 
 //    public ArrayList<User> getContacts() {
 //        return contacts;
@@ -71,13 +71,13 @@ public class ProjectItem {
 //        this.lat = lat;
 //    }
 
-    public String getListingImage() {
-        return listingImage;
-    }
-
-    public void setListingImage(String listingImage) {
-        this.listingImage = listingImage;
-    }
+//    public String getListingImage() {
+//        return listingImage;
+//    }
+//
+//    public void setListingImage(String listingImage) {
+//        this.listingImage = listingImage;
+//    }
 
 //    public String getLon() {
 //        return lon;
@@ -95,38 +95,38 @@ public class ProjectItem {
         this.name = name;
     }
 
-    public String getProjectName() {
-        return projectName;
-    }
-
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
+//    public String getProjectName() {
+//        return projectName;
+//    }
+//
+//    public void setProjectName(String projectName) {
+//        this.projectName = projectName;
+//    }
+//
+//    public String getStatus() {
+//        return status;
+//    }
+//
+//    public void setStatus(String status) {
+//        this.status = status;
+//    }
 
 
     public ProjectItem() {
         // Default constructor required for calls to DataSnapshot.getValue(Comment.class)
     }
 
-    public ProjectItem(String address, ArrayList<User>authorizedUsers, String bannerImage,  String listingImage, String name, String projectName, String status) {
+    public ProjectItem(String address, String name) {
         this.address = address;
-        this.authorizedUsers = authorizedUsers;
-        this.bannerImage = bannerImage;
+//        this.authorizedUsers = authorizedUsers;
+//        this.bannerImage = bannerImage;
 //        this.contacts = contacts;
 //        this.items = items;
-        this.listingImage = listingImage;
+//        this.listingImage = listingImage;
 //        this.lon = lon;
         this.name = name;
-        this.projectName = projectName;
-        this.status = status;
+//        this.projectName = projectName;
+//        this.status = status;
 
     }
 

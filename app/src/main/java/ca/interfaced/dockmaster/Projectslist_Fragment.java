@@ -14,15 +14,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 import ca.interfaced.dockmaster.Model.ProjectItem;
 
@@ -41,8 +37,6 @@ public class Projectslist_Fragment extends Fragment {
         }
     }
 
-//    private String mUserID;
-
 
     private RecyclerView mProjectRecyclerView;
     private DatabaseReference mFirebaseDatabaseReference;
@@ -50,18 +44,12 @@ public class Projectslist_Fragment extends Fragment {
             mFirebaseAdapter;
     private LinearLayoutManager mLinearLayoutManager;
 
-    private ProjectItem mProjectItem;
-
-
-
-    public ImageView mProjectImageImageView;
-    public TextView mProjectNameTextView;
-    public TextView mProjectAddressTextView;
 
 
     public static ca.interfaced.dockmaster.Projectslist_Fragment newInstance() {
         return new ca.interfaced.dockmaster.Projectslist_Fragment();
     }
+
 
     public Projectslist_Fragment() {
         // Required empty public constructor
@@ -80,21 +68,14 @@ public class Projectslist_Fragment extends Fragment {
         String userID = getActivity().getIntent().getExtras().getString("userID");
         Log.d("extraFromLogin", userID);
 
-        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference("Dockmaster");
+        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
         mFirebaseDatabaseReference.child("projects").addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot projectSnapShot : dataSnapshot.getChildren()) {
-//                    ProjectItem projectItem = projectSnapShot.getValue(ProjectItem.class);
-//                    Log.i("Chat", projectItem.getName()+": "+projectItem.getAddress());
-                    Log.e("test", "tndksfmkm");
-
-
-
+                    ProjectItem projectItem = projectSnapShot.getValue(ProjectItem.class);
                 }
-                Log.e("test", "tndksfmkm");
-
             }
 
             @Override
@@ -102,18 +83,6 @@ public class Projectslist_Fragment extends Fragment {
                 Log.e("test", "test");
             }
         });
-
-//        mUserID = userID;
-
-//        Realm realm = Realm.getDefaultInstance();
-//        User user = realm.where(User.class)
-//                .equalTo("email", mUserID)
-//                .findFirst();
-//        RealmList<Project> projects = user.getProjects();
-//        mProjects = projects;
-
-
-
     }
 
 
@@ -124,14 +93,13 @@ public class Projectslist_Fragment extends Fragment {
 
         View view = inflater.inflate(R.layout.projectslist_fragment, container, false);
 
-        mLinearLayoutManager = new LinearLayoutManager(getActivity());
         mProjectRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewProjectList);
-        mLinearLayoutManager.setStackFromEnd(true);
+        mLinearLayoutManager = new LinearLayoutManager(getActivity());
         mProjectRecyclerView.setLayoutManager(mLinearLayoutManager);
-
 
         return view;
     }
+
 
 
     @Override
@@ -141,71 +109,6 @@ public class Projectslist_Fragment extends Fragment {
     }
 
 
-//    private class ProjectHolder extends RecyclerView.ViewHolder {
-//        private Project mProject;
-//
-//        public void bindProject(Project project) {
-//            mProject = project;
-//            mProjectNameTextView.setText(mProject.getProjectName().toUpperCase());
-//            mProjectAddressTextView.setText(mProject.getProjectAddress());
-//
-//            int resId = getResources().getIdentifier(mProject.getImage(),"drawable",getActivity().getPackageName());
-//            Drawable contactThumbnail = getActivity().getResources().getDrawable(resId);
-//
-//            mProjectImageImageView.setImageDrawable(contactThumbnail);        }
-//
-//
-//
-//
-//
-//        public ProjectHolder(View itemView) {
-//            super(itemView);
-//            // Define click listener for the ViewHolder's View.
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Toast.makeText(getActivity(), "Project selected", Toast.LENGTH_SHORT).show();
-//                    Intent intent = ProjectDescription_Activity.newIntent(getActivity(), mProject.getId());
-//                    startActivity(intent);
-//                }
-//            });
-//            mProjectNameTextView = (TextView) itemView.findViewById(R.id.project_name);
-//            mProjectAddressTextView = (TextView) itemView.findViewById(R.id.project_address);
-//            mProjectImageImageView = (ImageView) itemView.findViewById(R.id.projectThumbnail);
-//
-//        }
-//
-//    }
-//
-//
-//    private class ProjectAdapter extends RecyclerView.Adapter<ProjectHolder> {
-//
-//        public ProjectAdapter(RealmList<Project> projects) {
-//                        mProjects = projects;
-//        }
-//
-//
-//        @Override
-//        public ProjectHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//            View view = LayoutInflater.from(parent.getContext())
-//                    .inflate(R.layout.project_item, parent, false);
-//
-//            return new ProjectHolder(view);
-//        }
-//
-//        @Override
-//        public void onBindViewHolder(ProjectHolder holder, final int position) {
-//            Project project = mProjects.get(position);
-//            holder.bindProject(project);
-//        }
-//
-//        @Override
-//        public int getItemCount() {
-//            Log.d("count", String.format("%d", mProjects.size()));
-//            return mProjects.size();
-//        }
-//    }
-
     @Override
     public void onActivityCreated(Bundle saved) {
         super.onActivityCreated(saved);
@@ -214,23 +117,24 @@ public class Projectslist_Fragment extends Fragment {
                 ProjectItem.class,
                 R.layout.project_item,
                 ProjectHolder.class,
-                mFirebaseDatabaseReference.child("Dockmaster").child("projects")) {
+                mFirebaseDatabaseReference.child("projects")) {
 
-            @Override
-            protected ProjectItem parseSnapshot(DataSnapshot snapshot) {
-                ProjectItem projectItem = super.parseSnapshot(snapshot);
-                if (projectItem != null) {
-                    projectItem.setName(snapshot.getKey());
-                }
-                return projectItem;
-            }
+//            @Override
+//            protected ProjectItem parseSnapshot(DataSnapshot snapshot) {
+//                ProjectItem projectItem = super.parseSnapshot(snapshot);
+//                if (projectItem != null) {
+////                    projectItem.setName(snapshot.child("name"));
+////                    projectItem.setAddress(snapshot.child("address"));
+//                }
+//                return projectItem;
+//            }
 
             @Override
             protected void populateViewHolder(ProjectHolder viewHolder,
                                               ProjectItem project, int position) {
-                viewHolder.mProjectAddressTextView.setText(project.getName());
+                viewHolder.mProjectAddressTextView.setText(project.getAddress());
                 viewHolder.mProjectAddressTextView.setVisibility(TextView.VISIBLE);
-                viewHolder.mProjectNameTextView.setText("HELLo");
+                viewHolder.mProjectNameTextView.setText(project.getName());
                 viewHolder.mProjectNameTextView.setVisibility(TextView.VISIBLE);
             }
         };
