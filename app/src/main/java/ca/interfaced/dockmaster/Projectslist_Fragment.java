@@ -3,6 +3,8 @@ package ca.interfaced.dockmaster;
 
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -66,6 +68,7 @@ public class Projectslist_Fragment extends Fragment {
 
     public static class ProjectHolder extends RecyclerView.ViewHolder {
 
+        public Context context;
         public ProjectItem projectItem;
         public TextView mProjectAddressTextView;
         public TextView mProjectNameTextView;
@@ -80,10 +83,17 @@ public class Projectslist_Fragment extends Fragment {
 
             v.setOnClickListener(new View.OnClickListener() {
 
+                ProjectItem mProjectItem;
+
                 @Override
                 public void onClick(View v) {
 
-                }
+                    context = v.getContext();
+
+                    Intent intent = new Intent(context, ProjectDescription_Activity.class);
+                    intent.putExtra("ARG_PROJECT_ID", "P0");
+                    context.startActivity(intent);
+            }
             });
 
         }
